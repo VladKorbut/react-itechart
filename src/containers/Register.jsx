@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import { FormGroup, ControlLabel, FormControl, Col, Button, Checkbox } from 'react-bootstrap'
 import register from '../db/register'
 import users from '../db/users.js'
@@ -14,6 +16,11 @@ class Register extends Component {
       loginIsValid: null,
       emailIsValid: null,
       passwordIsValid: null,
+    }
+  }
+  componentWillMount(){
+    if(this.props.isLoggedIn){
+      browserHistory.push('/home');
     }
   }
   submitFrom = () => {
@@ -123,4 +130,10 @@ class Register extends Component {
   }
 }
 
-export default Register
+const mapStateToProps = (store) => {
+  return {
+    isLoggedIn: store.loginReducer
+  }
+}
+
+export default connect(mapStateToProps, null)(Register)

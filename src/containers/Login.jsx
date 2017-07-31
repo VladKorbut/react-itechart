@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import { FormGroup, ControlLabel, FormControl, Col, Button } from 'react-bootstrap'
 import users from '../db/users'
 import getUser from '../db/login'
@@ -16,6 +17,11 @@ class Login extends Component {
       passwordIsValid: null,
     }
   }
+  componentWillMount(){
+    if(this.props.isLoggedIn){
+      browserHistory.push('/home');
+    }
+  }
   submitFrom = () => {
     getUser(this.state.login, this.state.password).then((data) => {
       console.log(data);
@@ -25,6 +31,7 @@ class Login extends Component {
       } else {
         storage.pushUser(data[0].id);
         this.props.login();
+        browserHistory.push('/home')
       }
     })
   }
@@ -83,10 +90,16 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = (store) => {
+  return {
+    isLoggedIn: store.loginReducer
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     login: () => login()(dispatch)
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

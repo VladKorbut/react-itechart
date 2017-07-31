@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { Navbar, Nav, Grid, NavItem } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -11,6 +12,7 @@ class App extends Component {
     storage.removeUser();
     console.log(this)
     this.props.logout();
+    browserHistory.push('/login');
   }
   render() {
     return (
