@@ -41,7 +41,7 @@ class Register extends Component {
   }
   loginValidate = (login) => {
     if (login.length) {
-      users.loginIsAvailable(login).then((data) => {
+      users.getUserByLogin(login).then((data) => {
         if (data.length) {
           this.setState({ loginIsValid: false });
         } else {
@@ -62,7 +62,7 @@ class Register extends Component {
   }
   emailValidate = (email) => {
     if (email.length) {
-      users.emailIsAvailable(email).then((data) => {
+      users.getUserByEmail(email).then((data) => {
         if (data.length) {
           this.setState({ emailIsValid: false });
         } else {

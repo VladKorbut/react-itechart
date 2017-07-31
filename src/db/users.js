@@ -6,10 +6,10 @@ export default {
   getLogins() {
     return db.executeTransaction(`SELECT login FROM users`);
   },
-  loginIsAvailable(login) {
+  getUserByLogin(login) {
     return db.executeTransaction(`SELECT * FROM users WHERE login='${login}'`);
   },
-  emailIsAvailable(email) {
+  getUserByEmail(email) {
     return db.executeTransaction(`SELECT * FROM users WHERE email='${email}'`);
   }
 }
