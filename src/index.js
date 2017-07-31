@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Routing from './Routing';
+import db from './db/db'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+db.init();
+
+ReactDOM.render(<Routing />, document.getElementById('root'));
