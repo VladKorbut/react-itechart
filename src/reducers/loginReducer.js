@@ -13,7 +13,7 @@ const loginReducer = (loggedIn = isLoggedIn, action) => {
     case LOGOUT:
       return false;
     default:
-      return isLoggedIn;
+      return loggedIn;
   }
 }
 
