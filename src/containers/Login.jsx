@@ -24,7 +24,6 @@ class Login extends Component {
   }
   submitFrom = () => {
     getUser(this.state.login, this.state.password).then((data) => {
-      console.log(data);
       if (!data.length) {
         alert('Password is incorrect');
         this.setState({ password: '', passwordIsValid: null });

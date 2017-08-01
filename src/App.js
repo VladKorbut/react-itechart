@@ -10,7 +10,6 @@ import storage from './localStorage/storage'
 class App extends Component {
   logout = () => {
     storage.removeUser();
-    console.log(this)
     this.props.logout();
     browserHistory.push('/login');
   }
@@ -27,11 +26,17 @@ class App extends Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-
             {this.props.userIsAuthorized ?
-              <Navbar.Text pullRight>
-                <Navbar.Link onClick={this.logout}>Logout</Navbar.Link>
-              </Navbar.Text>
+              <div>
+                <Nav>
+                  <LinkContainer to={'/new-quiz'}>
+                    <NavItem>Create Quiz</NavItem>
+                  </LinkContainer>
+                </Nav>
+                <Navbar.Text pullRight>
+                  Hello, <Navbar.Link onClick={this.logout}>Logout</Navbar.Link>
+                </Navbar.Text>
+              </div>
               :
               <Nav pullRight>
                 <LinkContainer to={'/login'}>

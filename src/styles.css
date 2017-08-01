@@ -1,6 +1,6 @@
 a {
   cursor: pointer;
 }
-* {
+a:focus {
   outline: none;
 }

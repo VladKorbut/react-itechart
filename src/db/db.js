@@ -13,13 +13,23 @@ let db = {
     })
   },
   init() {
-    return this.executeTransaction(`CREATE TABLE IF NOT EXISTS
+    this.executeTransaction(`CREATE TABLE IF NOT EXISTS
     'users'(
       'id' INTEGER PRIMARY KEY ASC,
       'login' VARCHAR(10) NOT NULL,
       'email' VARCHAR(50) NOT NULL,
       'password' VARCHAR(16) NOT NULL,
-      'isAdmin' BOOLEAN DEFAULT FALSE
+      'isAdmin' BOOLEAN DEFAULT FALSE,
+      'date' DATETIME NOT NULL
+    )`)
+    this.executeTransaction(`CREATE TABLE IF NOT EXISTS
+    'quizzes'(
+      'id' INTEGER PRIMARY KEY ASC,
+      'title' VARCHAR(50) NOT NULL,
+      'isAnon' BOOLEAN DEFAULT FALSE,
+      'isRand' BOOLEAN DEFAULT FALSE,
+      'date' DATETIME NOT NULL,
+      'author_id' INTEGER NOT NULL
     )`)
   }
 }
