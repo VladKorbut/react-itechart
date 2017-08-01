@@ -1,6 +1,8 @@
 a {
   cursor: pointer;
 }
-a:focus {
+
+a:focus,
+button:focus {
   outline: none;
 }
