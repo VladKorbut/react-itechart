@@ -24,11 +24,11 @@ class Login extends Component {
   }
   submitFrom = () => {
     getUser(this.state.login, this.state.password).then((data) => {
-      if (!data.length) {
+      if (!data.rows.length) {
         alert('Password is incorrect');
         this.setState({ password: '', passwordIsValid: null });
       } else {
-        storage.pushUser(data[0].id);
+        storage.pushUser(data.rows[0].id);
         this.props.login();
         browserHistory.push('/home')
       }
@@ -41,7 +41,7 @@ class Login extends Component {
   loginValidate = (login) => {
     if (login.length) {
       users.getUserByLogin(login).then((data) => {
-        if (data.length) {
+        if (data.rows.length) {
           this.setState({ loginIsValid: true });
         } else {
           this.setState({ loginIsValid: false });

@@ -12,7 +12,7 @@ class Users extends Component {
   }
   componentWillMount() {
     users.get().then((users) => {
-      this.setState({ users: processUsers(users) });
+      this.setState({ users: processUsers(users.rows) });
     });
   }
   render() {

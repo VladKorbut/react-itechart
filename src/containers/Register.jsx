@@ -50,7 +50,7 @@ class Register extends Component {
   loginValidate = (login) => {
     if (login.length) {
       users.getUserByLogin(login).then((data) => {
-        if (data.length) {
+        if (data.rows.length) {
           this.setState({ loginIsValid: false });
         } else {
           this.setState({ loginIsValid: true });
@@ -71,7 +71,7 @@ class Register extends Component {
   emailValidate = (email) => {
     if (email.length) {
       users.getUserByEmail(email).then((data) => {
-        if (data.length) {
+        if (data.rows.length) {
           this.setState({ emailIsValid: false });
         } else {
           this.setState({ emailIsValid: true });

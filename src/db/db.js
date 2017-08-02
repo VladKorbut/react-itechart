@@ -4,8 +4,8 @@ let db = {
     return new Promise((resolve, reject) => {
       db.transaction((transaction) => {
         transaction.executeSql(query, [],
-          (transaction, result) => {
-            resolve([...result.rows]);
+          (tx, result) => {
+            resolve(result);
           }, (tx, error) => {
             reject(error);
           })
@@ -30,6 +30,20 @@ let db = {
       'isRand' BOOLEAN DEFAULT FALSE,
       'date' DATETIME NOT NULL,
       'author_id' INTEGER NOT NULL
+    )`)
+    this.executeTransaction(`CREATE TABLE IF NOT EXISTS
+    'questions'(
+      'id' INTEGER PRIMARY KEY ASC,
+      'title' VARCHAR(50) NOT NULL,
+      'type' INTEGER NOT NULL,
+      'isRequired' BOOLEAN DEFAULT FALSE,
+      'quiz_id' INTEGER NOT NULL
+    )`)
+    this.executeTransaction(`CREATE TABLE IF NOT EXISTS
+    'question_options'(
+      'id' INTEGER PRIMARY KEY ASC,
+      'text' VARCHAR(50) NOT NULL,
+      'question_id' INTEGER NOT NULL
     )`)
   }
 }

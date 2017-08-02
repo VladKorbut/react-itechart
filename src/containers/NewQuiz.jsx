@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router'
 import { FormControl, ControlLabel, Col, Checkbox, Button, Row, ButtonGroup } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import quiz from '../db/quiz'
-import Multiple from './questions/Multiple'
+import Questions from '../components/Questions.jsx'
 
 class NewQuiz extends Component {
   constructor() {
@@ -27,37 +27,32 @@ class NewQuiz extends Component {
     this.setState({ isRand: e.target.checked });
   }
   getButtonState = () => {
-    return !this.state.title.length;
+    return !(this.state.title.length && this.state.questions.length);
   }
   createQuiz = () => {
     if (this.props.isLoggedIn) {
-      quiz.create(this.state.title, this.state.isAnon, this.state.isRand).then(() => {
-        this.setState({
-          title: '',
-          isAnon: false,
-          isRand: false,
-        })
-        alert('Quiz have been created!')
-      });
+      quiz.create(this.state);
+      this.setState({
+        title: '',
+        isAnon: false,
+        isRand: false,
+        questions: [],
+      })
     } else {
       alert(`You're not logged in!`);
       browserHistory.push('/login');
     }
   }
-  addField = () => {
-    let questions = this.state.questions;
-    questions.push((Math.random() * 100) ^ 0);
-    this.setState(questions: questions);
-  }
   addMultiple = () => {
     let questions = this.state.questions;
-    questions.push(<Multiple />);
-    this.setState(questions: questions);
+    questions.push({ title: 'New Question', type: 1, isRequired: true, options: [] });
+    this.setState({ questions: questions });
   }
-  addMultiple = () => {
+  addOption = (position, options) => {
     let questions = this.state.questions;
-    questions.push(<Multiple />);
-    this.setState(questions: questions);
+    questions[position].options = options;
+    this.setState({ questions: questions });
+    console.log(this.state.questions)
   }
   render() {
     return (
@@ -75,7 +70,7 @@ class NewQuiz extends Component {
           />
           <Button bsStyle="primary" onClick={this.createQuiz} disabled={this.getButtonState()}>Create</Button>
           <Row>
-            {this.state.questions.map((item, index) => <div key={index}>{item}</div>)}
+            <Questions questions={this.state.questions} addOption={this.addOption} />
           </Row>
         </Col>
         <Col md={4}>
@@ -83,10 +78,12 @@ class NewQuiz extends Component {
             <h4>Type Of Question</h4>
             <ButtonGroup vertical>
               <Button onClick={this.addMultiple}><Fa name='check-square-o'></Fa>Multiple choise</Button>
+              {/*
               <Button onClick={this.addField}><Fa name='dot-circle-o'></Fa>Single choise</Button>
               <Button onClick={this.addField}><Fa name='font'></Fa>Text input</Button>
               <Button onClick={this.addField}><Fa name='star-half-o'></Fa>Stars rating</Button>
               <Button onClick={this.addField}><Fa name='sliders'></Fa>Slider rating</Button>
+              */}
             </ButtonGroup>
           </Row>
           <Row>
