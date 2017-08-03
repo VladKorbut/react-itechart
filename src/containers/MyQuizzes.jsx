@@ -1,10 +1,23 @@
 import React, { Component } from 'react'
+import QuizzesTable from '../components/QuizzesTable'
+import quiz from '../db/quiz'
 
 class MyQuizzes extends Component {
+  componentWillMount(){
+    quiz.getMy().then((quizzes)=>{
+      this.setState({quizzes: [...quizzes.rows]})
+    })
+  }
+  constructor(){
+    super();
+    this.state ={
+      quizzes: [],
+    }
+  }
   render () {
     return (
       <div>
-        <h2>My Quizzes</h2>
+        <QuizzesTable data={this.state.quizzes}/>
       </div>
     )
   }

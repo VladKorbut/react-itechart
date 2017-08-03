@@ -12,7 +12,6 @@ import NotFound from './components/NotFound'
 const Routing = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <Route path="home" component={Home} />
       <Route path="register" component={Register} />
       <Route path="login" component={Login} />
       <Route path="users" component={Users} />

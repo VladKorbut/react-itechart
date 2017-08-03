@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Radio, Checkbox, FormGroup, FormControl, InputGroup, Button, Panel } from 'react-bootstrap'
+import { Radio, Checkbox, FormControl, InputGroup, Button, Panel } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 
 class Single extends Component {

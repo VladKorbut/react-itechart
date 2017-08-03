@@ -3,6 +3,12 @@ import cv from '../common/converter'
 import ls from '../localStorage/storage'
 
 let quiz = {
+  getAll(){
+    return db.executeTransaction(`SELECT * FROM quizzes`);
+  },
+  getMy(){
+    return db.executeTransaction(`SELECT * FROM quizzes WHERE author_id=${ls.getUser()}`);
+  },
   create(quiz) {
     return this.createQuiz(quiz);
   },
