@@ -10,7 +10,7 @@ import { login } from '../actions/login'
 class Login extends Component {
   componentWillMount() {
     if (this.props.isLoggedIn) {
-      browserHistory.push('/home');
+      browserHistory.push('/');
     }
   }
   constructor() {
@@ -28,9 +28,9 @@ class Login extends Component {
         alert('Password is incorrect');
         this.setState({ password: '', passwordIsValid: null });
       } else {
-        storage.pushUser(data.rows[0].id);
+        storage.pushUser(data.rows[0].id, data.rows[0].login);
         this.props.login();
-        browserHistory.push('/home')
+        browserHistory.push('/')
       }
     })
   }

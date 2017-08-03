@@ -1,11 +1,16 @@
 export default {
-  pushUser(userId) {
-    return localStorage.setItem('user', userId);
+  pushUser(userId, login) {
+    localStorage.setItem('id', userId);
+    localStorage.setItem('login', login);
   },
   getUser() {
-    return localStorage.getItem('user');
+    return {
+      id: localStorage.getItem('id'),
+      login: localStorage.getItem('login'),
+    }
   },
   removeUser() {
-    return localStorage.removeItem('user');
+    localStorage.removeItem('id');
+    localStorage.removeItem('login');
   }
 }

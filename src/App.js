@@ -9,8 +9,11 @@ import Home from './components/Home'
 import storage from './localStorage/storage'
 
 class App extends Component {
-  componentWillReceiveProps(next){
-    console.log(next)
+  constructor(){
+    super();
+    this.state = {
+      login: storage.getUser().login,
+    }
   }
   logout = () => {
     storage.removeUser();
@@ -44,7 +47,7 @@ class App extends Component {
                   </LinkContainer>
                 </Nav>
                 <Navbar.Text pullRight>
-                  Hello, <Navbar.Link onClick={this.logout}>Logout</Navbar.Link>
+                  Hello, {this.state.login} <Navbar.Link onClick={this.logout}>Logout</Navbar.Link>
                 </Navbar.Text>
               </div>
               :

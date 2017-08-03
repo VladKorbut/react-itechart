@@ -4,7 +4,7 @@ import {
 } from '../types/login'
 import storage from '../localStorage/storage'
 
-let isLoggedIn = !!storage.getUser();
+let isLoggedIn = !!storage.getUser().login;
 
 const loginReducer = (loggedIn = isLoggedIn, action) => {
   switch (action.type) {

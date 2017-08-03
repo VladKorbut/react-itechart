@@ -58,6 +58,11 @@ class NewQuiz extends Component {
     questions.push({ title: '', type: 2, isRequired: true, options: [] });
     this.setState({ questions: questions });
   }
+  addRating = () => {
+    let questions = this.state.questions;
+    questions.push({ title: '', type: 3, isRequired: true });
+    this.setState({ questions: questions });
+  }
   setOptions = (index, options) => {
     let questions = this.state.questions;
     questions[index].options = options;
@@ -88,9 +93,9 @@ class NewQuiz extends Component {
             <ButtonGroup vertical>
               <Button onClick={this.addMultiple}><Fa name='check-square-o'></Fa>Multiple choise</Button>
               <Button onClick={this.addSingle}><Fa name='dot-circle-o'></Fa>Single choise</Button>
+              <Button onClick={this.addRating}><Fa name='star-half-o'></Fa>Stars rating</Button>
               {/*
               <Button onClick={this.addField}><Fa name='font'></Fa>Text input</Button>
-              <Button onClick={this.addField}><Fa name='star-half-o'></Fa>Stars rating</Button>
               <Button onClick={this.addField}><Fa name='sliders'></Fa>Slider rating</Button>
               */}
             </ButtonGroup>

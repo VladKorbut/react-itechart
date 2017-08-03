@@ -20,7 +20,7 @@ class Register extends Component {
   }
   componentWillMount(){
     if(this.props.isLoggedIn){
-      browserHistory.push('/home');
+      browserHistory.push('/');
     }
   }
   submitFrom = () => {

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Checkbox, FormControl, InputGroup, Button, Panel } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
+import RatingStars from 'react-rating'
 
-class Multiple extends Component {
+class Rating extends Component {
   componentWillReceiveProps(newProps) {
     this.setState({
-      options: newProps.options,
       title: newProps.title,
       isRequired: newProps.isRequired,
     })
@@ -18,16 +18,6 @@ class Multiple extends Component {
       isRequired: true,
     }
   }
-  addOption = () => {
-    let options = this.state.options;
-    options.push('');
-    this.setState({ options: options });
-    console.log(this);
-    this.setOptions();
-  }
-  setOptions = () => {
-    this.props.setOptions(this.props.index, this.state.options);
-  }
   titleHandler = (e) => {
     this.setState({ title: e.target.value });
     this.props.titleHandler(this.props.index, e.target.value);
@@ -38,18 +28,6 @@ class Multiple extends Component {
   }
   deleteQuestion = (e) => {
     this.props.deleteQuestion(this.props.index);
-  }
-  optionHandler = (index) => (e) => {
-    let options = this.state.options;
-    options[index] = e.target.value;
-    this.setState({ options: options });
-    this.setOptions();
-  }
-  deleteOption = (index) => (e) => {
-    let options = this.state.options;
-    options.splice(index, 1);
-    this.setState({ options: options });
-    this.setOptions();
   }
   render() {
     return (
@@ -62,9 +40,6 @@ class Multiple extends Component {
               value={this.state.title}
               onChange={this.titleHandler}
             />
-            <InputGroup.Button>
-              <Button onClick={this.addOption}><Fa name='plus' /></Button>
-            </InputGroup.Button>
           </InputGroup>
         }
         footer={
@@ -76,24 +51,15 @@ class Multiple extends Component {
           </InputGroup>
         }
       >
-        {
-          this.state.options.map((option, index) => {
-            return (
-              <InputGroup key={index}>
-                <InputGroup.Addon>
-                  <Checkbox checked={false} />
-                </InputGroup.Addon>
-                <FormControl type="text" value={option} onChange={this.optionHandler(index)} placeholder={'Option ' + (index + 1)} />
-                <InputGroup.Button>
-                  <Button onClick={this.deleteOption(index)}><Fa name='times' /></Button>
-                </InputGroup.Button>
-              </InputGroup>
-            )
-          })
-        }
+        <RatingStars
+          empty="fa fa-star-o fa-2x"
+          full="fa fa-star fa-2x"
+          initialRate={3}
+          readonly
+          />
       </Panel>
     )
   }
 }
 
-export default Multiple
+export default Rating

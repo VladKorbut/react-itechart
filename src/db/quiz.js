@@ -3,11 +3,11 @@ import cv from '../common/converter'
 import ls from '../localStorage/storage'
 
 let quiz = {
-  getAll(){
+  getAll() {
     return db.executeTransaction(`SELECT * FROM quizzes`);
   },
-  getMy(){
-    return db.executeTransaction(`SELECT * FROM quizzes WHERE author_id=${ls.getUser()}`);
+  getMy() {
+    return db.executeTransaction(`SELECT * FROM quizzes WHERE author_id=${ls.getUser().id}`);
   },
   create(quiz) {
     return this.createQuiz(quiz);
@@ -15,7 +15,7 @@ let quiz = {
   createQuiz(quiz) {
     return db.executeTransaction(`INSERT INTO
     quizzes(title, isAnon, isRand, date, author_id)
-    VALUES('${quiz.title}', '${cv.boolToStr(quiz.isAnon)}', '${cv.boolToStr(quiz.isRand)}', ${Date.now()}, ${+ls.getUser()})`)
+    VALUES('${quiz.title}', '${cv.boolToStr(quiz.isAnon)}', '${cv.boolToStr(quiz.isRand)}', ${Date.now()}, ${+ls.getUser().id})`)
       .then((data) => {
         this.createQuestion(quiz.questions, data.insertId);
       });
@@ -26,7 +26,10 @@ let quiz = {
       questions(title, isRequired, type, quiz_id)
       VALUES ('${item.title}', '${cv.boolToStr(item.isRequired)}', ${item.type}, ${+quizId})`)
         .then((data) => {
-          this.createOption(item.options, data.insertId);
+          console.log(item)
+          if (item.options && item.options.length) {
+            this.createOption(item.options, data.insertId);
+          }
         })
     });
   },

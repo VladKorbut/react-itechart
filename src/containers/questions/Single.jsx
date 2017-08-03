@@ -81,7 +81,7 @@ class Single extends Component {
             return (
               <InputGroup key={index}>
                 <InputGroup.Addon>
-                  <Radio />
+                  <Radio checked={false} />
                 </InputGroup.Addon>
                 <FormControl type="text" value={option} onChange={this.optionHandler(index)} placeholder={'Option ' + (index + 1)} />
                 <InputGroup.Button>

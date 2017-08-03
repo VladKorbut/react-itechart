@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Switch, { Case } from 'react-switch-case'
 import Multiple from './Multiple'
 import Single from './Single'
+import Rating from './Rating'
 
 class Question extends Component {
   render() {
@@ -26,6 +27,16 @@ class Question extends Component {
               isRequired={this.props.question.isRequired}
               index={this.props.index}
               setOptions={this.props.setOptions}
+              titleHandler={this.props.titleHandler}
+              requiredHandler={this.props.requiredHandler}
+              deleteQuestion={this.props.deleteQuestion} />
+          </Case>
+          <Case value={3}>
+            <Rating
+              title={this.props.question.title}
+              options={this.props.question.options}
+              isRequired={this.props.question.isRequired}
+              index={this.props.index}
               titleHandler={this.props.titleHandler}
               requiredHandler={this.props.requiredHandler}
               deleteQuestion={this.props.deleteQuestion} />
