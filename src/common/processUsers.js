@@ -2,8 +2,9 @@ import cv from './converter'
 import dc from './dateConverter'
 
 const processUsers = (users) => {
+  users = [...users];
   let processedUsers = [];
-  users.forEach(function(item) {
+  users.forEach(function (item) {
     let newItem = {
       id: item.id,
       login: item.login,

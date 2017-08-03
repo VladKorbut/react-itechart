@@ -32,6 +32,12 @@ class App extends Component {
                   <LinkContainer to={'/new-quiz'}>
                     <NavItem>Create Quiz</NavItem>
                   </LinkContainer>
+                  <LinkContainer to={'/my-quizzes'}>
+                    <NavItem>My Quizzes</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to={'/users'}>
+                    <NavItem>Users</NavItem>
+                  </LinkContainer>
                 </Nav>
                 <Navbar.Text pullRight>
                   Hello, <Navbar.Link onClick={this.logout}>Logout</Navbar.Link>

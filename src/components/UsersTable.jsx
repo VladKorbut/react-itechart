@@ -8,7 +8,7 @@ class Table extends Component {
         data={this.props.data}
         pagination
         responsive>
-        <TableHeaderColumn dataField='login' dataSort={ true } isKey={true}>Login</TableHeaderColumn>
+        <TableHeaderColumn dataField='login' dataSort={ true } isKey>Login</TableHeaderColumn>
         <TableHeaderColumn dataField='date'>Registerd</TableHeaderColumn>
         <TableHeaderColumn dataField='isAdmin' dataSort={ true }>Role</TableHeaderColumn>
       </BootstrapTable>

@@ -81,9 +81,7 @@ class NewQuiz extends Component {
   render() {
     return (
       <div>
-        <Row>
-          <h2>Create Quiz</h2>
-        </Row>
+        <h2>Create Quiz</h2>
         <Col md={4} mdPush={8}>
           <Row>
             <h4>Type Of Question</h4>
