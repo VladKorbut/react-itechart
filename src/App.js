@@ -9,7 +9,10 @@ import Home from './components/Home'
 import storage from './localStorage/storage'
 
 class App extends Component {
-  constructor(){
+  componentWillReceiveProps() {
+    this.setState({ login: storage.getUser().login })
+  }
+  constructor() {
     super();
     this.state = {
       login: storage.getUser().login,
