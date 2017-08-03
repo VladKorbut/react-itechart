@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { FormControl, ControlLabel, Col, Checkbox, Button, Row, ButtonGroup } from 'react-bootstrap'
+import { FormControl, Col, Checkbox, Button, Row, ButtonGroup } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import quiz from '../db/quiz'
 import Questions from '../components/Questions.jsx'
@@ -45,14 +45,28 @@ class NewQuiz extends Component {
   }
   addMultiple = () => {
     let questions = this.state.questions;
-    questions.push({ title: 'New Question', type: 1, isRequired: true, options: [] });
+    questions.push({ title: '', type: 1, isRequired: true, options: [] });
     this.setState({ questions: questions });
   }
-  addOption = (position, options) => {
+  setOptions = (index, options) => {
     let questions = this.state.questions;
-    questions[position].options = options;
+    questions[index].options = options;
     this.setState({ questions: questions });
-    console.log(this.state.questions)
+  }
+  questionTitleHandler = (index, newTitle) => {
+    let questions = this.state.questions;
+    questions[index].title = newTitle;
+    this.setState({ questions: questions });
+  }
+  requiredHandler = (index, status) => {
+    let questions = this.state.questions;
+    questions[index].isRequired = status;
+    this.setState({ questions: questions });
+  }
+  deleteQuestion = (index) => {
+    let questions = this.state.questions;
+    questions.splice(index, 1);
+    this.setState({ questions: questions });
   }
   render() {
     return (
@@ -61,17 +75,21 @@ class NewQuiz extends Component {
           <h2>Create Quiz</h2>
         </Row>
         <Col md={8}>
-          <ControlLabel>New Quiz</ControlLabel>
           <FormControl
             type="text"
+            bsSize={'large'}
             value={this.state.title}
             placeholder="Quiz Title"
             onChange={this.titleHandler}
           />
+          <span>Number of questions: {this.state.questions.length}</span>
+          <Questions
+            questions={this.state.questions}
+            setOptions={this.setOptions}
+            titleHandler={this.questionTitleHandler}
+            requiredHandler={this.requiredHandler}
+            deleteQuestion={this.deleteQuestion} />
           <Button bsStyle="primary" onClick={this.createQuiz} disabled={this.getButtonState()}>Create</Button>
-          <Row>
-            <Questions questions={this.state.questions} addOption={this.addOption} />
-          </Row>
         </Col>
         <Col md={4}>
           <Row>

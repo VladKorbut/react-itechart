@@ -8,7 +8,15 @@ class Question extends Component {
       <div>
         <Switch condition={this.props.question.type}>
           <Case value={1}>
-            <Multiple title={this.props.question.title} options={this.props.question.options} index={this.props.index} addOption={this.props.addOption}/>
+            <Multiple
+              title={this.props.question.title}
+              options={this.props.question.options}
+              isRequired={this.props.question.isRequired}
+              index={this.props.index}
+              setOptions={this.props.setOptions}
+              titleHandler={this.props.titleHandler}
+              requiredHandler={this.props.requiredHandler}
+              deleteQuestion={this.props.deleteQuestion} />
           </Case>
         </Switch>
       </div>

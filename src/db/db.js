@@ -12,7 +12,7 @@ let db = {
       })
     })
   },
-  init() {
+  createUsersTable() {
     this.executeTransaction(`CREATE TABLE IF NOT EXISTS
     'users'(
       'id' INTEGER PRIMARY KEY ASC,
@@ -22,6 +22,8 @@ let db = {
       'isAdmin' BOOLEAN DEFAULT FALSE,
       'date' DATETIME NOT NULL
     )`)
+  },
+  createQuizzesTable() {
     this.executeTransaction(`CREATE TABLE IF NOT EXISTS
     'quizzes'(
       'id' INTEGER PRIMARY KEY ASC,
@@ -31,6 +33,8 @@ let db = {
       'date' DATETIME NOT NULL,
       'author_id' INTEGER NOT NULL
     )`)
+  },
+  createQuestionsTable() {
     this.executeTransaction(`CREATE TABLE IF NOT EXISTS
     'questions'(
       'id' INTEGER PRIMARY KEY ASC,
@@ -39,12 +43,20 @@ let db = {
       'isRequired' BOOLEAN DEFAULT FALSE,
       'quiz_id' INTEGER NOT NULL
     )`)
+  },
+  createOptionsTable() {
     this.executeTransaction(`CREATE TABLE IF NOT EXISTS
     'question_options'(
       'id' INTEGER PRIMARY KEY ASC,
       'text' VARCHAR(50) NOT NULL,
       'question_id' INTEGER NOT NULL
     )`)
+  },
+  init() {
+    this.createUsersTable();
+    this.createQuizzesTable();
+    this.createQuestionsTable();
+    this.createOptionsTable();
   }
 }
 export default db

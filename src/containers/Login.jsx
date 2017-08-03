@@ -8,6 +8,11 @@ import storage from '../localStorage/storage'
 import { login } from '../actions/login'
 
 class Login extends Component {
+  componentWillMount() {
+    if (this.props.isLoggedIn) {
+      browserHistory.push('/home');
+    }
+  }
   constructor() {
     super();
     this.state = {
@@ -15,11 +20,6 @@ class Login extends Component {
       password: '',
       loginIsValid: null,
       passwordIsValid: null,
-    }
-  }
-  componentWillMount(){
-    if(this.props.isLoggedIn){
-      browserHistory.push('/home');
     }
   }
   submitFrom = () => {

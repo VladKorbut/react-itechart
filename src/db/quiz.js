@@ -15,8 +15,7 @@ let quiz = {
       });
   },
   createQuestion(questions, quizId) {
-    console.log(quizId);
-    let insert = questions.forEach((item) => {
+    questions.forEach((item) => {
       db.executeTransaction(`INSERT INTO
       questions(title, isRequired, type, quiz_id)
       VALUES ('${item.title}', '${cv.boolToStr(item.isRequired)}', ${item.type}, ${+quizId})`)
@@ -26,7 +25,6 @@ let quiz = {
     });
   },
   createOption(options, questionId) {
-    console.log(options);
     let insert = options.map((item) => {
       return `('${item}', ${questionId})`
     });

@@ -7,7 +7,14 @@ class Questions extends Component {
       <div>
         {
           this.props.questions.map((question, index) => {
-            return (<Question key={index} index={index} question={question} addOption={this.props.addOption}/>);
+            return (<Question
+              key={index}
+              index={index}
+              question={question}
+              setOptions={this.props.setOptions}
+              titleHandler={this.props.titleHandler}
+              requiredHandler={this.props.requiredHandler}
+              deleteQuestion={this.props.deleteQuestion} />);
           })
         }
       </div>
