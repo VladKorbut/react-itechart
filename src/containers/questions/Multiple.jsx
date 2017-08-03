@@ -53,47 +53,45 @@ class Multiple extends Component {
   }
   render() {
     return (
-      <div>
-        <Panel
-          header={
-            <InputGroup>
-              <InputGroup.Addon>{this.props.index + 1}</InputGroup.Addon>
-              <FormControl
-                placeholder={'Question Title'}
-                value={this.state.title}
-                onChange={this.titleHandler}
-              />
-              <InputGroup.Button>
-                <Button onClick={this.addOption}><Fa name='plus' /></Button>
-              </InputGroup.Button>
-            </InputGroup>
-          }
-          footer={
-            <InputGroup>
-              <Checkbox checked={this.state.isRequired} onChange={this.requiredHandler} >
-                Required
+      <Panel
+        header={
+          <InputGroup>
+            <InputGroup.Addon>{this.props.index + 1}</InputGroup.Addon>
+            <FormControl
+              placeholder={'Question Title'}
+              value={this.state.title}
+              onChange={this.titleHandler}
+            />
+            <InputGroup.Button>
+              <Button onClick={this.addOption}><Fa name='plus' /></Button>
+            </InputGroup.Button>
+          </InputGroup>
+        }
+        footer={
+          <InputGroup>
+            <Checkbox checked={this.state.isRequired} onChange={this.requiredHandler} >
+              Required
                 </Checkbox>
-              <Button onClick={this.deleteQuestion} bsStyle="danger"><Fa name='times' /></Button>
-            </InputGroup>
-          }
-        >
-          {
-            this.state.options.map((option, index) => {
-              return (
-                <InputGroup key={index}>
-                  <InputGroup.Addon>
-                    <Checkbox />
-                  </InputGroup.Addon>
-                  <FormControl type="text" value={option} onChange={this.optionHandler(index)} placeholder={'Option ' + (index + 1)} />
-                  <InputGroup.Button>
-                    <Button onClick={this.deleteOption(index)}><Fa name='times' /></Button>
-                  </InputGroup.Button>
-                </InputGroup>
-              )
-            })
-          }
-        </Panel>
-      </div>
+            <Button onClick={this.deleteQuestion} bsStyle="danger"><Fa name='times' /></Button>
+          </InputGroup>
+        }
+      >
+        {
+          this.state.options.map((option, index) => {
+            return (
+              <InputGroup key={index}>
+                <InputGroup.Addon>
+                  <Checkbox />
+                </InputGroup.Addon>
+                <FormControl type="text" value={option} onChange={this.optionHandler(index)} placeholder={'Option ' + (index + 1)} />
+                <InputGroup.Button>
+                  <Button onClick={this.deleteOption(index)}><Fa name='times' /></Button>
+                </InputGroup.Button>
+              </InputGroup>
+            )
+          })
+        }
+      </Panel>
     )
   }
 }

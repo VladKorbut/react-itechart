@@ -7,6 +7,11 @@ import quiz from '../db/quiz'
 import Questions from '../components/Questions.jsx'
 
 class NewQuiz extends Component {
+  componentWillMount() {
+    if (!this.props.isLoggedIn) {
+      browserHistory.push('/login');
+    }
+  }
   constructor() {
     super();
     this.state = {
@@ -48,6 +53,11 @@ class NewQuiz extends Component {
     questions.push({ title: '', type: 1, isRequired: true, options: [] });
     this.setState({ questions: questions });
   }
+  addSingle = () => {
+    let questions = this.state.questions;
+    questions.push({ title: '', type: 2, isRequired: true, options: [] });
+    this.setState({ questions: questions });
+  }
   setOptions = (index, options) => {
     let questions = this.state.questions;
     questions[index].options = options;
@@ -74,30 +84,13 @@ class NewQuiz extends Component {
         <Row>
           <h2>Create Quiz</h2>
         </Row>
-        <Col md={8}>
-          <FormControl
-            type="text"
-            bsSize={'large'}
-            value={this.state.title}
-            placeholder="Quiz Title"
-            onChange={this.titleHandler}
-          />
-          <span>Number of questions: {this.state.questions.length}</span>
-          <Questions
-            questions={this.state.questions}
-            setOptions={this.setOptions}
-            titleHandler={this.questionTitleHandler}
-            requiredHandler={this.requiredHandler}
-            deleteQuestion={this.deleteQuestion} />
-          <Button bsStyle="primary" onClick={this.createQuiz} disabled={this.getButtonState()}>Create</Button>
-        </Col>
-        <Col md={4}>
+        <Col md={4} mdPush={8}>
           <Row>
             <h4>Type Of Question</h4>
             <ButtonGroup vertical>
               <Button onClick={this.addMultiple}><Fa name='check-square-o'></Fa>Multiple choise</Button>
+              <Button onClick={this.addSingle}><Fa name='dot-circle-o'></Fa>Single choise</Button>
               {/*
-              <Button onClick={this.addField}><Fa name='dot-circle-o'></Fa>Single choise</Button>
               <Button onClick={this.addField}><Fa name='font'></Fa>Text input</Button>
               <Button onClick={this.addField}><Fa name='star-half-o'></Fa>Stars rating</Button>
               <Button onClick={this.addField}><Fa name='sliders'></Fa>Slider rating</Button>
@@ -113,6 +106,23 @@ class NewQuiz extends Component {
               Random Questions
             </Checkbox>
           </Row>
+        </Col>
+        <Col md={8} mdPull={4}>
+          <FormControl
+            type="text"
+            bsSize={'large'}
+            value={this.state.title}
+            placeholder="Quiz Title"
+            onChange={this.titleHandler}
+          />
+          <span>Number of questions: {this.state.questions.length}</span>
+          <Questions
+            questions={this.state.questions}
+            setOptions={this.setOptions}
+            titleHandler={this.questionTitleHandler}
+            requiredHandler={this.requiredHandler}
+            deleteQuestion={this.deleteQuestion} />
+          <Button bsStyle="primary" onClick={this.createQuiz} disabled={this.getButtonState()}>Create</Button>
         </Col>
       </div>
     )
