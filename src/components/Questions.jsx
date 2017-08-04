@@ -11,10 +11,7 @@ class Questions extends Component {
               key={index}
               index={index}
               question={question}
-              setOptions={this.props.setOptions}
-              titleHandler={this.props.titleHandler}
-              requiredHandler={this.props.requiredHandler}
-              deleteQuestion={this.props.deleteQuestion} />);
+              {...this.props} />);
           })
         }
       </div>

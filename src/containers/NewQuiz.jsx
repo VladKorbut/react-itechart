@@ -48,19 +48,9 @@ class NewQuiz extends Component {
       browserHistory.push('/login');
     }
   }
-  addMultiple = () => {
+  addField = (type) => () => {
     let questions = this.state.questions;
-    questions.push({ title: '', type: 1, isRequired: true, options: [] });
-    this.setState({ questions: questions });
-  }
-  addSingle = () => {
-    let questions = this.state.questions;
-    questions.push({ title: '', type: 2, isRequired: true, options: [] });
-    this.setState({ questions: questions });
-  }
-  addRating = () => {
-    let questions = this.state.questions;
-    questions.push({ title: '', type: 3, isRequired: true });
+    questions.push({ title: '', type: type, isRequired: true, options: [] });
     this.setState({ questions: questions });
   }
   setOptions = (index, options) => {
@@ -73,7 +63,7 @@ class NewQuiz extends Component {
     questions[index].title = newTitle;
     this.setState({ questions: questions });
   }
-  requiredHandler = (index, status) => {
+  questionRequiredHandler = (index, status) => {
     let questions = this.state.questions;
     questions[index].isRequired = status;
     this.setState({ questions: questions });
@@ -91,13 +81,10 @@ class NewQuiz extends Component {
           <Row>
             <h4>Type Of Question</h4>
             <ButtonGroup vertical>
-              <Button onClick={this.addMultiple}><Fa name='check-square-o'></Fa>Multiple choise</Button>
-              <Button onClick={this.addSingle}><Fa name='dot-circle-o'></Fa>Single choise</Button>
-              <Button onClick={this.addRating}><Fa name='star-half-o'></Fa>Stars rating</Button>
-              {/*
-              <Button onClick={this.addField}><Fa name='font'></Fa>Text input</Button>
-              <Button onClick={this.addField}><Fa name='sliders'></Fa>Slider rating</Button>
-              */}
+              <Button onClick={this.addField(1)}><Fa name='check-square-o'></Fa>Multiple choise</Button>
+              <Button onClick={this.addField(2)}><Fa name='dot-circle-o'></Fa>Single choise</Button>
+              <Button onClick={this.addField(3)}><Fa name='star-half-o'></Fa>Stars rating</Button>
+              <Button onClick={this.addField(4)}><Fa name='font'></Fa>Text input</Button>
             </ButtonGroup>
           </Row>
           <Row>
@@ -123,7 +110,7 @@ class NewQuiz extends Component {
             questions={this.state.questions}
             setOptions={this.setOptions}
             titleHandler={this.questionTitleHandler}
-            requiredHandler={this.requiredHandler}
+            requiredHandler={this.questionRequiredHandler}
             deleteQuestion={this.deleteQuestion} />
           <Button bsStyle="primary" onClick={this.createQuiz} disabled={this.getButtonState()}>Create</Button>
         </Col>

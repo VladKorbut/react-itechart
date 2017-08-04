@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Radio, Checkbox, FormControl, InputGroup, Button, Panel } from 'react-bootstrap'
+import { Checkbox, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
+import RatingStars from 'react-rating'
 
-class Single extends Component {
+class Rating extends Component {
   componentWillReceiveProps(newProps) {
     this.setState({
-      options: newProps.options,
-      title: newProps.title,
-      isRequired: newProps.isRequired,
+      title: newProps.question.title,
+      isRequired: newProps.question.isRequired,
     })
   }
   constructor() {
@@ -17,16 +17,6 @@ class Single extends Component {
       title: '',
       isRequired: true,
     }
-  }
-  addOption = () => {
-    let options = this.state.options;
-    options.push('');
-    this.setState({ options: options });
-    console.log(this);
-    this.setOptions();
-  }
-  setOptions = () => {
-    this.props.setOptions(this.props.index, this.state.options);
   }
   titleHandler = (e) => {
     this.setState({ title: e.target.value });
@@ -39,18 +29,6 @@ class Single extends Component {
   deleteQuestion = (e) => {
     this.props.deleteQuestion(this.props.index);
   }
-  optionHandler = (index) => (e) => {
-    let options = this.state.options;
-    options[index] = e.target.value;
-    this.setState({ options: options });
-    this.setOptions();
-  }
-  deleteOption = (index) => (e) => {
-    let options = this.state.options;
-    options.splice(index, 1);
-    this.setState({ options: options });
-    this.setOptions();
-  }
   render() {
     return (
       <Panel
@@ -62,38 +40,30 @@ class Single extends Component {
               value={this.state.title}
               onChange={this.titleHandler}
             />
-            <InputGroup.Button>
-              <Button onClick={this.addOption}><Fa name='plus' /></Button>
-            </InputGroup.Button>
           </InputGroup>
         }
         footer={
-          <InputGroup>
-            <Checkbox checked={this.state.isRequired} onChange={this.requiredHandler} >
+          <Clearfix>
+            <Checkbox checked={this.state.isRequired} onChange={this.requiredHandler} className='pull-left'>
               Required
                 </Checkbox>
-            <Button onClick={this.deleteQuestion} bsStyle="danger"><Fa name='times' /></Button>
-          </InputGroup>
+            <Button onClick={this.deleteQuestion} bsStyle="danger" className='pull-right'><Fa name='times' /></Button>
+          </Clearfix>
         }
       >
-        {
-          this.state.options.map((option, index) => {
-            return (
-              <InputGroup key={index}>
-                <InputGroup.Addon>
-                  <Radio checked={false} />
-                </InputGroup.Addon>
-                <FormControl type="text" value={option} onChange={this.optionHandler(index)} placeholder={'Option ' + (index + 1)} />
-                <InputGroup.Button>
-                  <Button onClick={this.deleteOption(index)}><Fa name='times' /></Button>
-                </InputGroup.Button>
-              </InputGroup>
-            )
-          })
+        {this.props.question.type === 3 ?
+          <RatingStars
+            empty="fa fa-star-o fa-2x"
+            full="fa fa-star fa-2x"
+            initialRate={3}
+            readonly
+          />
+          :
+          <FormControl disabled componentClass="textarea" placeholder="Answer will be here" />
         }
       </Panel>
     )
   }
 }
 
-export default Single
+export default Rating

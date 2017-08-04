@@ -6,6 +6,7 @@ import Login from './containers/Login'
 import Users from './containers/Users'
 import NewQuiz from './containers/NewQuiz'
 import MyQuizzes from './containers/MyQuizzes'
+import Quiz from './containers/Quiz'
 import NotFound from './components/NotFound'
 
 const Routing = (
@@ -16,6 +17,7 @@ const Routing = (
       <Route path="users" component={Users} />
       <Route path="new-quiz" component={NewQuiz} />
       <Route path="my-quizzes" component={MyQuizzes} />
+      <Route path="quiz/:id" component={Quiz} />
       <Route path="*" component={NotFound} />
     </Route>
   </Router>

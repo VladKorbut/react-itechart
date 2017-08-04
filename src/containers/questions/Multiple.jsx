@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Checkbox, FormControl, InputGroup, Button, Panel } from 'react-bootstrap'
+import { Checkbox, Radio, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 
 class Multiple extends Component {
   componentWillReceiveProps(newProps) {
     this.setState({
-      options: newProps.options,
-      title: newProps.title,
-      isRequired: newProps.isRequired,
+      options: newProps.question.options,
+      title: newProps.question.title,
+      isRequired: newProps.question.isRequired,
     })
   }
   constructor() {
@@ -22,7 +22,6 @@ class Multiple extends Component {
     let options = this.state.options;
     options.push('');
     this.setState({ options: options });
-    console.log(this);
     this.setOptions();
   }
   setOptions = () => {
@@ -68,12 +67,12 @@ class Multiple extends Component {
           </InputGroup>
         }
         footer={
-          <InputGroup>
-            <Checkbox checked={this.state.isRequired} onChange={this.requiredHandler} >
+          <Clearfix>
+          <Checkbox checked={this.state.isRequired} onChange={this.requiredHandler} className='pull-left'>
               Required
                 </Checkbox>
-            <Button onClick={this.deleteQuestion} bsStyle="danger"><Fa name='times' /></Button>
-          </InputGroup>
+            <Button onClick={this.deleteQuestion} bsStyle="danger" className='pull-right'><Fa name='times' /></Button>
+          </Clearfix>
         }
       >
         {
@@ -81,7 +80,11 @@ class Multiple extends Component {
             return (
               <InputGroup key={index}>
                 <InputGroup.Addon>
-                  <Checkbox checked={false} />
+                  {this.props.question.type === 1 ?
+                    <Checkbox checked={false} />
+                    :
+                    <Radio checked={false} />
+                  }
                 </InputGroup.Addon>
                 <FormControl type="text" value={option} onChange={this.optionHandler(index)} placeholder={'Option ' + (index + 1)} />
                 <InputGroup.Button>

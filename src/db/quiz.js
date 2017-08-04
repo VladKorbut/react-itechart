@@ -3,12 +3,6 @@ import cv from '../common/converter'
 import ls from '../localStorage/storage'
 
 let quiz = {
-  getAll() {
-    return db.executeTransaction(`SELECT * FROM quizzes`);
-  },
-  getMy() {
-    return db.executeTransaction(`SELECT * FROM quizzes WHERE author_id=${ls.getUser().id}`);
-  },
   create(quiz) {
     return this.createQuiz(quiz);
   },
@@ -40,6 +34,21 @@ let quiz = {
     return db.executeTransaction(`INSERT INTO
     question_options(text, question_id)
     VALUES ${insert.join(', ')}`);
+  },
+  getAll() {
+    return db.executeTransaction(`SELECT * FROM quizzes`);
+  },
+  getMy() {
+    return db.executeTransaction(`SELECT * FROM quizzes WHERE author_id=${ls.getUser().id}`);
+  },
+  getSingle(id){
+    return db.executeTransaction(`SELECT * FROM quizzes WHERE id=${id}`);
+  },
+  getQuestions(id){
+    return db.executeTransaction(`SELECT * FROM questions WHERE quiz_id=${id}`);
+  },
+  getOptions(id){
+    return db.executeTransaction(`SELECT * FROM question_options WHERE question_id=${id}`);
   }
 }
 
