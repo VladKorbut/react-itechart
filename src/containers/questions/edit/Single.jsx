@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Checkbox, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import RatingStars from 'react-rating'
-import { STARS } from '../../types/questions'
+import { STARS } from '../../../types/questions'
 
 class Rating extends Component {
   constructor() {

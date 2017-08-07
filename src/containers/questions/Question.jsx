@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Switch, { Case } from 'react-switch-case'
-import Multiple from './Multiple'
-import Single from './Single'
+import MultipleEdit from './edit/Multiple'
+import SingleEdit from './edit/Single'
 import { CHECBOX, RADIO, STARS, TEXT } from '../../types/questions'
 
 class Question extends Component {
@@ -10,16 +10,16 @@ class Question extends Component {
       <div>
         <Switch condition={this.props.question.type}>
           <Case value={CHECBOX}>
-            <Multiple {...this.props}/>
+            {this.props.edit ? <MultipleEdit {...this.props} /> : ''}
           </Case>
           <Case value={RADIO}>
-            <Multiple {...this.props}/>
+            {this.props.edit ? <MultipleEdit {...this.props} /> : ''}
           </Case>
           <Case value={STARS}>
-            <Single {...this.props}/>
+            {this.props.edit ? <SingleEdit {...this.props} /> : ''}
           </Case>
           <Case value={TEXT}>
-            <Single {...this.props}/>
+            {this.props.edit ? <SingleEdit {...this.props} /> : ''}
           </Case>
         </Switch>
       </div>

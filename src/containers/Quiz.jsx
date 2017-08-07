@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { getQuiz } from '../actions/getQuiz'
 import Spinner from '../components/Spinner'
+//import Questions from './questions/Questions'
 
 class Quiz extends Component {
   componentWillMount() {
@@ -13,38 +14,15 @@ class Quiz extends Component {
         }
       })
   }
-  componentDidUpdate() {
-    console.log(this.props);
-  }
+
+
+
   render() {
     return (
       <div>
-        {this.props.loading ?
+        {this.props.quiz.loading ?
           <Spinner />
-          : (
-            <div>
-              <h1>Quiz: {this.props.quiz.title}</h1>
-              <ol>
-                {
-                  this.props.success ?
-                    this.props.quiz.questions.map((question, i) => (
-                      <li key={i}>{question.title}
-                        <ol>
-                          {
-                            question.options ?
-                              question.options.map((option, i) => (
-                                <li key={i}>{option}</li>
-                              ))
-                              : ''
-                          }
-                        </ol>
-                      </li>)
-                    )
-                    : ''
-                }
-              </ol>
-            </div>
-          )
+          : ''
         }
       </div>
     )
@@ -53,9 +31,7 @@ class Quiz extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    success: store.quizReducer.success,
-    loading: store.quizReducer.loading,
-    quiz: store.quizReducer.quiz,
+    quiz: store.quizReducer,
   }
 }
 

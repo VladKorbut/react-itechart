@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Checkbox, Radio, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
-import { CHECBOX } from '../../types/questions'
+import { CHECBOX } from '../../../types/questions'
 
 class Multiple extends Component {
   constructor() {

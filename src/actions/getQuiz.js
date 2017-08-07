@@ -17,7 +17,6 @@ export const getQuiz = (id) => dispatch => {
       return quiz;
     })
     .catch((error) => {
-      console.error(error);
       dispatch({
         type: QUIZ_ERROR,
       })

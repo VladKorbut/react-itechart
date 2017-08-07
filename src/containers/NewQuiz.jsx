@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router'
 import { FormControl, Col, Checkbox, Button, Row, ButtonGroup } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import quiz from '../db/quiz'
-import Questions from './Questions.jsx'
+import Questions from './questions/Questions.jsx'
 import { CHECBOX, RADIO, STARS, TEXT } from '../types/questions'
 
 class NewQuiz extends Component {
@@ -109,6 +109,7 @@ class NewQuiz extends Component {
           <span>Number of questions: {this.state.questions.length}</span>
           <Questions
             questions={this.state.questions}
+            edit={true}
             setOptions={this.setOptions}
             titleHandler={this.questionTitleHandler}
             requiredHandler={this.questionRequiredHandler}
