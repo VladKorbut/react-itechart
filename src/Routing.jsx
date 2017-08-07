@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import App from './App'
 import Register from './containers/Register'
 import Login from './containers/Login'
@@ -8,10 +8,12 @@ import NewQuiz from './containers/NewQuiz'
 import MyQuizzes from './containers/MyQuizzes'
 import Quiz from './containers/Quiz'
 import NotFound from './components/NotFound'
+import Home from './components/Home'
 
 const Routing = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
+      <IndexRoute component={Home} />
       <Route path="register" component={Register} />
       <Route path="login" component={Login} />
       <Route path="users" component={Users} />

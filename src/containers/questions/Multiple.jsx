@@ -3,13 +3,6 @@ import { Checkbox, Radio, FormControl, InputGroup, Button, Panel, Clearfix } fro
 import Fa from 'react-fontawesome'
 
 class Multiple extends Component {
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      options: newProps.question.options,
-      title: newProps.question.title,
-      isRequired: newProps.question.isRequired,
-    })
-  }
   constructor() {
     super();
     this.state = {
@@ -17,6 +10,13 @@ class Multiple extends Component {
       title: '',
       isRequired: true,
     }
+  }
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      options: newProps.question.options,
+      title: newProps.question.title,
+      isRequired: newProps.question.isRequired,
+    })
   }
   addOption = () => {
     let options = this.state.options;

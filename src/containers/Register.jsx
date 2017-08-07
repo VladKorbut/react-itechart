@@ -18,17 +18,18 @@ class Register extends Component {
       passwordIsValid: null,
     }
   }
-  componentWillMount(){
-    if(this.props.isLoggedIn){
+  componentWillMount() {
+    if (this.props.isLoggedIn) {
       browserHistory.push('/');
     }
   }
   submitFrom = () => {
-    register(
-      this.state.login,
-      this.state.email,
-      this.state.password,
-      this.state.isAdmin
+    register({
+      login: this.state.login,
+      email: this.state.email,
+      password: this.state.password,
+      isAdmin: this.state.isAdmin
+    }
     ).then(() => {
       alert(`You're successfuly registered!`);
       this.setState({
@@ -71,11 +72,7 @@ class Register extends Component {
   emailValidate = (email) => {
     if (email.length) {
       users.getUserByEmail(email).then((data) => {
-        if (data.rows.length) {
-          this.setState({ emailIsValid: false });
-        } else {
-          this.setState({ emailIsValid: true });
-        }
+        this.setState({ emailIsValid: !data.rows.length });
       });
     } else {
       this.setState({ emailIsValid: false });
@@ -86,12 +83,10 @@ class Register extends Component {
     return (this.state.emailIsValid ? 'success' : 'error');
   }
   passwordHandler = (e) => {
-    this.setState({ password: e.target.value });
-    if (e.target.value) {
-      this.setState({ passwordIsValid: true });
-    } else {
-      this.setState({ passwordIsValid: false });
-    }
+    this.setState({
+      password: e.target.value,
+      passwordIsValid: !!e.target.value
+    });
   }
   getPasswordValidationState = () => {
     if (this.state.passwordIsValid === null) return null;
@@ -106,25 +101,25 @@ class Register extends Component {
   render() {
     return (
       <Col xs={12} sm={8} smOffset={2} md={6} mdOffset={3}>
-      <form>
-        <FormGroup validationState={this.getLoginValidationState()}>
-          <ControlLabel>Login</ControlLabel>
-          <FormControl autoFocus type="text" onChange={this.loginHandler} value={this.state.login} />
-        </FormGroup>
-        <FormGroup validationState={this.getEmailValidationState()}>
-          <ControlLabel>Email</ControlLabel>
-          <FormControl type="email" onChange={this.emailHandler} value={this.state.email} />
-        </FormGroup>
-        <FormGroup validationState={this.getPasswordValidationState()}>
-          <ControlLabel>Password</ControlLabel>
-          <FormControl type="password" onChange={this.passwordHandler} value={this.state.password} />
-        </FormGroup>
-        <FormGroup>
-          <Checkbox onChange={this.checkboxHandler} checked={this.state.isAdmin}>
-            Are you admin?
+        <form>
+          <FormGroup validationState={this.getLoginValidationState()}>
+            <ControlLabel>Login</ControlLabel>
+            <FormControl autoFocus type="text" onChange={this.loginHandler} value={this.state.login} />
+          </FormGroup>
+          <FormGroup validationState={this.getEmailValidationState()}>
+            <ControlLabel>Email</ControlLabel>
+            <FormControl type="email" onChange={this.emailHandler} value={this.state.email} />
+          </FormGroup>
+          <FormGroup validationState={this.getPasswordValidationState()}>
+            <ControlLabel>Password</ControlLabel>
+            <FormControl type="password" onChange={this.passwordHandler} value={this.state.password} />
+          </FormGroup>
+          <FormGroup>
+            <Checkbox onChange={this.checkboxHandler} checked={this.state.isAdmin}>
+              Are you admin?
           </Checkbox>
-          <Button bsSize="large" bsStyle='primary' onClick={this.submitFrom} disabled={this.getButtonDisableState()}>Register</Button>
-        </FormGroup>
+            <Button bsSize="large" bsStyle='primary' onClick={this.submitFrom} disabled={this.getButtonDisableState()}>Register</Button>
+          </FormGroup>
         </form>
       </Col>
     )

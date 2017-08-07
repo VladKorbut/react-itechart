@@ -1,26 +1,39 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import QuizzesTable from '../components/QuizzesTable'
-import quiz from '../db/quiz'
+import { getMyQuizzes } from '../actions/getQuizzes'
 
 class MyQuizzes extends Component {
-  componentWillMount(){
-    quiz.getMy().then((quizzes)=>{
-      this.setState({quizzes: [...quizzes.rows]})
-    })
-  }
-  constructor(){
+  constructor() {
     super();
-    this.state ={
+    this.state = {
       quizzes: [],
     }
   }
-  render () {
+  componentWillMount() {
+    this.props.getMy();
+  }
+  render() {
     return (
       <div>
-        <QuizzesTable data={this.state.quizzes}/>
+        {this.props.loading ? 'loading...' : <QuizzesTable data={this.props.quizzes} />}
       </div>
     )
   }
 }
 
-export default MyQuizzes
+const mapStateToProps = (store) => {
+  return {
+    quizzes: store.quizReducer.quizzes,
+    loading: store.quizReducer.loading,
+    success: store.quizReducer.success,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getMy: () => getMyQuizzes()(dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyQuizzes)

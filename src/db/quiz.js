@@ -41,13 +41,38 @@ let quiz = {
   getMy() {
     return db.executeTransaction(`SELECT * FROM quizzes WHERE author_id=${ls.getUser().id}`);
   },
-  getSingle(id){
-    return db.executeTransaction(`SELECT * FROM quizzes WHERE id=${id}`);
+  getSingle(id) {
+    /*return db.executeTransaction(`SELECT
+    quiz.id, quiz.title, quiz.isRand, quiz.isAnon,
+    quest.title as quetsion_title, quest.type, quest.isRequired,
+    opt.text
+    from quizzes quiz
+      LEFT join questions quest
+      On quiz.id = quest.quiz_id
+      LEFT JOIN question_options opt
+      ON opt.question_id = quest.id
+      where quiz.id = ${id}`);*/
+    let quiz = {};
+    db.executeTransaction(`SELECT * FROM questions WHERE quiz_id=${id}`)
+      .then((quizResult) => {
+        quiz = quizResult.rows[0];
+        this.getQuestions(quizResult.rows[0].id)
+          .then((quest) => {
+            quiz.questions = [...quest.rows];
+            quiz.questions.forEach((item, index) => {
+              this.getOptions(item.id)
+                .then((options) => {
+                  quiz.questions[index].options = [...options.rows];
+                  console.log(quiz);
+                })
+            })
+          })
+      });
   },
-  getQuestions(id){
+  getQuestions(id) {
     return db.executeTransaction(`SELECT * FROM questions WHERE quiz_id=${id}`);
   },
-  getOptions(id){
+  getOptions(id) {
     return db.executeTransaction(`SELECT * FROM question_options WHERE question_id=${id}`);
   }
 }

@@ -1,12 +1,4 @@
 export default {
-  strToBool (str) {
-    if (str.toString().toLowerCase() === 'true') {
-      return true
-    }
-    return false
-  },
-
-  boolToStr (condition) {
-    return (!!condition).toString().toUpperCase()
-  }
+  strToBool: (str) => str.toString().toLowerCase() === 'true',
+  boolToStr: (condition) => (!!condition).toString().toUpperCase(),
 }

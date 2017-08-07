@@ -10,3 +10,20 @@ button:focus {
 .map {
   height: 300px;
 }
+
+.btn-group-vertical .btn  .fa {
+  padding-right: 5px;
+}
+
+.btn-group-vertical .btn {
+  text-align: left;
+}
+
+.input-group-btn .btn{
+  background: transparent;
+  box-shadow: none;
+}
+
+.input-group-btn .btn:hover{
+  background: rgba(0, 0, 0, 0.1);
+}

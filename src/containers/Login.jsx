@@ -4,15 +4,9 @@ import { browserHistory } from 'react-router'
 import { FormGroup, ControlLabel, FormControl, Col, Button } from 'react-bootstrap'
 import users from '../db/users'
 import getUser from '../db/login'
-import storage from '../localStorage/storage'
 import { login } from '../actions/login'
 
 class Login extends Component {
-  componentWillMount() {
-    if (this.props.isLoggedIn) {
-      browserHistory.push('/');
-    }
-  }
   constructor() {
     super();
     this.state = {
@@ -22,14 +16,19 @@ class Login extends Component {
       passwordIsValid: null,
     }
   }
+  componentWillMount() {
+    if (this.props.user) {
+      browserHistory.push('/');
+    }
+  }
   submitFrom = () => {
     getUser(this.state.login, this.state.password).then((data) => {
       if (!data.rows.length) {
         alert('Password is incorrect');
         this.setState({ password: '', passwordIsValid: null });
       } else {
-        storage.pushUser(data.rows[0].id, data.rows[0].login);
-        this.props.login();
+        let user = { id: data.rows[0].id, login: data.rows[0].login };
+        this.props.login(user);
         browserHistory.push('/')
       }
     })
@@ -56,12 +55,10 @@ class Login extends Component {
     return (this.state.loginIsValid ? 'success' : 'error');
   }
   passwordHandler = (e) => {
-    this.setState({ password: e.target.value });
-    if (e.target.value) {
-      this.setState({ passwordIsValid: true });
-    } else {
-      this.setState({ passwordIsValid: false });
-    }
+    this.setState({
+      password: e.target.value,
+      passwordIsValid: !!e.target.value
+    });
   }
   getPasswordValidationState = () => {
     if (this.state.passwordIsValid === null) return null;
@@ -91,13 +88,13 @@ class Login extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    isLoggedIn: store.loginReducer
+    user: store.loginReducer
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: () => login()(dispatch)
+    login: (user) => login(user)(dispatch)
   }
 }
 

@@ -5,18 +5,17 @@ import { Navbar, Nav, Grid, NavItem } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Link } from 'react-router'
 import { logout } from './actions/login'
-import Home from './components/Home'
 import storage from './localStorage/storage'
 
 class App extends Component {
-  componentWillReceiveProps() {
-    this.setState({ login: storage.getUser().login })
-  }
   constructor() {
     super();
     this.state = {
       login: storage.getUser().login,
     }
+  }
+  componentWillReceiveProps() {
+    this.setState({ login: storage.getUser().login })
   }
   logout = () => {
     storage.removeUser();
@@ -66,7 +65,7 @@ class App extends Component {
           </Navbar.Collapse>
         </Navbar>
         <Grid bsClass='container'>
-          {this.props.children || <Home />}
+          {this.props.children}
         </Grid>
       </div>
     );

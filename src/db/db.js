@@ -1,6 +1,5 @@
 let db = {
   executeTransaction(query) {
-    console.log(query);
     db = openDatabase('quizzes', '0.1', 'Course project iTechArt', 2 * 1024 * 1024);
     return new Promise((resolve, reject) => {
       db.transaction((transaction) => {

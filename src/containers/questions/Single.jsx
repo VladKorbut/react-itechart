@@ -4,12 +4,6 @@ import Fa from 'react-fontawesome'
 import RatingStars from 'react-rating'
 
 class Rating extends Component {
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      title: newProps.question.title,
-      isRequired: newProps.question.isRequired,
-    })
-  }
   constructor() {
     super();
     this.state = {
@@ -17,6 +11,12 @@ class Rating extends Component {
       title: '',
       isRequired: true,
     }
+  }
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      title: newProps.question.title,
+      isRequired: newProps.question.isRequired,
+    })
   }
   titleHandler = (e) => {
     this.setState({ title: e.target.value });

@@ -7,11 +7,6 @@ import quiz from '../db/quiz'
 import Questions from '../components/Questions.jsx'
 
 class NewQuiz extends Component {
-  componentWillMount() {
-    if (!this.props.isLoggedIn) {
-      browserHistory.push('/login');
-    }
-  }
   constructor() {
     super();
     this.state = {
@@ -19,6 +14,11 @@ class NewQuiz extends Component {
       isAnon: false,
       isRand: false,
       questions: [],
+    }
+  }
+  componentWillMount() {
+    if (!this.props.isLoggedIn) {
+      browserHistory.push('/login');
     }
   }
   titleHandler = (e) => {

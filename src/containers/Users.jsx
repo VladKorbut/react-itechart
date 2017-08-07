@@ -1,27 +1,33 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import UsersTable from '../components/UsersTable'
-import users from '../db/users'
-import processUsers from '../common/processUsers'
+import { getUsers } from '../actions/getUsers'
 
 class Users extends Component {
   componentWillMount() {
-    users.get().then((users) => {
-      this.setState({ users: processUsers(users.rows) });
-    });
-  }
-  constructor() {
-    super();
-    this.state = {
-      users: []
-    }
+    this.props.get();
   }
   render() {
     return (
       <div>
-        <UsersTable data={this.state.users} />
+        {this.props.loading ? 'loading...' : <UsersTable data={this.props.users} />}
       </div>
     )
   }
 }
 
-export default Users
+const mapStateToProps = (store) => {
+  return {
+    users: store.usersReducer.users,
+    loading: store.usersReducer.loading,
+    success: store.usersReducer.success,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    get: () => getUsers()(dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users)
