@@ -1,5 +1,6 @@
 import db from './db'
 import cv from '../common/converter'
+import processQuiz from '../common/processQuiz'
 import ls from '../localStorage/storage'
 
 let quiz = {
@@ -20,7 +21,6 @@ let quiz = {
       questions(title, isRequired, type, quiz_id)
       VALUES ('${item.title}', '${cv.boolToStr(item.isRequired)}', ${item.type}, ${+quizId})`)
         .then((data) => {
-          console.log(item)
           if (item.options && item.options.length) {
             this.createOption(item.options, data.insertId);
           }
@@ -42,17 +42,19 @@ let quiz = {
     return db.executeTransaction(`SELECT * FROM quizzes WHERE author_id=${ls.getUser().id}`);
   },
   getSingle(id) {
-    /*return db.executeTransaction(`SELECT
+    return db.executeTransaction(`SELECT
     quiz.id, quiz.title, quiz.isRand, quiz.isAnon,
-    quest.title as quetsion_title, quest.type, quest.isRequired,
+    quest.title as question_title, quest.type, quest.isRequired, quest.id as question_id,
     opt.text
     from quizzes quiz
       LEFT join questions quest
       On quiz.id = quest.quiz_id
       LEFT JOIN question_options opt
       ON opt.question_id = quest.id
-      where quiz.id = ${id}`);*/
-    let quiz = {};
+      where quiz.id = ${id}`).then((data) => {
+        return processQuiz(data);
+      })
+    /*let quiz = {};
     db.executeTransaction(`SELECT * FROM questions WHERE quiz_id=${id}`)
       .then((quizResult) => {
         quiz = quizResult.rows[0];
@@ -68,6 +70,7 @@ let quiz = {
             })
           })
       });
+      */
   },
   getQuestions(id) {
     return db.executeTransaction(`SELECT * FROM questions WHERE quiz_id=${id}`);

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { FormGroup, ControlLabel, FormControl, Col, Button, Checkbox } from 'react-bootstrap'
+import { login } from '../actions/login'
 import register from '../db/register'
 import users from '../db/users.js'
 
@@ -30,8 +31,8 @@ class Register extends Component {
       password: this.state.password,
       isAdmin: this.state.isAdmin
     }
-    ).then(() => {
-      alert(`You're successfuly registered!`);
+    ).then((data) => {
+      this.props.login({id: data.insertId, login: this.state.login});
       this.setState({
         login: '',
         email: '',
@@ -132,4 +133,10 @@ const mapStateToProps = (store) => {
   }
 }
 
-export default connect(mapStateToProps, null)(Register)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (user) => login(user)(dispatch),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

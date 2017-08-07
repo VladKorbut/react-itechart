@@ -11,7 +11,7 @@ button:focus {
   height: 300px;
 }
 
-.btn-group-vertical .btn  .fa {
+.btn-group-vertical .btn .fa {
   padding-right: 5px;
 }
 
@@ -19,11 +19,17 @@ button:focus {
   text-align: left;
 }
 
-.input-group-btn .btn{
+.input-group-btn .btn {
   background: transparent;
   box-shadow: none;
 }
 
-.input-group-btn .btn:hover{
+.input-group-btn .btn:hover {
   background: rgba(0, 0, 0, 0.1);
+}
+
+.spinner>div>div {
+  display: block;
+  margin: auto;
+  margin-top: 250px;
 }

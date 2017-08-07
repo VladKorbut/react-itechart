@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Checkbox, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import RatingStars from 'react-rating'
+import { STARS } from '../../types/questions'
 
 class Rating extends Component {
   constructor() {
@@ -51,7 +52,7 @@ class Rating extends Component {
           </Clearfix>
         }
       >
-        {this.props.question.type === 3 ?
+        {this.props.question.type === STARS ?
           <RatingStars
             empty="fa fa-star-o fa-2x"
             full="fa fa-star fa-2x"

@@ -1,30 +1,30 @@
 import {
-  QUIZZES_LOADING,
-  QUIZZES_SUCCESS,
-  QUIZZES_ERROR
+  QUIZ_LOADING,
+  QUIZ_SUCCESS,
+  QUIZ_ERROR
 } from '../types/quiz'
 
 let quizInitState = {
   loading: false,
   success: false,
-  quizzes: [],
+  quiz: {},
 }
 
 const quizReducer = (quizState = quizInitState, action) => {
   switch (action.type) {
-    case QUIZZES_LOADING: return {
+    case QUIZ_LOADING: return {
       loading: true,
       success: false
     };
-    case QUIZZES_SUCCESS: return {
+    case QUIZ_SUCCESS: return {
       loading: false,
       success: true,
-      quizzes: action.quizzes,
+      quiz: action.quiz,
     };
-    case QUIZZES_ERROR: return {
+    case QUIZ_ERROR: return {
       loading: false,
       success: false,
-      quizzes: [],
+      quiz: {},
     };
     default: return quizInitState;
   }

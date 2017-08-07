@@ -1,3 +1,3 @@
-export const QUIZZES_LOADING = 'QUIZZES_LOADING';
-export const QUIZZES_SUCCESS = 'QUIZZES_SUCCESS';
-export const QUIZZES_ERROR = 'QUIZZES_ERROR';
+export const QUIZ_LOADING = 'QUIZ_LOADING';
+export const QUIZ_SUCCESS = 'QUIZ_SUCCESS';
+export const QUIZ_ERROR = 'QUIZ_ERROR';

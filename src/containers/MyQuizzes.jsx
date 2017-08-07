@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuizzesTable from '../components/QuizzesTable'
 import { getMyQuizzes } from '../actions/getQuizzes'
+import Spinner from '../components/Spinner'
 
 class MyQuizzes extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class MyQuizzes extends Component {
   render() {
     return (
       <div>
-        {this.props.loading ? 'loading...' : <QuizzesTable data={this.props.quizzes} />}
+        {this.props.loading ? <Spinner /> : <QuizzesTable data={this.props.quizzes} />}
       </div>
     )
   }
@@ -24,9 +25,9 @@ class MyQuizzes extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    quizzes: store.quizReducer.quizzes,
-    loading: store.quizReducer.loading,
-    success: store.quizReducer.success,
+    quizzes: store.quizzesReducer.quizzes,
+    loading: store.quizzesReducer.loading,
+    success: store.quizzesReducer.success,
   }
 }
 

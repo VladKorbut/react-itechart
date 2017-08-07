@@ -4,7 +4,8 @@ import { browserHistory } from 'react-router'
 import { FormControl, Col, Checkbox, Button, Row, ButtonGroup } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import quiz from '../db/quiz'
-import Questions from '../components/Questions.jsx'
+import Questions from './Questions.jsx'
+import { CHECBOX, RADIO, STARS, TEXT } from '../types/questions'
 
 class NewQuiz extends Component {
   constructor() {
@@ -48,7 +49,7 @@ class NewQuiz extends Component {
       browserHistory.push('/login');
     }
   }
-  addField = (type) => () => {
+  addQuestion = (type) => () => {
     let questions = this.state.questions;
     questions.push({ title: '', type: type, isRequired: true, options: [] });
     this.setState({ questions: questions });
@@ -81,10 +82,10 @@ class NewQuiz extends Component {
           <Row>
             <h4>Type Of Question</h4>
             <ButtonGroup vertical>
-              <Button onClick={this.addField(1)}><Fa name='check-square-o'></Fa>Multiple choise</Button>
-              <Button onClick={this.addField(2)}><Fa name='dot-circle-o'></Fa>Single choise</Button>
-              <Button onClick={this.addField(3)}><Fa name='star-half-o'></Fa>Stars rating</Button>
-              <Button onClick={this.addField(4)}><Fa name='font'></Fa>Text input</Button>
+              <Button onClick={this.addQuestion(CHECBOX)}><Fa name='check-square-o'></Fa>Multiple choise</Button>
+              <Button onClick={this.addQuestion(RADIO)}><Fa name='dot-circle-o'></Fa>Single choise</Button>
+              <Button onClick={this.addQuestion(STARS)}><Fa name='star-half-o'></Fa>Stars rating</Button>
+              <Button onClick={this.addQuestion(TEXT)}><Fa name='font'></Fa>Text input</Button>
             </ButtonGroup>
           </Row>
           <Row>

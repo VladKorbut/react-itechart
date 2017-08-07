@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Question from '../containers/questions/Question'
+import Question from './questions/Question'
 
 class Questions extends Component {
   render() {

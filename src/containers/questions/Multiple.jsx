@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Checkbox, Radio, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
+import { CHECBOX } from '../../types/questions'
 
 class Multiple extends Component {
   constructor() {
@@ -68,7 +69,7 @@ class Multiple extends Component {
         }
         footer={
           <Clearfix>
-          <Checkbox checked={this.state.isRequired} onChange={this.requiredHandler} className='pull-left'>
+            <Checkbox checked={this.state.isRequired} onChange={this.requiredHandler} className='pull-left'>
               Required
                 </Checkbox>
             <Button onClick={this.deleteQuestion} bsStyle="danger" className='pull-right'><Fa name='times' /></Button>
@@ -80,7 +81,7 @@ class Multiple extends Component {
             return (
               <InputGroup key={index}>
                 <InputGroup.Addon>
-                  {this.props.question.type === 1 ?
+                  {this.props.question.type === CHECBOX ?
                     <Checkbox checked={false} />
                     :
                     <Radio checked={false} />

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import UsersTable from '../components/UsersTable'
 import { getUsers } from '../actions/getUsers'
+import Spinner from '../components/Spinner'
 
 class Users extends Component {
   componentWillMount() {
@@ -10,7 +11,7 @@ class Users extends Component {
   render() {
     return (
       <div>
-        {this.props.loading ? 'loading...' : <UsersTable data={this.props.users} />}
+        {this.props.loading ? <Spinner /> : <UsersTable data={this.props.users} />}
       </div>
     )
   }
