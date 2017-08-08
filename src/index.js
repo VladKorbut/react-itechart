@@ -7,6 +7,7 @@ import db from './db/db'
 import reducers from './reducers/index'
 
 import './assets/styles.css'
+import '../node_modules/react-bootstrap-table/css/react-bootstrap-table.css'
 
 db.init();
 

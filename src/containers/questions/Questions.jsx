@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import Question from './Question'
 
 class Questions extends Component {
-  componentWillReceiveProps(newProps){
-    console.log(newProps);
-  }
   render() {
     return (
       <div>

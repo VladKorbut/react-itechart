@@ -4,7 +4,7 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
 class QuizzesTable extends Component {
   redirectToQuiz = (row) => {
-    browserHistory.push('quiz/'+row.id);
+    browserHistory.push('quiz/' + row.id);
   }
   render() {
     const options = {
@@ -16,7 +16,8 @@ class QuizzesTable extends Component {
         pagination
         responsive
         options={options}>
-        <TableHeaderColumn isKey dataField='title' dataSort={true}>Title</TableHeaderColumn>
+        <TableHeaderColumn dataField='id' isKey width='60'>id</TableHeaderColumn>
+        <TableHeaderColumn dataField='title' dataSort={true}>Title</TableHeaderColumn>
         <TableHeaderColumn dataField='date'>Date</TableHeaderColumn>
       </BootstrapTable>
     )
