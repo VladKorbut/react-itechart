@@ -6,7 +6,7 @@ import {
 
 let quizInitState = {
   loading: false,
-  success: false,
+  success: null,
   quiz: {},
 }
 
@@ -14,7 +14,8 @@ const quizReducer = (quizState = quizInitState, action) => {
   switch (action.type) {
     case QUIZ_LOADING: return {
       loading: true,
-      success: false
+      success: false,
+      quiz: {},
     };
     case QUIZ_SUCCESS: return {
       loading: false,

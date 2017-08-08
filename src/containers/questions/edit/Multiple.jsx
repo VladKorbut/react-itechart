@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Checkbox, Radio, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
-import { CHECBOX } from '../../../types/questions'
+import { CHECKBOX } from '../../../types/questions'
 
 class Multiple extends Component {
   constructor() {
@@ -81,7 +81,7 @@ class Multiple extends Component {
             return (
               <InputGroup key={index}>
                 <InputGroup.Addon>
-                  {this.props.question.type === CHECBOX ?
+                  {this.props.question.type === CHECKBOX ?
                     <Checkbox checked={false} />
                     :
                     <Radio checked={false} />

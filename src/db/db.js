@@ -2,16 +2,14 @@ let db = {
   executeTransaction(query) {
     db = openDatabase('quizzes', '0.1', 'Course project iTechArt', 2 * 1024 * 1024);
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        db.transaction((transaction) => {
-          transaction.executeSql(query, [],
-            (tx, result) => {
-              resolve(result);
-            }, (tx, error) => {
-              reject(error);
-            })
-        })
-      }, 500)
+      db.transaction((transaction) => {
+        transaction.executeSql(query, [],
+          (tx, result) => {
+            resolve(result);
+          }, (tx, error) => {
+            reject(error);
+          })
+      })
     })
   },
   createUsersTable() {

@@ -6,7 +6,7 @@ import Routing from './Routing'
 import db from './db/db'
 import reducers from './reducers/index'
 
-import './styles.css'
+import './assets/styles.css'
 
 db.init();
 

@@ -13,7 +13,10 @@ let quiz = {
     VALUES('${quiz.title}', '${cv.boolToStr(quiz.isAnon)}', '${cv.boolToStr(quiz.isRand)}', ${Date.now()}, ${+ls.getUser().id})`)
       .then((data) => {
         this.createQuestion(quiz.questions, data.insertId);
-      });
+      })
+      .catch((error) => {
+        console.error(error);
+      })
   },
   createQuestion(questions, quizId) {
     questions.forEach((item) => {
@@ -24,6 +27,9 @@ let quiz = {
           if (item.options && item.options.length) {
             this.createOption(item.options, data.insertId);
           }
+        })
+        .catch((error) => {
+          console.error(error);
         })
     });
   },

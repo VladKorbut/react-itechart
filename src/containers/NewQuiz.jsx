@@ -5,7 +5,7 @@ import { FormControl, Col, Checkbox, Button, Row, ButtonGroup } from 'react-boot
 import Fa from 'react-fontawesome'
 import quiz from '../db/quiz'
 import Questions from './questions/Questions.jsx'
-import { CHECBOX, RADIO, STARS, TEXT } from '../types/questions'
+import { CHECKBOX, RADIO, STARS, TEXT } from '../types/questions'
 
 class NewQuiz extends Component {
   constructor() {
@@ -37,13 +37,15 @@ class NewQuiz extends Component {
   }
   createQuiz = () => {
     if (this.props.isLoggedIn) {
-      quiz.create(this.state);
-      this.setState({
-        title: '',
-        isAnon: false,
-        isRand: false,
-        questions: [],
-      })
+      quiz.create(this.state)
+        .then((res) => {
+          this.setState({
+            title: '',
+            isAnon: false,
+            isRand: false,
+            questions: [],
+          })
+        })
     } else {
       alert(`You're not logged in!`);
       browserHistory.push('/login');
@@ -82,7 +84,7 @@ class NewQuiz extends Component {
           <Row>
             <h4>Type Of Question</h4>
             <ButtonGroup vertical>
-              <Button onClick={this.addQuestion(CHECBOX)}><Fa name='check-square-o'></Fa>Multiple choise</Button>
+              <Button onClick={this.addQuestion(CHECKBOX)}><Fa name='check-square-o'></Fa>Multiple choise</Button>
               <Button onClick={this.addQuestion(RADIO)}><Fa name='dot-circle-o'></Fa>Single choise</Button>
               <Button onClick={this.addQuestion(STARS)}><Fa name='star-half-o'></Fa>Stars rating</Button>
               <Button onClick={this.addQuestion(TEXT)}><Fa name='font'></Fa>Text input</Button>

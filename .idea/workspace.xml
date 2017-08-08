@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6807782b-b72e-4d8c-99bc-9749aa546448" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/NewQuiz.jsx" afterPath="$PROJECT_DIR$/src/containers/NewQuiz.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/getQuiz.js" afterPath="$PROJECT_DIR$/src/actions/getQuiz.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Quiz.jsx" afterPath="$PROJECT_DIR$/src/containers/Quiz.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/questions/Question.jsx" afterPath="$PROJECT_DIR$/src/containers/questions/Question.jsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/containers/Questions.jsx" afterPath="$PROJECT_DIR$/src/containers/questions/Questions.jsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/containers/questions/Multiple.jsx" afterPath="$PROJECT_DIR$/src/containers/questions/edit/Multiple.jsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/containers/questions/Single.jsx" afterPath="$PROJECT_DIR$/src/containers/questions/edit/Single.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/quizReducer.js" afterPath="$PROJECT_DIR$/src/reducers/quizReducer.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/styles.css" afterPath="$PROJECT_DIR$/src/assets/styles.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="30" column="3" lean-forward="true" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
+              <caret line="30" column="3" lean-forward="false" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -192,6 +191,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-itechart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-itechart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -204,6 +221,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\vkrbt\react-itechart\src\assets" />
       <recent name="D:\vkrbt\react-itechart\src\containers\questions" />
       <recent name="D:\vkrbt\react-itechart\src\containers\questions\edit" />
       <recent name="D:\vkrbt\react-itechart\src\containers" />
@@ -260,6 +278,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -294,16 +318,16 @@
       <option name="presentableId" value="Default" />
       <updated>1502109513011</updated>
       <workItem from="1502109515112" duration="124000" />
-      <workItem from="1502111044693" duration="372000" />
+      <workItem from="1502111044693" duration="970000" />
+      <workItem from="1502188688059" duration="21000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="496000" />
+    <option name="totallyTimeSpent" value="1115000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -347,8 +371,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
-          <caret line="30" column="3" lean-forward="true" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
+          <caret line="30" column="3" lean-forward="false" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>

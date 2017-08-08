@@ -33,3 +33,7 @@ button:focus {
   margin: auto;
   margin-top: 250px;
 }
+
+.required {
+  color: red;
+}
