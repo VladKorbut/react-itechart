@@ -8,7 +8,7 @@ export const login = (user) => dispatch => {
   storage.pushUser(user.id, user.login);
   dispatch({
     type: LOGIN,
-    user: user
+    user: user,
   })
 }
 

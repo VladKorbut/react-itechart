@@ -8,7 +8,7 @@ const processUsers = (users) => {
     let newItem = {
       id: item.id,
       login: item.login,
-      date: dc.getDDMMYYYY(new Date(item.date)),
+      date: dc.getDDMMYYYY(item.date),
       isAdmin: cv.strToBool(item.isAdmin) ? 'Admin' : 'User',
     };
     processedUsers.push(newItem);

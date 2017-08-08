@@ -1,6 +1,7 @@
 import db from './db'
 import cv from '../common/converter'
 import processQuiz from '../common/processQuiz'
+import processQuizzes from '../common/processQuizzes'
 import ls from '../localStorage/storage'
 
 let quiz = {
@@ -42,10 +43,16 @@ let quiz = {
     VALUES ${insert.join(', ')}`);
   },
   getAll() {
-    return db.executeTransaction(`SELECT * FROM quizzes`);
+    return processQuizzes(db.executeTransaction(`SELECT * FROM quizzes`))
+      .then((res) => {
+        return processQuizzes([...res.rows]);
+      });
   },
   getMy() {
-    return db.executeTransaction(`SELECT * FROM quizzes WHERE author_id=${ls.getUser().id}`);
+    return db.executeTransaction(`SELECT * FROM quizzes WHERE author_id=${ls.getUser().id}`)
+      .then((res) => {
+        return processQuizzes([...res.rows]);
+      });
   },
   getSingle(id) {
     return db.executeTransaction(`SELECT

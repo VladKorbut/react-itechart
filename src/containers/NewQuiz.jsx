@@ -38,13 +38,16 @@ class NewQuiz extends Component {
   createQuiz = () => {
     if (this.props.isLoggedIn) {
       quiz.create(this.state)
-        .then((res) => {
+        .then(() => {
           this.setState({
             title: '',
             isAnon: false,
             isRand: false,
             questions: [],
           })
+        })
+        .catch((error) => {
+          console.log(error);
         })
     } else {
       alert(`You're not logged in!`);

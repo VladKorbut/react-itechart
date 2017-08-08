@@ -12,7 +12,7 @@ export const getMyQuizzes = () => dispatch => {
     .then((quizzes) => {
       dispatch({
         type: QUIZZES_SUCCESS,
-        quizzes: [...quizzes.rows],
+        quizzes: quizzes,
       })
     })
     .catch((error) => {

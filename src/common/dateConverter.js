@@ -1,6 +1,7 @@
 let dateConverter = {
-  getDDMMYYYY(date) {
-    let options = {
+  getDDMMYYYY(dateSting) {
+    const date = new Date(dateSting);
+    const options = {
       year: 'numeric',
       month: 'numeric',
       day: 'numeric'

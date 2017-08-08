@@ -52,11 +52,20 @@ let db = {
       'question_id' INTEGER NOT NULL
     )`)
   },
+  createAnswersTable() {
+    this.executeTransaction(`CREATE TABLE IF NOT EXISTS
+    'answers'(
+      'id' INTEGER PRIMARY KEY ASC,
+      'value' VARCHAR(50) NOT NULL,
+      'question_id' INTEGER NOT NULL
+    )`)
+  },
   init() {
     this.createUsersTable();
     this.createQuizzesTable();
     this.createQuestionsTable();
     this.createOptionsTable();
+    this.createAnswersTable();
   }
 }
 export default db

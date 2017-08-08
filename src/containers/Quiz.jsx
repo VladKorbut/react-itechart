@@ -14,13 +14,14 @@ class Quiz extends Component {
   }
 
   render() {
+    const randomizeArray = (arr) => arr.sort(() => (Math.random() - 0.5))
     return (
       <div>
-        {(this.props.data.success === null || this.props.data.loading) ? <Spinner />
+        {(this.props.success === null || this.props.loading) ? <Spinner />
           :
           <div>
-            <h2>{this.props.data.quiz.title}</h2>
-            <Questions questions={this.props.data.quiz.questions} />
+            <h2>{this.props.quiz.title}</h2>
+            <Questions questions={this.props.quiz.isRand ? randomizeArray(this.props.quiz.questions) : this.props.quiz.questions} />
           </div>
         }
       </div>
@@ -30,7 +31,9 @@ class Quiz extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    data: store.quizReducer,
+    quiz: store.quizReducer.quiz,
+    loading: store.quizReducer.loading,
+    success: store.quizReducer.success,
   }
 }
 

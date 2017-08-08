@@ -1,7 +1,7 @@
 import cv from './converter'
 import { STARS } from '../types/questions'
 
-let processQuiz = (quiz) => {
+const processQuiz = (quiz) => {
   quiz = [...quiz.rows];
 
   let res = {};
