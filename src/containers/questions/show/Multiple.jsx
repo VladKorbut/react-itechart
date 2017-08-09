@@ -2,7 +2,33 @@ import React, { Component } from 'react'
 import { Checkbox, Radio, FormGroup, Panel } from 'react-bootstrap'
 import { CHECKBOX } from '../../../types/questions'
 
+const initialState = {
+  radioAnswer: 0,
+  checkboxAnswer: [],
+}
+
 class Multiple extends Component {
+  componentWillReceiveProps(props){
+    console.log(props);
+  }
+  constructor() {
+    super();
+    this.state = initialState;
+  }
+  setAnswer = (id) => (e) => {
+    if (e.target.type === 'checkbox') {
+      let answer = this.state.checkboxAnswer;
+      if (e.target.checked) {
+        answer.push(id);
+      } else {
+        answer.splice(answer.indexOf(id), 1);
+      }
+      this.setState({ checkboxAnswer: answer });
+    } else {
+      this.setState({radioAnswer: id, checkboxAnswer: []})
+    }
+    this.props.getValidState(this.state.checkboxAnswer.length || this.state.radioAnswer)
+  }
   render() {
     return (
       <div>
@@ -20,9 +46,9 @@ class Multiple extends Component {
                 return (
                   <span key={index}>
                     {this.props.question.type === CHECKBOX ?
-                      <Checkbox>{option}</Checkbox>
+                      <Checkbox onClick={this.setAnswer(option.id)}>{option.value}</Checkbox>
                       :
-                      <Radio name="radioGroup">{option}</Radio>
+                      <Radio onClick={this.setAnswer(option.id)} name="radioGroup">{option.value}</Radio>
                     }
                   </span>
                 )

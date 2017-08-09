@@ -56,9 +56,9 @@ let quiz = {
   },
   getSingle(id) {
     return db.executeTransaction(`SELECT
-    quiz.id, quiz.title, quiz.isRand, quiz.isAnon,
+    quiz.id, quiz.title, quiz.isRand, quiz.isAnon, quiz.date,
     quest.title as question_title, quest.type, quest.isRequired, quest.id as question_id,
-    opt.text
+    opt.text, opt.id as option_id
     from quizzes quiz
       LEFT join questions quest
       On quiz.id = quest.quiz_id

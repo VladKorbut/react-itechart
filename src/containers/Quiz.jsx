@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
+import { Button } from 'react-bootstrap'
 import { getQuiz } from '../actions/getQuiz'
 import Spinner from '../components/Spinner'
-import Questions from './questions/Questions'
+import Question from './questions/Question'
 
 class Quiz extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentQuestion: {},
+      prevQuestions: [],
+      nextQuestions: [],
+      answerIsValid: false,
+      answers: [],
+    }
+  }
   componentWillMount() {
     this.props.get(this.props.params.id)
       .catch((error) => {
@@ -13,15 +24,86 @@ class Quiz extends Component {
       })
   }
 
+  startQuiz = () => {
+    this.setState({
+      currentQuestion: this.props.quiz.questions.pop(),
+      nextQuestions: this.props.quiz.questions
+    });
+  }
+
+  nextQuestion = () => {
+    this.setState({answerIsValid: false});
+    let prevQuestions = this.state.prevQuestions;
+    prevQuestions.push(this.state.currentQuestion);
+    let currentQuestion = this.state.nextQuestions.pop();
+    this.setState({
+      prevQuestions: prevQuestions,
+      currentQuestion: currentQuestion,
+    });
+  }
+
+  prevQuestion = () => {
+    this.setState({answerIsValid: false});
+    let nextQuestions = this.state.nextQuestions;
+    nextQuestions.push(this.state.currentQuestion);
+    let currentQuestion = this.state.prevQuestions.pop();
+    this.setState({
+      nextQuestions: nextQuestions,
+      currentQuestion: currentQuestion,
+    });
+  }
+
+  finishQuiz = () => {
+    console.log('finish')
+  }
+
+  answerValidation = (state) => {
+    this.setState({ answerIsValid: state });
+  }
+
+  randomizeArray = (arr) => arr.sort(() => (Math.random() - 0.5))
   render() {
-    const randomizeArray = (arr) => arr.sort(() => (Math.random() - 0.5))
     return (
       <div>
         {(this.props.success === null || this.props.loading) ? <Spinner />
           :
-          <div>
-            <h2>{this.props.quiz.title}</h2>
-            <Questions questions={this.props.quiz.isRand ? randomizeArray(this.props.quiz.questions) : this.props.quiz.questions} />
+          <div className='centered'>
+            {!Object.keys(this.state.currentQuestion).length ?
+              <div>
+                <h2>Quiz name: {this.props.quiz.title}</h2>
+                <p>Last modified: {this.props.quiz.date}</p>
+                <Button onClick={this.startQuiz} bsSize='lg' bsStyle='primary'>Start</Button>
+              </div>
+              :
+              <div>
+                <Question
+                getValidState={this.answerValidation}
+                question={this.state.currentQuestion || null}
+                index={this.state.prevQuestions.length} />
+                <div className={'quiz-nav'}>
+                  <Button
+                    onClick={this.prevQuestion}
+                    disabled={!this.state.prevQuestions.length}
+                    bsSize='lg'
+                    bsStyle='primary'
+                    className={'left'}>Prev</Button>
+                  {this.state.nextQuestions.length ?
+                    <Button
+                      onClick={this.nextQuestion}
+                      disabled={this.state.currentQuestion.isRequired && !this.state.answerIsValid}
+                      bsSize='lg'
+                      bsStyle='primary'
+                      className={'right'}>Next</Button>
+                    :
+                    <Button
+                      onClick={this.finishQuiz}
+                      disabled={!this.state.answerIsValid}
+                      bsSize='lg' bsStyle='primary'
+                      className={'right'}>Finish</Button>
+                  }
+                </div>
+              </div>
+            }
           </div>
         }
       </div>

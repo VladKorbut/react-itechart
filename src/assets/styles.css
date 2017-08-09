@@ -37,3 +37,17 @@ button:focus {
 .required {
   color: red;
 }
+
+.centered {
+  text-align: center;
+}
+
+.left {
+  display: block;
+  float: left;
+}
+
+.right {
+  display: block;
+  float: right;
+}
