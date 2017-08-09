@@ -43,6 +43,7 @@ class Quiz extends Component {
   }
 
   prevQuestion = () => {
+    this.setState({answerIsValid: false});
     let nextQuestions = this.state.nextQuestions;
     nextQuestions.push(this.state.currentQuestion);
     let currentQuestion = this.state.prevQuestions.pop();

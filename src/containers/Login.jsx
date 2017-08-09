@@ -17,7 +17,7 @@ class Login extends Component {
     }
   }
   componentWillMount() {
-    if (this.props.user) {
+    if (this.props.user.isLoggedIn) {
       browserHistory.push('/');
     }
   }

@@ -4,15 +4,19 @@ import {
 } from '../types/login'
 import storage from '../localStorage/storage'
 
-
-const isLoggedIn = !!storage.getUser().login;
+const isLoggedIn = { isLoggedIn: !!storage.getUser().login, ...storage.getUser() };
 
 const loginReducer = (loggedIn = isLoggedIn, action) => {
   switch (action.type) {
     case LOGIN:
-      return true;
+      return {
+        isLoggedIn: true,
+        ...action.user,
+      };
     case LOGOUT:
-      return false;
+      return {
+        isLoggedIn: false
+      };
     default:
       return loggedIn;
   }

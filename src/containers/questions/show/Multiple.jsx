@@ -8,6 +8,9 @@ const initialState = {
 }
 
 class Multiple extends Component {
+  componentWillReceiveProps(props){
+    console.log(props);
+  }
   constructor() {
     super();
     this.state = initialState;

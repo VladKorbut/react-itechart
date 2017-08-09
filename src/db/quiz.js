@@ -67,23 +67,6 @@ let quiz = {
       where quiz.id = ${id}`).then((data) => {
         return processQuiz(data);
       })
-    /*let quiz = {};
-    db.executeTransaction(`SELECT * FROM questions WHERE quiz_id=${id}`)
-      .then((quizResult) => {
-        quiz = quizResult.rows[0];
-        this.getQuestions(quizResult.rows[0].id)
-          .then((quest) => {
-            quiz.questions = [...quest.rows];
-            quiz.questions.forEach((item, index) => {
-              this.getOptions(item.id)
-                .then((options) => {
-                  quiz.questions[index].options = [...options.rows];
-                  console.log(quiz);
-                })
-            })
-          })
-      });
-      */
   },
   getQuestions(id) {
     return db.executeTransaction(`SELECT * FROM questions WHERE quiz_id=${id}`);
