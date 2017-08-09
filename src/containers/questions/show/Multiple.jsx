@@ -2,32 +2,28 @@ import React, { Component } from 'react'
 import { Checkbox, Radio, FormGroup, Panel } from 'react-bootstrap'
 import { CHECKBOX } from '../../../types/questions'
 
-const initialState = {
-  radioAnswer: 0,
-  checkboxAnswer: [],
-}
-
 class Multiple extends Component {
-  componentWillReceiveProps(props){
-    console.log(props);
-  }
   constructor() {
     super();
-    this.state = initialState;
+    this.state = {
+      answer: null,
+    };
   }
   setAnswer = (id) => (e) => {
     if (e.target.type === 'checkbox') {
-      let answer = this.state.checkboxAnswer;
+      let answer = Array.isArray(this.state.answer) ? this.state.answer : [];
       if (e.target.checked) {
         answer.push(id);
+        this.setState({ answer: answer });
       } else {
         answer.splice(answer.indexOf(id), 1);
+        this.setState({ answer: answer });
       }
-      this.setState({ checkboxAnswer: answer });
+      this.props.sendAnswers(this.props.question.id, answer);
     } else {
-      this.setState({radioAnswer: id, checkboxAnswer: []})
+      this.setState({ answer: id });
+      this.props.sendAnswers(this.props.question.id, id);
     }
-    this.props.getValidState(this.state.checkboxAnswer.length || this.state.radioAnswer)
   }
   render() {
     return (
@@ -46,7 +42,7 @@ class Multiple extends Component {
                 return (
                   <span key={index}>
                     {this.props.question.type === CHECKBOX ?
-                      <Checkbox onClick={this.setAnswer(option.id)}>{option.value}</Checkbox>
+                      <Checkbox onClick={this.setAnswer(option.id)} checked={this.props.answer.indexOf()}>{option.value}</Checkbox>
                       :
                       <Radio onClick={this.setAnswer(option.id)} name="radioGroup">{option.value}</Radio>
                     }

@@ -32,7 +32,7 @@ class Quiz extends Component {
   }
 
   nextQuestion = () => {
-    this.setState({answerIsValid: false});
+    this.setState({ answerIsValid: false });
     let prevQuestions = this.state.prevQuestions;
     prevQuestions.push(this.state.currentQuestion);
     let currentQuestion = this.state.nextQuestions.pop();
@@ -43,7 +43,7 @@ class Quiz extends Component {
   }
 
   prevQuestion = () => {
-    this.setState({answerIsValid: false});
+    this.setState({ answerIsValid: false });
     let nextQuestions = this.state.nextQuestions;
     nextQuestions.push(this.state.currentQuestion);
     let currentQuestion = this.state.prevQuestions.pop();
@@ -57,11 +57,26 @@ class Quiz extends Component {
     console.log('finish')
   }
 
-  answerValidation = (state) => {
-    this.setState({ answerIsValid: state });
+  getAnswers = (id, answer) => {
+    let answers = this.state.answers;
+    answers.push({id:id, answer: answer});
+    this.setState({answers: answers});
+    console.log(id, answer)
+  }
+
+  getAnswer = () => {
+    let answer;
+    const currentQuestionId = this.state.currentQuestion.id;
+    this.state.answers.forEach((item, i)=>{
+      if(item.id === currentQuestionId){
+        answer = item.answer;
+      }
+    })
+    return answer;
   }
 
   randomizeArray = (arr) => arr.sort(() => (Math.random() - 0.5))
+
   render() {
     return (
       <div>
@@ -77,9 +92,11 @@ class Quiz extends Component {
               :
               <div>
                 <Question
-                getValidState={this.answerValidation}
-                question={this.state.currentQuestion || null}
-                index={this.state.prevQuestions.length} />
+                  sendAnswers={this.getAnswers}
+                  answer={this.getAnswer()}
+                  question={this.state.currentQuestion || null}
+                  index={this.state.prevQuestions.length}
+                  />
                 <div className={'quiz-nav'}>
                   <Button
                     onClick={this.prevQuestion}
