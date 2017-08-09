@@ -1,4 +1,5 @@
 import cv from './converter'
+import dc from './dateConverter'
 import { STARS } from '../types/questions'
 
 const processQuiz = (quiz) => {
@@ -9,6 +10,7 @@ const processQuiz = (quiz) => {
   res.title = quiz[0].title;
   res.isAnon = cv.strToBool(quiz[0].isAnon);
   res.isRand = cv.strToBool(quiz[0].isRand);
+  res.date = dc.getDDMMYYYY(quiz[0].date);
 
   let questions = [];
 
@@ -28,7 +30,9 @@ const processQuiz = (quiz) => {
 
   quiz.forEach((item) => {
     if (item.type < STARS) {
-      questions[indexOfQuestion(questions, item.question_id)].options.push(item.text);
+      questions[indexOfQuestion(questions, item.question_id)].options.push({
+        id: item.option_id, value: item.text
+      });
     }
   })
 
