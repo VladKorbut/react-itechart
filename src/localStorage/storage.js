@@ -5,7 +5,7 @@ export default {
   },
   getUser() {
     return {
-      id: localStorage.getItem('id'),
+      id: +localStorage.getItem('id'),
       login: localStorage.getItem('login'),
     }
   },

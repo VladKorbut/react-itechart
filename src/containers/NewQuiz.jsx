@@ -128,7 +128,7 @@ class NewQuiz extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    isLoggedIn: store.loginReducer
+    isLoggedIn: store.loginReducer.isLoggedIn
   }
 }
 

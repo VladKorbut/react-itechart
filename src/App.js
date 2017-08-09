@@ -18,7 +18,6 @@ class App extends Component {
     this.setState({ login: storage.getUser().login })
   }
   logout = () => {
-    storage.removeUser();
     this.props.logout();
     browserHistory.push('/login');
   }
@@ -35,7 +34,7 @@ class App extends Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            {this.props.userIsAuthorized ?
+            {this.props.user.isLoggedIn ?
               <div>
                 <Nav>
                   <LinkContainer to={'/new-quiz'}>
@@ -49,7 +48,7 @@ class App extends Component {
                   </LinkContainer>
                 </Nav>
                 <Navbar.Text pullRight>
-                  Hello, {this.state.login} <Navbar.Link onClick={this.logout}>Logout</Navbar.Link>
+                  Hello, {this.props.user.login} <Navbar.Link onClick={this.logout}>Logout</Navbar.Link>
                 </Navbar.Text>
               </div>
               :
@@ -74,7 +73,7 @@ class App extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    userIsAuthorized: store.loginReducer
+    user: store.loginReducer
   }
 }
 

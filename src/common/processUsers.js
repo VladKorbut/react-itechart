@@ -1,19 +1,15 @@
 import cv from './converter'
-import dc from './dateConverter'
 
 const processUsers = (users) => {
   users = [...users];
-  let processedUsers = [];
-  users.forEach(function (item) {
-    let newItem = {
+  return users.map(function (item) {
+    return {
       id: item.id,
       login: item.login,
-      date: dc.getDDMMYYYY(item.date),
-      isAdmin: cv.strToBool(item.isAdmin) ? 'Admin' : 'User',
+      date: item.date,
+      isAdmin: cv.strToBool(item.isAdmin),
     };
-    processedUsers.push(newItem);
   });
-  return processedUsers;
 }
 
 export default processUsers

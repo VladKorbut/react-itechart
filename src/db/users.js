@@ -8,6 +8,12 @@ export default {
         return processUsers(users.rows)
       })
   },
+  getById(id) {
+    return db.executeTransaction(`SELECT * FROM users WHERE id=${id}`)
+      .then((users) => {
+        return processUsers(users.rows)
+      })
+  },
   getLogins() {
     return db.executeTransaction(`SELECT login FROM users`);
   },
