@@ -6,6 +6,7 @@ import { getQuiz } from '../actions/getQuiz'
 import Spinner from '../components/Spinner'
 import Question from './questions/Question'
 import createAnswers from '../db/answers'
+import Progressbar from '../components/Progressbar'
 
 const indexOfAnswer = (answers, id) => {
   let index = -1;
@@ -16,6 +17,8 @@ const indexOfAnswer = (answers, id) => {
   })
   return index;
 }
+
+const randomizeArray = (arr) => arr.sort(() => (Math.random() - 0.5))
 
 class Quiz extends Component {
   constructor() {
@@ -36,7 +39,7 @@ class Quiz extends Component {
   }
 
   startQuiz = () => {
-    let questions = [...this.props.quiz.questions];
+    let questions = this.props.quiz.isRand ? randomizeArray(this.props.quiz.questions) : [...this.props.quiz.questions];
     this.setState({
       currentQuestion: questions.pop(),
       nextQuestions: questions
@@ -62,12 +65,17 @@ class Quiz extends Component {
       nextQuestions: nextQuestions,
       currentQuestion: currentQuestion,
     });
-    this.setState({ answerIsValid: !!(indexOfAnswer(this.state.answers, currentQuestion.id)+1) });
+    let answers = [...this.state.answers]
+    answers.length = indexOfAnswer(this.state.answers, currentQuestion.id)+1;
+    this.setState({
+      answerIsValid: !!(indexOfAnswer(this.state.answers, currentQuestion.id) + 1),
+      answers: answers,
+    });
   }
 
   finishQuiz = () => {
-    createAnswers(this.state.answers).then((data)=>{
-      this.setState({currentQuestion: {}, nextQuestion: [], prevQuestion: []});
+    createAnswers(this.state.answers).then((data) => {
+      this.setState({ currentQuestion: {}, nextQuestion: [], prevQuestions: [], answers: [] });
     })
   }
 
@@ -95,10 +103,7 @@ class Quiz extends Component {
     return answer;
   }
 
-  randomizeArray = (arr) => arr.sort(() => (Math.random() - 0.5))
-
   render() {
-    console.log(this)
     return (
       <div>
         {(this.props.success === null || this.props.loading) ? <Spinner />
@@ -118,6 +123,7 @@ class Quiz extends Component {
                   question={this.state.currentQuestion || null}
                   index={this.state.prevQuestions.length}
                 />
+                <Progressbar current={this.state.prevQuestions.length} length={this.props.quiz.questions.length}> </Progressbar>
                 <div className={'quiz-nav'}>
                   <Button
                     onClick={this.prevQuestion}
