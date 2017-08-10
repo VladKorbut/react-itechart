@@ -13,10 +13,11 @@ class Rating extends Component {
       isRequired: true,
     }
   }
-  componentWillReceiveProps(newProps) {
+  componentWillMount() {
+    console.log('mounted')
     this.setState({
-      title: newProps.question.title,
-      isRequired: newProps.question.isRequired,
+      title: this.props.question.title,
+      isRequired: this.props.question.isRequired,
     })
   }
   titleHandler = (e) => {

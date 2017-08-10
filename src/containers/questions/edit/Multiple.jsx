@@ -4,13 +4,6 @@ import Fa from 'react-fontawesome'
 import { CHECKBOX } from '../../../types/questions'
 
 class Multiple extends Component {
-  componentWillMount() {
-    this.setState({
-      options: this.props.question.options,
-      title: this.props.question.title,
-      isRequired: this.props.question.isRequired,
-    })
-  }
   constructor() {
     super();
     this.state = {
@@ -18,6 +11,14 @@ class Multiple extends Component {
       title: '',
       isRequired: true,
     }
+  }
+  componentWillMount() {
+    console.log('mounted')
+    this.setState({
+      options: this.props.question.options,
+      title: this.props.question.title,
+      isRequired: this.props.question.isRequired,
+    })
   }
   addOption = () => {
     let options = this.state.options;
