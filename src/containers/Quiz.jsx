@@ -61,11 +61,14 @@ class Quiz extends Component {
     let answers = this.state.answers;
     answers.push({id:id, answer: answer});
     this.setState({answers: answers});
-    console.log(id, answer)
+    console.log(id, answer);
+    if(answer !== 0 || answer.length){
+      this.setState({answerIsValid: true})
+    }
   }
 
   getAnswer = () => {
-    let answer;
+    let answer = [];
     const currentQuestionId = this.state.currentQuestion.id;
     this.state.answers.forEach((item, i)=>{
       if(item.id === currentQuestionId){
