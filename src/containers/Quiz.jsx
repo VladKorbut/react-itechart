@@ -5,6 +5,17 @@ import { Button } from 'react-bootstrap'
 import { getQuiz } from '../actions/getQuiz'
 import Spinner from '../components/Spinner'
 import Question from './questions/Question'
+import createAnswers from '../db/answers'
+
+const indexOfAnswer = (answers, id) => {
+  let index = -1;
+  answers.forEach((item, i) => {
+    if (item.id === id) {
+      index = i;
+    }
+  })
+  return index;
+}
 
 class Quiz extends Component {
   constructor() {
@@ -25,9 +36,10 @@ class Quiz extends Component {
   }
 
   startQuiz = () => {
+    let questions = [...this.props.quiz.questions];
     this.setState({
-      currentQuestion: this.props.quiz.questions.pop(),
-      nextQuestions: this.props.quiz.questions
+      currentQuestion: questions.pop(),
+      nextQuestions: questions
     });
   }
 
@@ -43,7 +55,6 @@ class Quiz extends Component {
   }
 
   prevQuestion = () => {
-    this.setState({ answerIsValid: false });
     let nextQuestions = this.state.nextQuestions;
     nextQuestions.push(this.state.currentQuestion);
     let currentQuestion = this.state.prevQuestions.pop();
@@ -51,27 +62,33 @@ class Quiz extends Component {
       nextQuestions: nextQuestions,
       currentQuestion: currentQuestion,
     });
+    this.setState({ answerIsValid: !!(indexOfAnswer(this.state.answers, currentQuestion.id)+1) });
   }
 
   finishQuiz = () => {
-    console.log('finish')
+    createAnswers(this.state.answers).then((data)=>{
+      this.setState({currentQuestion: {}, nextQuestion: [], prevQuestion: []});
+    })
   }
 
   getAnswers = (id, answer) => {
     let answers = this.state.answers;
-    answers.push({id:id, answer: answer});
-    this.setState({answers: answers});
-    console.log(id, answer);
-    if(answer !== 0 || answer.length){
-      this.setState({answerIsValid: true})
+    if (indexOfAnswer(answers, id) + 1) {
+      answers[indexOfAnswer(answers, id)] = { id: id, answer: answer }
+    } else {
+      answers.push({ id: id, answer: answer });
+    }
+    this.setState({ answers: answers });
+    if (answer !== 0 || answer.length) {
+      this.setState({ answerIsValid: true })
     }
   }
 
   getAnswer = () => {
     let answer = [];
     const currentQuestionId = this.state.currentQuestion.id;
-    this.state.answers.forEach((item, i)=>{
-      if(item.id === currentQuestionId){
+    this.state.answers.forEach((item, i) => {
+      if (item.id === currentQuestionId) {
         answer = item.answer;
       }
     })
@@ -81,6 +98,7 @@ class Quiz extends Component {
   randomizeArray = (arr) => arr.sort(() => (Math.random() - 0.5))
 
   render() {
+    console.log(this)
     return (
       <div>
         {(this.props.success === null || this.props.loading) ? <Spinner />
@@ -99,7 +117,7 @@ class Quiz extends Component {
                   answer={this.getAnswer()}
                   question={this.state.currentQuestion || null}
                   index={this.state.prevQuestions.length}
-                  />
+                />
                 <div className={'quiz-nav'}>
                   <Button
                     onClick={this.prevQuestion}

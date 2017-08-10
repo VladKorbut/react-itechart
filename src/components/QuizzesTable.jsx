@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { browserHistory, Link } from 'react-router'
+import { Link } from 'react-router'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
 const fromatLink = (id) => {
-  return <Link to={'quiz/'+id}>Link to quiz</Link>
+  return <Link to={'quiz/' + id}>Link to quiz</Link>
 }
 
 class QuizzesTable extends Component {

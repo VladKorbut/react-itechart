@@ -4,7 +4,22 @@ import { STARS } from '../../../types/questions'
 import RatingStars from 'react-rating'
 
 class Single extends Component {
+  constructor() {
+    super();
+    this.state = {
+      answer: null,
+    };
+  }
+  setStars = (rate) => {
+    this.setState({ answer: rate });
+    this.props.sendAnswers(this.props.question.id, rate);
+  }
+  setText = (e) => {
+    this.setState({ answer: e.target.value });
+    this.props.sendAnswers(this.props.question.id, e.target.value);
+  }
   render() {
+    console.log(this.state.answer);
     return (
       <div>
         <Panel
@@ -21,10 +36,11 @@ class Single extends Component {
                 <RatingStars
                   empty="fa fa-star-o fa-2x"
                   full="fa fa-star fa-2x"
-                  initialRate={3}
+                  initialRate={this.state.answer}
+                  onChange={this.setStars}
                 />
                 :
-                <FormControl componentClass="textarea" placeholder="Answer will be here" />
+                <FormControl componentClass="textarea" placeholder="Answer will be here" onChange={this.setText} />
             }
           </FormGroup>
         </Panel>
