@@ -7,7 +7,7 @@ class Single extends Component {
   constructor() {
     super();
     this.state = {
-      answer: null,
+      answer: '',
     };
   }
   setStars = (rate) => {
@@ -19,7 +19,6 @@ class Single extends Component {
     this.props.sendAnswers(this.props.question.id, e.target.value);
   }
   render() {
-    console.log(this.state.answer);
     return (
       <div>
         <Panel
@@ -40,7 +39,7 @@ class Single extends Component {
                   onChange={this.setStars}
                 />
                 :
-                <FormControl componentClass="textarea" placeholder="Answer will be here" onChange={this.setText} />
+                <FormControl componentClass="textarea" placeholder="Answer will be here" value={this.state.answer} onChange={this.setText} />
             }
           </FormGroup>
         </Panel>
