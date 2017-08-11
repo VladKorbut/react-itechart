@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
-import { Button } from 'react-bootstrap'
+import { Button, Col } from 'react-bootstrap'
 import { getQuiz } from '../actions/getQuiz'
 import Spinner from '../components/Spinner'
 import Question from './questions/Question'
@@ -116,7 +116,7 @@ class Quiz extends Component {
                 <Button onClick={this.startQuiz} bsSize='lg' bsStyle='primary'>Start</Button>
               </div>
               :
-              <div>
+              <Col md={8} lg={6} mdOffset={2} lgOffset={4}>
                 <Question
                   sendAnswers={this.getAnswers}
                   answer={this.getAnswer()}
@@ -146,7 +146,7 @@ class Quiz extends Component {
                       className={'right'}>Finish</Button>
                   }
                 </div>
-              </div>
+              </Col>
             }
           </div>
         }
