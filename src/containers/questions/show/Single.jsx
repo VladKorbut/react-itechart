@@ -35,11 +35,11 @@ class Single extends Component {
                 <RatingStars
                   empty="fa fa-star-o fa-2x"
                   full="fa fa-star fa-2x"
-                  initialRate={this.state.answer}
+                  initialRate={Array.isArray(this.props.answer) ? 0 : this.props.answer}
                   onChange={this.setStars}
                 />
                 :
-                <FormControl componentClass="textarea" placeholder="Answer will be here" value={this.state.answer} onChange={this.setText} />
+                <FormControl componentClass="textarea" placeholder="Answer will be here" value={this.props.answer} onChange={this.setText} />
             }
           </FormGroup>
         </Panel>
