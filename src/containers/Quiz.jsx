@@ -66,7 +66,7 @@ class Quiz extends Component {
       currentQuestion: currentQuestion,
     });
     let answers = [...this.state.answers]
-    answers.length = indexOfAnswer(this.state.answers, currentQuestion.id)+1;
+    answers.length = indexOfAnswer(this.state.answers, currentQuestion.id) + 1;
     this.setState({
       answerIsValid: !!(indexOfAnswer(this.state.answers, currentQuestion.id) + 1),
       answers: answers,
@@ -74,6 +74,9 @@ class Quiz extends Component {
   }
 
   finishQuiz = () => {
+    let prevQuestions = this.state.prevQuestions;
+    prevQuestions.push(this.state.currentQuestion);
+    this.setState({ prevQuestions: prevQuestions });
     createAnswers(this.state.answers).then((data) => {
       this.setState({ currentQuestion: {}, nextQuestion: [], prevQuestions: [], answers: [] });
     })

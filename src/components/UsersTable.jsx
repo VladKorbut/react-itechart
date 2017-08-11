@@ -4,6 +4,7 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { Button } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import dc from '../common/dateConverter'
+import users from '../db/users'
 
 const formatRole = (isAdmin) => {
   return isAdmin ? 'Admin' : 'User';
@@ -12,11 +13,15 @@ const formatRole = (isAdmin) => {
 class Table extends Component {
   editButtons = (id) => {
     return (
-      <div>
-        <Button bsStyle='info'><Fa name='pencil' /></Button>
-        {this.props.user.id !== id ? <Button bsStyle='danger'><Fa name='times' /></Button> : null}
-      </div>
+      this.props.user.id !== id ?
+        <Button bsStyle='danger' onClick={this.deleteUser(id)}><Fa name='times' /></Button>
+        : null
     )
+  }
+  deleteUser = (id) => (e) => {
+    users.deleteUser(id).then(() => {
+      this.props.reload();
+    })
   }
   render() {
     return (
@@ -28,7 +33,7 @@ class Table extends Component {
         <TableHeaderColumn dataField='login' dataSort={true}>Login</TableHeaderColumn>
         <TableHeaderColumn dataField='date' dataSort dataFormat={dc.getDDMMYYYY}>Registerd</TableHeaderColumn>
         <TableHeaderColumn dataField='isAdmin' dataFormat={formatRole} dataSort={true} >Role</TableHeaderColumn>
-        {/*<TableHeaderColumn dataField='id' dataFormat={this.editButtons}>Setting</TableHeaderColumn>*/}
+        <TableHeaderColumn dataField='id' dataFormat={this.editButtons}>Setting</TableHeaderColumn>
       </BootstrapTable>
     )
   }

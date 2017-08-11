@@ -22,5 +22,8 @@ export default {
   },
   getUserByEmail(email) {
     return db.executeTransaction(`SELECT * FROM users WHERE email='${email}'`);
+  },
+  deleteUser(id) {
+    return db.executeTransaction(`DELETE FROM users WHERE id='${id}'`);
   }
 }
