@@ -8,25 +8,31 @@ class Rating extends Component {
   constructor() {
     super();
     this.state = {
-      options: [],
       title: '',
       isRequired: true,
+      type: 0,
     }
   }
   componentWillMount() {
-    console.log('mounted')
     this.setState({
       title: this.props.question.title,
       isRequired: this.props.question.isRequired,
+      type: this.props.question.type,
     })
   }
+  editQuestion = () => {
+    this.props.editQuestion(this.props.index, this.state);
+  }
+  validateQuestion = () => {
+    this.setState({
+      isValid: !!this.state.title.length
+    }, this.editQuestion);
+  }
   titleHandler = (e) => {
-    this.setState({ title: e.target.value });
-    this.props.titleHandler(this.props.index, e.target.value);
+    this.setState({ title: e.target.value }, this.validateQuestion);
   }
   requiredHandler = (e) => {
-    this.setState({ isRequired: e.target.checked });
-    this.props.requiredHandler(this.props.index, e.target.checked);
+    this.setState({ isRequired: e.target.checked }, this.validateQuestion);
   }
   deleteQuestion = (e) => {
     this.props.deleteQuestion(this.props.index);

@@ -23,7 +23,6 @@ class NewQuiz extends Component {
     }
   }
   titleHandler = (e) => {
-    e.preventDefault();
     this.setState({ title: e.target.value })
   }
   anonHandler = (e) => {
@@ -32,8 +31,29 @@ class NewQuiz extends Component {
   randHandler = (e) => {
     this.setState({ isRand: e.target.checked });
   }
+  addQuestion = (type) => () => {
+    let questions = [...this.state.questions];
+    questions.push({ title: '', type: type, isRequired: true, options: [] });
+    this.setState({ questions: questions });
+  }
+  editQuestion = (index, question) => {
+    let questions = [...this.state.questions];
+    questions[index] = question;
+    this.setState({ questions: questions });
+  }
+  deleteQuestion = (index) => {
+    let questions = [...this.state.questions];
+    questions.splice(index, 1);
+    this.setState({ questions: questions });
+  }
   getButtonState = () => {
-    return !(this.state.title.length && this.state.questions.length);
+    let answersIsValid = true;
+    this.state.questions.forEach((item) => {
+      if (!item.isValid) {
+        answersIsValid = false;
+      }
+    })
+    return !(this.state.title.length && this.state.questions.length && answersIsValid);
   }
   createQuiz = () => {
     if (this.props.isLoggedIn) {
@@ -47,37 +67,12 @@ class NewQuiz extends Component {
           })
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         })
     } else {
       alert(`You're not logged in!`);
       browserHistory.push('/login');
     }
-  }
-  addQuestion = (type) => () => {
-    let questions = this.state.questions;
-    questions.push({ title: '', type: type, isRequired: true, options: [] });
-    this.setState({ questions: questions });
-  }
-  setOptions = (index, options) => {
-    let questions = this.state.questions;
-    questions[index].options = options;
-    this.setState({ questions: questions });
-  }
-  questionTitleHandler = (index, newTitle) => {
-    let questions = this.state.questions;
-    questions[index].title = newTitle;
-    this.setState({ questions: questions });
-  }
-  questionRequiredHandler = (index, status) => {
-    let questions = this.state.questions;
-    questions[index].isRequired = status;
-    this.setState({ questions: questions });
-  }
-  deleteQuestion = (index) => {
-    let questions = this.state.questions;
-    questions.splice(index, 1);
-    this.setState({ questions: questions });
   }
   render() {
     return (
@@ -108,16 +103,14 @@ class NewQuiz extends Component {
             type="text"
             bsSize={'large'}
             value={this.state.title}
-            placeholder="Quiz Title"
             onChange={this.titleHandler}
+            placeholder="Quiz Title"
           />
           <span>Number of questions: {this.state.questions.length}</span>
           <Questions
+            edit
             questions={this.state.questions}
-            edit={true}
-            setOptions={this.setOptions}
-            titleHandler={this.questionTitleHandler}
-            requiredHandler={this.questionRequiredHandler}
+            editQuestion={this.editQuestion}
             deleteQuestion={this.deleteQuestion} />
           <Button bsStyle="primary" onClick={this.createQuiz} disabled={this.getButtonState()}>Create</Button>
         </Col>

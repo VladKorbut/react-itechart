@@ -10,47 +10,55 @@ class Multiple extends Component {
       options: [],
       title: '',
       isRequired: true,
+      type: 0,
+      isValid: false,
     }
   }
   componentWillMount() {
-    console.log('mounted')
     this.setState({
       options: this.props.question.options,
       title: this.props.question.title,
       isRequired: this.props.question.isRequired,
+      type: this.props.question.type,
     })
   }
-  addOption = () => {
-    let options = this.state.options;
-    options.push('');
-    this.setState({ options: options });
-    this.setOptions();
+  validateQuestion = () => {
+    let optionsIsValid = true;
+    this.state.options.forEach((option) => {
+      if (!option.length) {
+        optionsIsValid = false;
+      }
+    })
+    this.setState({
+      isValid: !!(optionsIsValid && this.state.title.length && this.state.options.length>1)
+    }, this.editQuestion);
   }
-  setOptions = () => {
-    this.props.setOptions(this.props.index, this.state.options);
+  editQuestion = () => {
+    this.props.editQuestion(this.props.index, this.state);
+  }
+  addOption = () => {
+    let options = [...this.state.options];
+    options.push('');
+    this.setState({ options: options }, this.validateQuestion);
+  }
+  deleteOption = (index) => (e) => {
+    let options = [...this.state.options];
+    options.splice(index, 1);
+    this.setState({ options: options }, this.validateQuestion);
+  }
+  optionHandler = (index) => (e) => {
+    let options = [...this.state.options];
+    options[index] = e.target.value;
+    this.setState({ options: options }, this.validateQuestion);
   }
   titleHandler = (e) => {
-    this.setState({ title: e.target.value });
-    this.props.titleHandler(this.props.index, e.target.value);
+    this.setState({ title: e.target.value }, this.validateQuestion);
   }
   requiredHandler = (e) => {
-    this.setState({ isRequired: e.target.checked });
-    this.props.requiredHandler(this.props.index, e.target.checked);
+    this.setState({ isRequired: e.target.checked }, this.validateQuestion);
   }
   deleteQuestion = (e) => {
     this.props.deleteQuestion(this.props.index);
-  }
-  optionHandler = (index) => (e) => {
-    let options = this.state.options;
-    options[index] = e.target.value;
-    this.setState({ options: options });
-    this.setOptions();
-  }
-  deleteOption = (index) => (e) => {
-    let options = this.state.options;
-    options.splice(index, 1);
-    this.setState({ options: options });
-    this.setOptions();
   }
   render() {
     return (
