@@ -16,12 +16,10 @@ class Users extends Component {
   }
   componentWillReceiveProps(props){
     if(props.users){
-      console.log('1')
       this.setState({users: props.users});
     }
   }
   render() {
-    console.log(this.props.users)
     return (
       <div>
         {this.state.users && !this.state.users.length ? <Spinner /> : <UsersTable data={this.props.users} reload={this.props.get}/>}

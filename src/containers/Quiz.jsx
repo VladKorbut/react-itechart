@@ -77,7 +77,7 @@ class Quiz extends Component {
     let prevQuestions = this.state.prevQuestions;
     prevQuestions.push(this.state.currentQuestion);
     this.setState({ prevQuestions: prevQuestions });
-    createAnswers(this.state.answers).then((data) => {
+    createAnswers(this.state.answers, this.props.quiz.id).then((data) => {
       this.setState({ currentQuestion: {}, nextQuestion: [], prevQuestions: [], answers: [] });
     })
   }

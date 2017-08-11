@@ -10,6 +10,11 @@ const formatRole = (isAdmin) => {
   return isAdmin ? 'Admin' : 'User';
 }
 
+const cellEditProp = {
+  mode: 'click',
+  blurToSave: true
+};
+
 class Table extends Component {
   editButtons = (id) => {
     return (
@@ -28,12 +33,14 @@ class Table extends Component {
       <BootstrapTable
         data={this.props.data}
         pagination
-        responsive>
+        responsive
+        cellEdit={cellEditProp}
+      >
         <TableHeaderColumn isKey dataField='id' width='60'>id</TableHeaderColumn>
         <TableHeaderColumn dataField='login' dataSort={true}>Login</TableHeaderColumn>
         <TableHeaderColumn dataField='date' dataSort dataFormat={dc.getDDMMYYYY}>Registerd</TableHeaderColumn>
-        <TableHeaderColumn dataField='isAdmin' dataFormat={formatRole} dataSort={true} >Role</TableHeaderColumn>
-        <TableHeaderColumn dataField='id' dataFormat={this.editButtons}>Setting</TableHeaderColumn>
+        <TableHeaderColumn dataField='isAdmin'  dataSort={true} editable={{ type: 'checkbox', options: { values: 'Admin:User' } }}>Role</TableHeaderColumn>
+        <TableHeaderColumn dataField='id' dataFormat={this.editButtons} >Setting</TableHeaderColumn>
       </BootstrapTable>
     )
   }

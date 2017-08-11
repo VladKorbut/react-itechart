@@ -31,7 +31,8 @@ let db = {
       'isAnon' BOOLEAN DEFAULT FALSE,
       'isRand' BOOLEAN DEFAULT FALSE,
       'date' DATETIME NOT NULL,
-      'author_id' INTEGER NOT NULL
+      'author_id' INTEGER NOT NULL,
+      FOREIGN KEY (author_id) REFERENCES users (id)
     )`)
   },
   createQuestionsTable() {
@@ -41,7 +42,8 @@ let db = {
       'title' VARCHAR(50) NOT NULL,
       'type' INTEGER NOT NULL,
       'isRequired' BOOLEAN DEFAULT FALSE,
-      'quiz_id' INTEGER NOT NULL
+      'quiz_id' INTEGER NOT NULL,
+      FOREIGN KEY (quiz_id) REFERENCES quizzes (id)
     )`)
   },
   createOptionsTable() {
@@ -49,7 +51,19 @@ let db = {
     'question_options'(
       'id' INTEGER PRIMARY KEY ASC,
       'text' VARCHAR(50) NOT NULL,
-      'question_id' INTEGER NOT NULL
+      'question_id' INTEGER NOT NULL,
+      FOREIGN KEY (question_id) REFERENCES questions (id)
+    )`)
+  },
+  createQuizResultTable() {
+    this.executeTransaction(`CREATE TABLE IF NOT EXISTS
+    'quiz_result'(
+      'id' INTEGER PRIMARY KEY ASC,
+      'date' DATETIME NOT NULL,
+      'user_id' INTEGER NOT NULL,
+      'quiz_id' INTEGER NOT NULL,
+      FOREIGN KEY (user_id) REFERENCES users (id),
+      FOREIGN KEY (quiz_id) REFERENCES quizzes (id)
     )`)
   },
   createAnswersTable() {
@@ -57,7 +71,10 @@ let db = {
     'answers'(
       'id' INTEGER PRIMARY KEY ASC,
       'value' VARCHAR(50) NOT NULL,
-      'question_id' INTEGER NOT NULL
+      'question_id' INTEGER NOT NULL,
+      'quiz_result_id' INTEGER NOT NULL,
+      FOREIGN KEY (question_id) REFERENCES questions (id),
+      FOREIGN KEY (quiz_result_id) REFERENCES quiz_result (id)
     )`)
   },
   init() {
@@ -66,6 +83,7 @@ let db = {
     this.createQuestionsTable();
     this.createOptionsTable();
     this.createAnswersTable();
+    this.createQuizResultTable();
   }
 }
 export default db
