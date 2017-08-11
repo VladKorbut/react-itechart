@@ -25,7 +25,7 @@ class Multiple extends Component {
   validateQuestion = () => {
     let optionsIsValid = true;
     this.state.options.forEach((option) => {
-      if (!option.length) {
+      if (!option.value.length) {
         optionsIsValid = false;
       }
     })
@@ -38,7 +38,7 @@ class Multiple extends Component {
   }
   addOption = () => {
     let options = [...this.state.options];
-    options.push('');
+    options.push({value: ''});
     this.setState({ options: options }, this.validateQuestion);
   }
   deleteOption = (index) => (e) => {
@@ -48,7 +48,7 @@ class Multiple extends Component {
   }
   optionHandler = (index) => (e) => {
     let options = [...this.state.options];
-    options[index] = e.target.value;
+    options[index].value = e.target.value;
     this.setState({ options: options }, this.validateQuestion);
   }
   titleHandler = (e) => {
@@ -96,7 +96,7 @@ class Multiple extends Component {
                     <Radio checked={false} />
                   }
                 </InputGroup.Addon>
-                <FormControl type="text" value={option} onChange={this.optionHandler(index)} placeholder={'Option ' + (index + 1)} />
+                <FormControl type="text" value={option.value} onChange={this.optionHandler(index)} placeholder={'Option ' + (index + 1)} />
                 <InputGroup.Button>
                   <Button onClick={this.deleteOption(index)}><Fa name='times' /></Button>
                 </InputGroup.Button>

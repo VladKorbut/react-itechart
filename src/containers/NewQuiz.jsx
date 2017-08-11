@@ -21,6 +21,17 @@ class NewQuiz extends Component {
     if (!this.props.isLoggedIn) {
       browserHistory.push('/login');
     }
+    if (this.props.quiz) {
+      this.setState({
+        title: this.props.quiz.title,
+        isAnon: this.props.quiz.isAnon,
+        isRand: this.props.quiz.isRand,
+        questions: this.props.quiz.questions,
+      })
+    }
+  }
+  componentWillReceiveProps(props) {
+    console.log(props);
   }
   titleHandler = (e) => {
     this.setState({ title: e.target.value })
