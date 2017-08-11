@@ -1,5 +1,6 @@
 import db from './db'
 import processUsers from '../common/processUsers'
+import cv from '../common/converter'
 
 export default {
   get() {
@@ -25,5 +26,8 @@ export default {
   },
   deleteUser(id) {
     return db.executeTransaction(`DELETE FROM users WHERE id='${id}'`);
+  },
+  changeRole(id, isAdmin){
+    return db.executeTransaction(`UPDATE users SET isAdmin = '${cv.boolToStr(isAdmin)}' WHERE id=${id}`);
   }
 }
