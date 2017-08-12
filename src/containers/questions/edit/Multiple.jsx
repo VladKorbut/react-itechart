@@ -21,16 +21,18 @@ class Multiple extends Component {
       isRequired: this.props.question.isRequired,
       type: this.props.question.type,
     })
+    this.validateQuestion();
   }
   validateQuestion = () => {
     let optionsIsValid = true;
-    this.state.options.forEach((option) => {
+    this.state.options.forEach((option, i) => {
       if (!option.value.length) {
         optionsIsValid = false;
       }
     })
+
     this.setState({
-      isValid: !!(optionsIsValid && this.state.title.length && this.state.options.length>1)
+      isValid: !!(optionsIsValid && this.props.question.title.length && this.props.question.options.length > 1)
     }, this.editQuestion);
   }
   editQuestion = () => {
@@ -38,7 +40,7 @@ class Multiple extends Component {
   }
   addOption = () => {
     let options = [...this.state.options];
-    options.push({value: ''});
+    options.push({ value: '' });
     this.setState({ options: options }, this.validateQuestion);
   }
   deleteOption = (index) => (e) => {
@@ -91,9 +93,9 @@ class Multiple extends Component {
               <InputGroup key={index}>
                 <InputGroup.Addon>
                   {this.props.question.type === CHECKBOX ?
-                    <Checkbox checked={false} />
+                    <Checkbox checked disabled />
                     :
-                    <Radio checked={false} />
+                    <Radio checked disabled />
                   }
                 </InputGroup.Addon>
                 <FormControl type="text" value={option.value} onChange={this.optionHandler(index)} placeholder={'Option ' + (index + 1)} />

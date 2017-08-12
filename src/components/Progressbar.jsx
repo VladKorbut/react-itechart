@@ -1,17 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { ProgressBar } from 'react-bootstrap'
 
-class Progressbar extends Component {
-  getCurrentState = () => {
-    return this.props.current / this.props.length * 100
+function Progressbar(props) {
+  const getCurrentState = () => {
+    return props.current / props.length * 100
   }
-  render() {
-    return (
-      <div>
-        <ProgressBar now={this.getCurrentState()} label={`${this.props.current}/${this.props.length}`} />
-      </div>
-    )
-  }
+  return <ProgressBar now={getCurrentState()} label={`${props.current}/${props.length}`} />
 }
 
 export default Progressbar

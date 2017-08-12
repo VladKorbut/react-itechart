@@ -4,7 +4,7 @@ import NewQuiz from './NewQuiz'
 import Spinner from '../components/Spinner'
 import { getQuiz } from '../actions/getQuiz'
 
-class ModifyQuiz extends Component {
+class EditQuiz extends Component {
   componentWillMount(){
     this.props.get(this.props.params.id);
   }
@@ -27,4 +27,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModifyQuiz)
+export default connect(mapStateToProps, mapDispatchToProps)(EditQuiz)

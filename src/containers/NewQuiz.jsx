@@ -30,9 +30,6 @@ class NewQuiz extends Component {
       })
     }
   }
-  componentWillReceiveProps(props) {
-    console.log(props);
-  }
   titleHandler = (e) => {
     this.setState({ title: e.target.value })
   }
@@ -48,7 +45,7 @@ class NewQuiz extends Component {
     this.setState({ questions: questions });
   }
   editQuestion = (index, question) => {
-    let questions = [...this.state.questions];
+    let questions = this.state.questions;
     questions[index] = question;
     this.setState({ questions: questions });
   }
@@ -59,7 +56,7 @@ class NewQuiz extends Component {
   }
   getButtonState = () => {
     let answersIsValid = true;
-    this.state.questions.forEach((item) => {
+    this.state.questions.forEach((item, i) => {
       if (!item.isValid) {
         answersIsValid = false;
       }
