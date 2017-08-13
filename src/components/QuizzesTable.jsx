@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import dc from '../common/dateConverter'
 
-const fromatLink = (id) => {
+const formatLink = (id) => {
   return <Link to={'quiz/' + id}>Link to quiz</Link>
 }
 
@@ -21,7 +21,7 @@ class QuizzesTable extends Component {
         <TableHeaderColumn isKey dataField='id' dataFormat={formatIndex} width='60'>#</TableHeaderColumn>
         <TableHeaderColumn dataField='title' dataSort={true}>Title</TableHeaderColumn>
         <TableHeaderColumn dataField='date' dataSort={true} dataFormat={dc.getDDMMYYYY}>Date</TableHeaderColumn>
-        <TableHeaderColumn dataField='id' dataFormat={fromatLink}>Link</TableHeaderColumn>
+        <TableHeaderColumn dataField='id' dataFormat={formatLink}>Link</TableHeaderColumn>
       </BootstrapTable>
     )
   }
