@@ -35,7 +35,7 @@ let quiz = {
     });
   },
   createOption(options, questionId) {
-    let insert = options.map((item) => (`('${item}', ${questionId})`));
+    let insert = options.map((item) => (`('${item.value}', ${questionId})`));
     return db.executeTransaction(`INSERT INTO
     question_options(text, question_id)
     VALUES ${insert.join(', ')}`);

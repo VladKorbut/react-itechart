@@ -9,8 +9,9 @@ class Users extends Component {
     this.props.get();
   }
   render() {
-    console.log(this.props.users)
-    return this.props.loading && this.props.users && !this.props.users.length ? <Spinner /> : <UsersTable data={this.props.users} reload={this.props.get} />
+    return this.props.loading && this.props.users && !this.props.users.length ?
+      <Spinner /> :
+      <UsersTable data={this.props.users} reload={this.props.get} />
   }
 }
 
