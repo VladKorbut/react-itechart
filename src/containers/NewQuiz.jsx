@@ -4,7 +4,8 @@ import { browserHistory } from 'react-router'
 import { FormControl, Col, Checkbox, Button, Row, ButtonGroup } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import quiz from '../db/quiz'
-import Questions from './questions/Questions.jsx'
+import Questions from './questions/Questions'
+import QuizLinkModal from '../components/QuizLinkModal'
 import { CHECKBOX, RADIO, STARS, TEXT } from '../types/questions'
 
 class NewQuiz extends Component {
@@ -15,11 +16,21 @@ class NewQuiz extends Component {
       isAnon: false,
       isRand: false,
       questions: [],
+      showModal: false,
+      insertedQuiz: 0,
     }
   }
   componentWillMount() {
     if (!this.props.isLoggedIn) {
       browserHistory.push('/login');
+    }
+    if (this.props.quiz) {
+      this.setState({
+        title: this.props.quiz.title,
+        isAnon: this.props.quiz.isAnon,
+        isRand: this.props.quiz.isRand,
+        questions: this.props.quiz.questions,
+      })
     }
   }
   titleHandler = (e) => {
@@ -37,7 +48,7 @@ class NewQuiz extends Component {
     this.setState({ questions: questions });
   }
   editQuestion = (index, question) => {
-    let questions = [...this.state.questions];
+    let questions = this.state.questions;
     questions[index] = question;
     this.setState({ questions: questions });
   }
@@ -48,7 +59,7 @@ class NewQuiz extends Component {
   }
   getButtonState = () => {
     let answersIsValid = true;
-    this.state.questions.forEach((item) => {
+    this.state.questions.forEach((item, i) => {
       if (!item.isValid) {
         answersIsValid = false;
       }
@@ -58,8 +69,10 @@ class NewQuiz extends Component {
   createQuiz = () => {
     if (this.props.isLoggedIn) {
       quiz.create(this.state)
-        .then(() => {
+        .then((res) => {
           this.setState({
+            insertedQuiz: res.insertId,
+            showModal: true,
             title: '',
             isAnon: false,
             isRand: false,
@@ -73,6 +86,12 @@ class NewQuiz extends Component {
       alert(`You're not logged in!`);
       browserHistory.push('/login');
     }
+  }
+  openMadal = () => {
+    this.setState({ showModal: true });
+  }
+  closeModal = () => {
+    this.setState({ showModal: false });
   }
   render() {
     return (
@@ -114,6 +133,7 @@ class NewQuiz extends Component {
             deleteQuestion={this.deleteQuestion} />
           <Button bsStyle="primary" onClick={this.createQuiz} disabled={this.getButtonState()}>Create</Button>
         </Col>
+        <QuizLinkModal quizId={this.state.insertedQuiz} show={this.state.showModal} close={this.closeModal} />
       </div>
     )
   }

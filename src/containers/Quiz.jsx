@@ -90,8 +90,10 @@ class Quiz extends Component {
       answers.push({ id: id, answer: answer });
     }
     this.setState({ answers: answers });
-    if (answer !== 0 || answer.length) {
-      this.setState({ answerIsValid: true })
+    if (typeof answer === 'number') {
+      this.setState({ answerIsValid: !!answer })
+    }else {
+      this.setState({ answerIsValid: !!answer.length })
     }
   }
 
@@ -107,6 +109,7 @@ class Quiz extends Component {
   }
 
   render() {
+    console.log()
     return (
       <div>
         {(this.props.success === null || this.props.loading) ? <Spinner />

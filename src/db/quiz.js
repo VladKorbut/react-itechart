@@ -14,9 +14,11 @@ let quiz = {
     VALUES('${quiz.title}', '${cv.boolToStr(quiz.isAnon)}', '${cv.boolToStr(quiz.isRand)}', ${Date.now()}, ${+ls.getUser().id})`)
       .then((data) => {
         this.createQuestion(quiz.questions, data.insertId);
+        return data;
       })
       .catch((error) => {
         console.error(error);
+        return error;
       })
   },
   createQuestion(questions, quizId) {
@@ -35,7 +37,7 @@ let quiz = {
     });
   },
   createOption(options, questionId) {
-    let insert = options.map((item) => (`('${item}', ${questionId})`));
+    let insert = options.map((item) => (`('${item.value}', ${questionId})`));
     return db.executeTransaction(`INSERT INTO
     question_options(text, question_id)
     VALUES ${insert.join(', ')}`);

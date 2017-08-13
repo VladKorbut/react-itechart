@@ -5,26 +5,13 @@ import { getUsers } from '../actions/getUsers'
 import Spinner from '../components/Spinner'
 
 class Users extends Component {
-  constructor(){
-    super();
-    this.state = {
-      users: null,
-    }
-  }
   componentWillMount() {
     this.props.get();
   }
-  componentWillReceiveProps(props){
-    if(props.users){
-      this.setState({users: props.users});
-    }
-  }
   render() {
-    return (
-      <div>
-        {this.state.users && !this.state.users.length ? <Spinner /> : <UsersTable data={this.props.users} reload={this.props.get}/>}
-      </div>
-    )
+    return this.props.loading && this.props.users && !this.props.users.length ?
+      <Spinner /> :
+      <UsersTable data={this.props.users} reload={this.props.get} />
   }
 }
 

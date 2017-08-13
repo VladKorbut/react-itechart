@@ -1,22 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Question from './Question'
 
-class Questions extends Component {
-  render() {
-    return (
-      <div>
-        {
-          this.props.questions.map((question, index) => {
-            return (<Question
-              key={index}
-              index={index}
-              question={question}
-              {...this.props} />);
-          })
-        }
-      </div>
-    )
-  }
+function Questions(props) {
+  return (
+    <div>
+      {
+        props.questions.map((question, index) => {
+          return (<Question
+            key={index}
+            index={index}
+            question={question}
+            {...props} />);
+        })
+      }
+    </div>
+  )
 }
 
 export default Questions

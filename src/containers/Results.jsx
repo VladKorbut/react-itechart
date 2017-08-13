@@ -6,7 +6,6 @@ import Spinner from '../components/Spinner'
 
 class Results extends Component {
   componentWillMount() {
-    console.log(this.props)
     this.props.get(this.props.params.id);
   }
 

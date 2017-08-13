@@ -12,7 +12,7 @@ db.init();
 
 ReactDOM.render(
   <Provider store={store}>
-    {Routing}
+    <Routing />
   </Provider>,
   document.getElementById('root')
 );

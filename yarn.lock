@@ -4979,9 +4979,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-update/-/react-addons-update-15.3.2.tgz#b6385c4db1e5df371825e0615b04360ed94430fe"
 
-react-bootstrap-table@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/react-bootstrap-table/-/react-bootstrap-table-3.5.0.tgz#1d3677e0a2f09445379c6aeee0919af8cc3bbf80"
+react-bootstrap-table@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-table/-/react-bootstrap-table-3.5.1.tgz#c2428a5fece9823f0b6bdedf7f198630ac55a164"
   dependencies:
     "@allenfang/react-toastr" "2.8.2"
     classnames "^2.1.2"
