@@ -1,14 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
+import { Button } from 'react-bootstrap'
+import Fa from 'react-fontawesome'
 import dc from '../common/dateConverter'
 
-const quizLink = (id) => {
+const quizLink = id => {
   return <Link to={'/quiz/' + id}>Link to quiz</Link>
 }
 
-const resultsLink = (id) => {
+const resultsLink = id => {
   return <Link to={'/results/' + id}>Results</Link>
+}
+
+const editBtn = id => {
+  return <Link to={'/edit/'+id}><Button><Fa name='pencil'/></Button></Link>
 }
 
 function QuizzesTable(props) {
@@ -22,6 +28,7 @@ function QuizzesTable(props) {
       <TableHeaderColumn dataField='date' dataSort={true} dataFormat={dc.getDDMMYYYY}>Date</TableHeaderColumn>
       <TableHeaderColumn dataField='id' dataFormat={resultsLink}>Results</TableHeaderColumn>
       <TableHeaderColumn dataField='id' dataFormat={quizLink}>Link</TableHeaderColumn>
+      <TableHeaderColumn dataField='id' dataFormat={editBtn}>Options</TableHeaderColumn>
     </BootstrapTable>
   )
 }

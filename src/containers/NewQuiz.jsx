@@ -48,7 +48,7 @@ class NewQuiz extends Component {
     this.setState({ questions: questions });
   }
   editQuestion = (index, question) => {
-    let questions = this.state.questions;
+    let questions = [...this.state.questions];
     questions[index] = question;
     this.setState({ questions: questions });
   }
