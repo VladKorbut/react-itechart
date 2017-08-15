@@ -12,7 +12,7 @@ class MyQuizzes extends Component {
       quizzes: [],
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     this.props.getMy();
   }
   render() {

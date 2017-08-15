@@ -14,7 +14,7 @@ class Multiple extends Component {
       isValid: false,
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     this.setState({
       options: this.props.question.options,
       title: this.props.question.title,

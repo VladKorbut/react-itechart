@@ -11,7 +11,7 @@ const preValidQusetions =(quiz) =>{
 }
 
 class EditQuiz extends Component {
-  componentWillMount(){
+  componentDidMount(){
     this.props.get(this.props.params.id);
   }
   render() {

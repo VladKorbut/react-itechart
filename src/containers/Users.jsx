@@ -5,7 +5,7 @@ import { getUsers } from '../actions/getUsers'
 import Spinner from '../components/Spinner'
 
 class Users extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.get();
   }
   render() {

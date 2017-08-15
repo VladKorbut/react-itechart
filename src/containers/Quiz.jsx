@@ -31,7 +31,7 @@ class Quiz extends Component {
       answers: [],
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     this.props.get(this.props.params.id)
       .catch((error) => {
         browserHistory.push('/404');

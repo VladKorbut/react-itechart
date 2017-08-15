@@ -25,6 +25,8 @@ class NewQuiz extends Component {
     if (!this.props.isLoggedIn) {
       browserHistory.push('/login');
     }
+  }
+  componentDidMount () {
     if (this.props.quiz) {
       this.setState({
         id: this.props.quiz.id,

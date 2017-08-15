@@ -23,7 +23,7 @@ class Result extends Component {
       answers: [],
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     Promise.all([
       quiz.getSingle(this.props.params.quizId),
       result.get(this.props.params.quizId, this.props.params.userId)

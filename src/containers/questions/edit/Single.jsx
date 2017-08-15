@@ -14,7 +14,7 @@ class Rating extends Component {
       isValid: false,
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     this.setState({
       title: this.props.question.title,
       isRequired: this.props.question.isRequired,

@@ -5,7 +5,7 @@ import ResultsTable from '../components/ResultsTable'
 import Spinner from '../components/Spinner'
 
 class Results extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.get(this.props.params.id);
   }
 
