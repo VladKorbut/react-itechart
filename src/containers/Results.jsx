@@ -10,12 +10,7 @@ class Results extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <span>{this.props.params.id}</span>
-        {!this.props.success || this.props.loading ? <Spinner /> : <ResultsTable data={this.props.results} />}
-      </div>
-    );
+    return !this.props.success || this.props.loading ? <Spinner /> : <ResultsTable quizId={this.props.params.id} data={this.props.results} />
   }
 }
 

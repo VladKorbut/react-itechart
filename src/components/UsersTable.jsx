@@ -42,9 +42,9 @@ function UserTable(props) {
       responsive
     >
       <TableHeaderColumn isKey dataField='id' width='60'>id</TableHeaderColumn>
-      <TableHeaderColumn dataField='login' dataSort={true}>Login</TableHeaderColumn>
+      <TableHeaderColumn dataField='login' dataSort>Login</TableHeaderColumn>
       <TableHeaderColumn dataField='date' dataSort dataFormat={dc.getDDMMYYYY}>Registerd</TableHeaderColumn>
-      <TableHeaderColumn dataField='isAdmin' dataSort={true} dataFormat={roleFormat}>Admin</TableHeaderColumn>
+      <TableHeaderColumn dataField='isAdmin' dataSort dataFormat={roleFormat}>Admin</TableHeaderColumn>
       <TableHeaderColumn dataField='id' dataFormat={editButtons} >Setting</TableHeaderColumn>
     </BootstrapTable>
   )

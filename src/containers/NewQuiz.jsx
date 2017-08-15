@@ -83,7 +83,7 @@ class NewQuiz extends Component {
           })
         })
         .catch((error) => {
-          console.error(error);
+          throw new Error(error);
         })
     } else {
       alert(`You're not logged in!`);
@@ -97,7 +97,6 @@ class NewQuiz extends Component {
     this.setState({ showModal: false });
   }
   render() {
-    console.log(this.state);
     return (
       <div>
         <h2>Create Quiz</h2>

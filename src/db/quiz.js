@@ -12,21 +12,19 @@ let quiz = {
     if (quiz.id) return this.updateQuiz(quiz);
     return db.executeTransaction(`INSERT INTO
     quizzes(title, isAnon, isRand, date, author_id)
-    VALUES('${quiz.title}', '${cv.boolToStr(quiz.isAnon)}', '${cv.boolToStr(quiz.isRand)}', ${Date.now()}, ${+ls.getUser().id})`)
+    VALUES('${quiz.title}', '${cv.boolToStr(quiz.isAnon)}', '${cv.boolToStr(quiz.isRand)}', ${Date.now()}, ${ls.getUser().id})`)
       .then(data => {
         this.createQuestion(quiz.questions, data.insertId);
         return data;
       })
       .catch(error => {
-        console.error(error);
-        return error;
+        throw new Error(error);
       })
   },
   updateQuiz(quiz) {
-    console.log(quiz);
     return db.executeTransaction(`UPDATE quizzes
     SET title='${quiz.title}', isAnon='${cv.boolToStr(quiz.isAnon)}',
-    isRand='${cv.boolToStr(quiz.isRand)}', date=${Date.now()}, author_id=${+ls.getUser().id}
+    isRand='${cv.boolToStr(quiz.isRand)}', date=${Date.now()}, author_id=${ls.getUser().id}
     WHERE id=${quiz.id}`)
       .then(res => {
         this.deleteQuestions(quiz.questions, quiz.id)
@@ -60,7 +58,7 @@ let quiz = {
           }
         })
         .catch(error => {
-          console.error(error);
+          throw new Error(error);
         })
     });
   },
@@ -72,25 +70,27 @@ let quiz = {
   },
   getAll() {
     return processQuizzes(db.executeTransaction(`SELECT
-      quizzes.*, COUNT(quiz_result.id)
-      FROM quizzes
-      LEFT JOIN quiz_result
-      ON quizzes.id = quiz_result.quiz_id`))
+    quizzes.*, COUNT(quiz_result.id) as answers
+    FROM quizzes
+    LEFT JOIN quiz_result
+    ON quizzes.id = quiz_result.quiz_id
+    GROUP BY quizzes.id`))
       .then(res => {
         return processQuizzes([...res.rows]);
       });
   },
   getMy() {
     return db.executeTransaction(`SELECT
-    quizzes.*, COUNT(quiz_result.id) as complete
+    quizzes.*, COUNT(quiz_result.id) as answers
     FROM quizzes
     LEFT JOIN quiz_result
     ON quizzes.id = quiz_result.quiz_id
-    WHERE quizzes.author_id=${ls.getUser().id}`)
+    WHERE quizzes.author_id=${ls.getUser().id}
+    GROUP BY quizzes.id`)
       .then(res => {
         return processQuizzes([...res.rows]);
       })
-      .catch(error=>{
+      .catch(error => {
         throw new Error(error);
       });
   },

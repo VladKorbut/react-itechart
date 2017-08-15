@@ -3,7 +3,7 @@ import cv from './converter'
 const processQuizzes = (quizzes) => {
   return quizzes.map((quiz) => ({
     id: quiz.id,
-    complete: quiz.complete,
+    answers: quiz.answers,
     title: quiz.title,
     author_id: quiz.author_id,
     date: quiz.date,

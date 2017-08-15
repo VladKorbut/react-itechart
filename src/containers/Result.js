@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import Questions from './questions/Questions'
 import quiz from '../db/quiz'
 import result from '../db/result'
+import QuestionsResults from './questions/QuestionsResults'
+import Spinner from '../components/Spinner'
 
 const indexOfAnswer = (answers, questionId) => {
   let index = -1;
-  answers.forEach((item, i)=>{
-    if(item.question_id === questionId){
+  answers.forEach((item, i) => {
+    if (item.question_id === questionId) {
       index = i;
     }
   });
@@ -26,17 +27,15 @@ class Result extends Component {
     Promise.all([
       quiz.getSingle(this.props.params.quizId),
       result.get(this.props.params.quizId, this.props.params.userId)
-    ]).then(values=>{
-
+    ]).then(values => {
       let answers = values[1];
       let questions = values[0].questions;
-      questions = questions.map(item=>{
-        return{
+      questions = questions.map(item => {
+        return {
           ...item,
           answer: answers[indexOfAnswer(answers, item.id)]
         }
       })
-      console.log(questions);
       this.setState({
         questions: questions,
         answers: answers,
@@ -47,7 +46,7 @@ class Result extends Component {
   render() {
     return (
       <div>
-        <Questions questions={this.state.questions} answers={this.state.answers}/>
+        {this.state.questions && this.state.questions.length ? <QuestionsResults questions={this.state.questions}/> : <Spinner />}
       </div>
     )
   }

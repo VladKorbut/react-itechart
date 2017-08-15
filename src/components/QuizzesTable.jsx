@@ -17,7 +17,7 @@ const resultsLink = id => {
 const editBtn = (id, row) => {
   return (
     <Link to={'/edit/' + id}>
-      <Button disabled={!!row.complete}><Fa name='pencil' /></Button>
+      <Button disabled={!!row.answers}><Fa name='pencil' /></Button>
     </Link>
   )
 }
@@ -29,11 +29,11 @@ function QuizzesTable(props) {
       pagination
       responsive>
       <TableHeaderColumn isKey dataField='id' width='60'>#</TableHeaderColumn>
-      <TableHeaderColumn dataField='title' dataSort={true}>Title</TableHeaderColumn>
-      <TableHeaderColumn dataField='date' dataSort={true} dataFormat={dc.getDDMMYYYY}>Date</TableHeaderColumn>
+      <TableHeaderColumn dataField='title' dataSort>Title</TableHeaderColumn>
+      <TableHeaderColumn dataField='date' dataSort dataFormat={dc.getDDMMYYYY}>Date</TableHeaderColumn>
       <TableHeaderColumn dataField='id' dataFormat={resultsLink}>Results</TableHeaderColumn>
       <TableHeaderColumn dataField='id' dataFormat={quizLink}>Link</TableHeaderColumn>
-      <TableHeaderColumn dataField='complete'>Complete</TableHeaderColumn>
+      <TableHeaderColumn dataField='answers'>Answers</TableHeaderColumn>
       <TableHeaderColumn dataField='id' dataFormat={editBtn}>Options</TableHeaderColumn>
     </BootstrapTable>
   )

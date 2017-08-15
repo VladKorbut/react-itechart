@@ -13,7 +13,7 @@ const createAnswers = (answers, quizId) => {
               VALUES ${insert.join(', ')}`)
     })
     .catch((error) => {
-      console.error(error);
+      throw new Error(error);
     })
 }
 

@@ -17,6 +17,7 @@ function processAnswer(answer, type) {
     case RADIO : return +answer;
     case STARS : return +answer;
     case TEXT: return answer;
+    default: return answer;
   }
 }
 

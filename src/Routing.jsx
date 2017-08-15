@@ -9,26 +9,26 @@ import EditQuiz from './containers/EditQuiz'
 import MyQuizzes from './containers/MyQuizzes'
 import Quiz from './containers/Quiz'
 import Results from './containers/Results'
+import Result from './containers/Result'
 import NotFound from './components/NotFound'
 import Home from './components/Home'
 
-function Routing() {
-  return (
-    <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <IndexRoute component={Home} />
-        <Route path="register" component={Register} />
-        <Route path="login" component={Login} />
-        <Route path="users" component={Users} />
-        <Route path="new-quiz" component={NewQuiz} />
-        <Route path="my-quizzes" component={MyQuizzes} />
-        <Route path="quiz/:id" component={Quiz} />
-        <Route path="edit/:id" component={EditQuiz} />
-        <Route path="results/:id" component={Results} />
-        <Route path="*" component={NotFound} />
-      </Route>
-    </Router>
-  )
-}
+const Routing = (
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={Home} />
+      <Route path="register" component={Register} />
+      <Route path="login" component={Login} />
+      <Route path="users" component={Users} />
+      <Route path="new-quiz" component={NewQuiz} />
+      <Route path="my-quizzes" component={MyQuizzes} />
+      <Route path="quiz/:id" component={Quiz} />
+      <Route path="edit/:id" component={EditQuiz} />
+      <Route path="results/:id" component={Results} />
+      <Route path="results/:quizId/user/:userId" component={Result} />
+      <Route path="*" component={NotFound} />
+    </Route>
+  </Router>
+)
 
 export default Routing
