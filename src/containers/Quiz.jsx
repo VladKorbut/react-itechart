@@ -48,22 +48,26 @@ class Quiz extends Component {
 
   nextQuestion = () => {
     this.setState({ answerIsValid: false });
-    let prevQuestions = this.state.prevQuestions;
+    let prevQuestions = [...this.state.prevQuestions];
     prevQuestions.push(this.state.currentQuestion);
-    let currentQuestion = this.state.nextQuestions.pop();
+    let nextQuestions = [...this.state.nextQuestions];
+    let currentQuestion = nextQuestions.pop();
     this.setState({
       prevQuestions: prevQuestions,
       currentQuestion: currentQuestion,
+      nextQuestions: nextQuestions,
     });
   }
 
   prevQuestion = () => {
-    let nextQuestions = this.state.nextQuestions;
+    let nextQuestions = [...this.state.nextQuestions];
     nextQuestions.push(this.state.currentQuestion);
-    let currentQuestion = this.state.prevQuestions.pop();
+    let prevQuestions = [...this.state.prevQuestions];
+    let currentQuestion = prevQuestions.pop();
     this.setState({
-      nextQuestions: nextQuestions,
+      prevQuestions: prevQuestions,
       currentQuestion: currentQuestion,
+      nextQuestions: nextQuestions,
     });
     let answers = [...this.state.answers]
     answers.length = indexOfAnswer(this.state.answers, currentQuestion.id) + 1;
@@ -74,7 +78,7 @@ class Quiz extends Component {
   }
 
   finishQuiz = () => {
-    let prevQuestions = this.state.prevQuestions;
+    let prevQuestions = [...this.state.prevQuestions];
     prevQuestions.push(this.state.currentQuestion);
     this.setState({ prevQuestions: prevQuestions });
     createAnswers(this.state.answers, this.props.quiz.id).then((data) => {
@@ -83,7 +87,7 @@ class Quiz extends Component {
   }
 
   getAnswers = (id, answer) => {
-    let answers = this.state.answers;
+    let answers = [...this.state.answers];
     if (indexOfAnswer(answers, id) + 1) {
       answers[indexOfAnswer(answers, id)] = { id: id, answer: answer }
     } else {
@@ -109,7 +113,6 @@ class Quiz extends Component {
   }
 
   render() {
-    console.log()
     return (
       <div>
         {(this.props.success === null || this.props.loading) ? <Spinner />

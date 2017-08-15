@@ -10,6 +10,14 @@ class Single extends Component {
       answer: '',
     };
   }
+  setStars = (rate) => {
+    this.setState({ answer: rate });
+    this.props.sendAnswers(this.props.question.id, rate);
+  }
+  setText = (e) => {
+    this.setState({ answer: e.target.value });
+    this.props.sendAnswers(this.props.question.id, e.target.value);
+  }
   render() {
     return (
       <div>
@@ -27,10 +35,11 @@ class Single extends Component {
                 <RatingStars
                   empty="fa fa-star-o fa-2x"
                   full="fa fa-star fa-2x"
-                  initialRate={this.props.question.answer.value}
+                  initialRate={Array.isArray(this.props.answer) ? 0 : this.props.answer}
+                  onChange={this.setStars}
                 />
                 :
-                <FormControl componentClass="textarea" placeholder="Answer will be here" value={this.props.question.answer.value} />
+                <FormControl componentClass="textarea" placeholder="Answer will be here" value={this.props.answer} onChange={this.setText} />
             }
           </FormGroup>
         </Panel>

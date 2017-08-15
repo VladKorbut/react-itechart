@@ -34,7 +34,7 @@ let quiz = {
       })
   },
   deleteQuiz(quizId) {
-
+    //TODO
   },
   deleteQuestions(questions, quizId) {
     return db.executeTransaction(`DELETE FROM questions WHERE quiz_id=${quizId}`)
@@ -45,7 +45,9 @@ let quiz = {
       });
   },
   deleteOption(options, questionId) {
-    return db.executeTransaction(`DELETE FROM question_options WHERE question_id=${questionId}`)
+    options.forEach(option=>{
+      db.executeTransaction(`DELETE FROM question_options WHERE id=${option.id}`)
+    })
   },
   createQuestion(questions, quizId) {
     questions.forEach(item => {
