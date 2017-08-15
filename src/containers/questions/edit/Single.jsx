@@ -11,6 +11,7 @@ class Rating extends Component {
       title: '',
       isRequired: true,
       type: 0,
+      isValid: false,
     }
   }
   componentWillMount() {
@@ -18,7 +19,7 @@ class Rating extends Component {
       title: this.props.question.title,
       isRequired: this.props.question.isRequired,
       type: this.props.question.type,
-    })
+    }, this.validateQuestion)
   }
   editQuestion = () => {
     this.props.editQuestion(this.props.index, this.state);

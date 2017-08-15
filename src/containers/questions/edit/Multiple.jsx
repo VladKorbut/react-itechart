@@ -20,8 +20,7 @@ class Multiple extends Component {
       title: this.props.question.title,
       isRequired: this.props.question.isRequired,
       type: this.props.question.type,
-    })
-    this.validateQuestion();
+    }, this.validateQuestion);
   }
   validateQuestion = () => {
     let optionsIsValid = true;

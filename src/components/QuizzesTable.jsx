@@ -13,8 +13,13 @@ const resultsLink = id => {
   return <Link to={'/results/' + id}>Results</Link>
 }
 
-const editBtn = id => {
-  return <Link to={'/edit/'+id}><Button><Fa name='pencil'/></Button></Link>
+
+const editBtn = (id, row) => {
+  return (
+    <Link to={'/edit/' + id}>
+      <Button disabled={!!row.complete}><Fa name='pencil' /></Button>
+    </Link>
+  )
 }
 
 function QuizzesTable(props) {
@@ -28,6 +33,7 @@ function QuizzesTable(props) {
       <TableHeaderColumn dataField='date' dataSort={true} dataFormat={dc.getDDMMYYYY}>Date</TableHeaderColumn>
       <TableHeaderColumn dataField='id' dataFormat={resultsLink}>Results</TableHeaderColumn>
       <TableHeaderColumn dataField='id' dataFormat={quizLink}>Link</TableHeaderColumn>
+      <TableHeaderColumn dataField='complete'>Complete</TableHeaderColumn>
       <TableHeaderColumn dataField='id' dataFormat={editBtn}>Options</TableHeaderColumn>
     </BootstrapTable>
   )

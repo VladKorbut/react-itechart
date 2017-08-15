@@ -12,6 +12,7 @@ class NewQuiz extends Component {
   constructor() {
     super();
     this.state = {
+      id: 0,
       title: '',
       isAnon: false,
       isRand: false,
@@ -26,6 +27,7 @@ class NewQuiz extends Component {
     }
     if (this.props.quiz) {
       this.setState({
+        id: this.props.quiz.id,
         title: this.props.quiz.title,
         isAnon: this.props.quiz.isAnon,
         isRand: this.props.quiz.isRand,
@@ -49,7 +51,7 @@ class NewQuiz extends Component {
   }
   editQuestion = (index, question) => {
     let questions = [...this.state.questions];
-    questions[index] = question;
+    questions[index] = Object.assign(questions[index], question);
     this.setState({ questions: questions });
   }
   deleteQuestion = (index) => {
@@ -61,6 +63,7 @@ class NewQuiz extends Component {
     let answersIsValid = true;
     this.state.questions.forEach((item, i) => {
       if (!item.isValid) {
+        console.log(item)
         answersIsValid = false;
       }
     })
@@ -69,9 +72,9 @@ class NewQuiz extends Component {
   createQuiz = () => {
     if (this.props.isLoggedIn) {
       quiz.create(this.state)
-        .then((res) => {
+        .then(res => {
           this.setState({
-            insertedQuiz: res.insertId,
+            insertedQuiz: (this.props.quiz && this.props.quiz.id)|| res.insertId,
             showModal: true,
             title: '',
             isAnon: false,
@@ -94,6 +97,7 @@ class NewQuiz extends Component {
     this.setState({ showModal: false });
   }
   render() {
+    console.log(this.state);
     return (
       <div>
         <h2>Create Quiz</h2>
