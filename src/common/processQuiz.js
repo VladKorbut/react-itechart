@@ -15,7 +15,7 @@ const processQuiz = (quiz) => {
   let questions = [];
 
   quiz.forEach((item) => {
-    if (!questionExist(questions, item.question_id)) {
+    if (!itemExist(questions, item.question_id)) {
       let question = {};
       question.title = item.question_title;
       question.type = item.type;
@@ -30,7 +30,7 @@ const processQuiz = (quiz) => {
 
   quiz.forEach((item) => {
     if (item.type < STARS) {
-      questions[indexOfQuestion(questions, item.question_id)].options.push({
+      questions[indexOfById(questions, item.question_id)].options.push({
         id: item.option_id, value: item.text
       });
     }
@@ -41,9 +41,9 @@ const processQuiz = (quiz) => {
   return res;
 }
 
-const questionExist = (questions, id) => {
+const itemExist = (arr, id) => {
   let result = false;
-  questions.forEach((item) => {
+  arr.forEach((item) => {
     if (item.id === id) {
       result = true;
     }
@@ -51,9 +51,9 @@ const questionExist = (questions, id) => {
   return result;
 }
 
-const indexOfQuestion = (questions, id) => {
+const indexOfById = (arr, id) => {
   let index = -1;
-  questions.forEach((item, i) => {
+  arr.forEach((item, i) => {
     if (item.id === id) {
       index = i;
     }
@@ -63,6 +63,6 @@ const indexOfQuestion = (questions, id) => {
 
 export default processQuiz
 export {
-  questionExist,
-  indexOfQuestion
+  itemExist,
+  indexOfById
 }
