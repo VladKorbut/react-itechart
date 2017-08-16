@@ -10,6 +10,7 @@ import MyQuizzes from './containers/MyQuizzes'
 import Quiz from './containers/Quiz'
 import Results from './containers/Results'
 import Result from './containers/Result'
+import Statistic from './containers/Statistic'
 import NotFound from './components/NotFound'
 import Home from './components/Home'
 
@@ -24,6 +25,7 @@ const Routing = (
       <Route path="my-quizzes" component={MyQuizzes} />
       <Route path="quiz/:id" component={Quiz} />
       <Route path="edit/:id" component={EditQuiz} />
+      <Route path="stat/:id" component={Statistic} />
       <Route path="results/:id" component={Results} />
       <Route path="results/:quizId/user/:userId" component={Result} />
       <Route path="*" component={NotFound} />

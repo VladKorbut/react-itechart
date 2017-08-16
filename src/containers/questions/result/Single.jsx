@@ -27,11 +27,11 @@ class Single extends Component {
                 <RatingStars
                   empty="fa fa-star-o fa-2x"
                   full="fa fa-star fa-2x"
-                  initialRate={this.props.question.answer.value}
+                  initialRate={this.props.question.answer}
                   readonly
                 />
                 :
-                <FormControl componentClass="textarea" placeholder="Answer will be here" value={this.props.question.answer.value} disabled />
+                <FormControl componentClass="textarea" placeholder="Answer will be here" value={this.props.question.answer} disabled />
             }
           </FormGroup>
         </Panel>

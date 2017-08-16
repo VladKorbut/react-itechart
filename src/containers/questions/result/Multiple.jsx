@@ -42,9 +42,19 @@ class Multiple extends Component {
                 return (
                   <span key={index}>
                     {this.props.question.type === CHECKBOX ?
-                      <Checkbox onChange={this.setAnswer(option.id)} checked={this.props.question.answer.value.indexOf(option.id)+1} disabled>{option.value}</Checkbox>
+                      <Checkbox
+                        onChange={this.setAnswer(option.id)}
+                        checked={this.props.question.answer.indexOf(option.id) + 1}
+                        disabled>
+                        {option.value}
+                      </Checkbox>
                       :
-                      <Radio onChange={this.setAnswer(option.id)} checked={this.props.question.answer.value === option.id} disabled name="radioGroup">{option.value}</Radio>
+                      <Radio
+                        onChange={this.setAnswer(option.id)}
+                        checked={this.props.question.answer === option.id}
+                        disabled name={"radioGroup"+this.props.question.id}>
+                        {option.value}
+                      </Radio>
                     }
                   </span>
                 )

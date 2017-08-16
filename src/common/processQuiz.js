@@ -62,3 +62,7 @@ const indexOfQuestion = (questions, id) => {
 }
 
 export default processQuiz
+export {
+  questionExist,
+  indexOfQuestion
+}
