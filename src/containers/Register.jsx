@@ -42,7 +42,6 @@ class Register extends Component {
         emailIsValid: null,
         passwordIsValid: null,
       })
-      browserHistory.push('/login');
     })
   }
   loginHandler = (e) => {

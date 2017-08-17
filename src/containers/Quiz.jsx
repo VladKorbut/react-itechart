@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Button, Col } from 'react-bootstrap'
 import { getQuiz } from '../actions/getQuiz'
 import Spinner from '../components/Spinner'
-import Question from './questions/Question'
+import Question from './questions/QuestionSwitcher'
 import createAnswers from '../db/answers'
 import Progressbar from '../components/Progressbar'
 
@@ -31,6 +31,7 @@ class Quiz extends Component {
       answers: [],
     }
   }
+
   componentDidMount() {
     this.props.get(this.props.params.id)
       .catch((error) => {
@@ -96,7 +97,7 @@ class Quiz extends Component {
     this.setState({ answers: answers });
     if (typeof answer === 'number') {
       this.setState({ answerIsValid: !!answer })
-    }else {
+    } else {
       this.setState({ answerIsValid: !!answer.length })
     }
   }

@@ -6,9 +6,6 @@ import ls from '../localStorage/storage'
 
 let quiz = {
   create(quiz) {
-    return this.createQuiz(quiz);
-  },
-  createQuiz(quiz) {
     if (quiz.id) return this.updateQuiz(quiz);
     return db.executeTransaction(`INSERT INTO
     quizzes(title, isAnon, isRand, date, author_id)
@@ -20,34 +17,6 @@ let quiz = {
       .catch(error => {
         throw new Error(error);
       })
-  },
-  updateQuiz(quiz) {
-    return db.executeTransaction(`UPDATE quizzes
-    SET title='${quiz.title}', isAnon='${cv.boolToStr(quiz.isAnon)}',
-    isRand='${cv.boolToStr(quiz.isRand)}', date=${Date.now()}, author_id=${ls.getUser().id}
-    WHERE id=${quiz.id}`)
-      .then(res => {
-        this.deleteQuestions(quiz.questions, quiz.id)
-          .then(() => {
-            this.createQuestion(quiz.questions, quiz.id)
-          });
-      })
-  },
-  deleteQuiz(quizId) {
-    //TODO
-  },
-  deleteQuestions(questions, quizId) {
-    return db.executeTransaction(`DELETE FROM questions WHERE quiz_id=${quizId}`)
-      .then(res => {
-        questions.forEach(item => {
-          this.deleteOption(item.options, item.id);
-        })
-      });
-  },
-  deleteOption(options, questionId) {
-    options.forEach(option=>{
-      db.executeTransaction(`DELETE FROM question_options WHERE id=${option.id}`)
-    })
   },
   createQuestion(questions, quizId) {
     questions.forEach(item => {
@@ -69,6 +38,31 @@ let quiz = {
     return db.executeTransaction(`INSERT INTO
     question_options(text, question_id)
     VALUES ${insert.join(', ')}`);
+  },
+  updateQuiz(quiz) {
+    return db.executeTransaction(`UPDATE quizzes
+    SET title='${quiz.title}', isAnon='${cv.boolToStr(quiz.isAnon)}',
+    isRand='${cv.boolToStr(quiz.isRand)}', date=${Date.now()}, author_id=${ls.getUser().id}
+    WHERE id=${quiz.id}`)
+      .then(res => {
+        this.deleteQuestions(quiz.questions, quiz.id)
+          .then(() => {
+            this.createQuestion(quiz.questions, quiz.id)
+          });
+      })
+  },
+  deleteQuestions(questions, quizId) {
+    return db.executeTransaction(`DELETE FROM questions WHERE quiz_id=${quizId}`)
+      .then(res => {
+        questions.forEach(item => {
+          this.deleteOption(item.options, item.id);
+        })
+      });
+  },
+  deleteOption(options, questionId) {
+    options.forEach(option => {
+      db.executeTransaction(`DELETE FROM question_options WHERE id=${option.id}`)
+    })
   },
   getAll() {
     return processQuizzes(db.executeTransaction(`SELECT

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import StatisticSwitcher from './statistics/StatisticSwitcher'
+import Spinner from '../components/Spinner'
 import result from '../db/result'
 
 class Statistic extends Component {
@@ -25,7 +26,7 @@ class Statistic extends Component {
       <div>
         {this.state.questions.length ?
           this.state.questions.map(question => <StatisticSwitcher key={question.id} question={question} />)
-          : null}
+          : <Spinner />}
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { HorizontalBar } from 'react-chartjs-2'
+import getChartData, { percentageOptions } from '../../../common/graphs'
 
 const countAnswers = (answers, optionId) => {
   let count = 0;
@@ -13,28 +14,7 @@ const countAnswers = (answers, optionId) => {
   return count;
 }
 
-function getChartData(options, answers, title) {
-  return {
-    labels: options.map(option => option.value),
-    datasets: [{
-      label: title || 'results',
-      data: options.map(option => countAnswers(answers, option.id)),
-      backgroundColor:
-      'rgba(75, 192, 192, 1)',
-      borderWidth: 0,
-      barPercentage: 1.0,
-      categoryPercentage: 0.5,
-    }],
-    options: {
-      responsive:true,
-      scaleBeginAtZero:false,
-      barBeginAtOrigin:true
-    }
-  }
-}
-
 function Checkbox(props) {
-  console.log(props);
   return (
     <div>
       <h4>{props.question.title}</h4>
@@ -46,7 +26,8 @@ function Checkbox(props) {
         }
       </ul>
       <HorizontalBar
-        data={getChartData(props.question.options, props.question.answers)}
+        data={getChartData(props.question, countAnswers, 'blue')}
+        options={percentageOptions}
       />
     </div>
   )

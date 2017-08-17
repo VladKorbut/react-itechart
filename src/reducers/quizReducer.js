@@ -2,7 +2,7 @@ import {
   QUIZ_LOADING,
   QUIZ_SUCCESS,
   QUIZ_ERROR
-} from '../types/quiz'
+} from '../types/actions/quiz'
 
 let quizInitState = {
   loading: false,

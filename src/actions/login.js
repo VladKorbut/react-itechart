@@ -1,7 +1,7 @@
 import {
   LOGIN,
   LOGOUT
-} from '../types/login'
+} from '../types/actions/login'
 import storage from '../localStorage/storage'
 
 export const login = (user) => dispatch => {

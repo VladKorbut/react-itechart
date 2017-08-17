@@ -2,7 +2,7 @@ import {
   USERS_LOADING,
   USERS_SUCCESS,
   USERS_ERROR
-} from '../types/users'
+} from '../types/actions/users'
 
 let usersInitState = {
   loading: false,

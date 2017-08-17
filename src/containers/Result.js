@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import result from '../db/result'
-import QuestionsResults from './questions/QuestionsResults'
+import QuestionsResults from './questions/QuestionsResultsSwitcher'
 import Spinner from '../components/Spinner'
 
 class Result extends Component {
@@ -20,7 +20,6 @@ class Result extends Component {
       })
   }
   render() {
-    console.log(this.state)
     return (
       <div>
         {this.state.questions && this.state.questions.length ? <QuestionsResults questions={this.state.questions} /> : <Spinner />}

@@ -1,5 +1,5 @@
 import React from 'react'
-import Question from './Question'
+import Question from './QuestionSwitcher'
 
 function Questions(props) {
   return (

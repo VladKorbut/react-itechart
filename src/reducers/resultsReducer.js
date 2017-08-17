@@ -2,7 +2,7 @@ import {
   RESULTS_LOADING,
   RESULTS_SUCCESS,
   RESULTS_ERROR
-} from '../types/results'
+} from '../types/actions/results'
 
 let resultsInitState = {
   loading: false,

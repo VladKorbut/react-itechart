@@ -1,5 +1,6 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
+import getChartData from '../../../common/graphs'
 
 const countAnswers = (answers, optionId) => {
   let count = 0;
@@ -9,26 +10,6 @@ const countAnswers = (answers, optionId) => {
     }
   })
   return count;
-}
-
-function getChartData(options, answers, title) {
-  return {
-    labels: options.map(option => option.value + ` (${countAnswers(answers, option.id)})`),
-    datasets: [{
-      label: title || 'results',
-      data: options.map(option => countAnswers(answers, option.id)),
-      backgroundColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 0,
-      barPercentage: 1.0
-    }]
-  }
 }
 
 function Radio(props) {
@@ -42,7 +23,7 @@ function Radio(props) {
           })
         }
       </ul>
-      <Doughnut data={getChartData(props.question.options, props.question.answers)} />
+      <Doughnut data={getChartData(props.question, countAnswers, 'green')} />
     </div>
   )
 }

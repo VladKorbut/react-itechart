@@ -2,7 +2,7 @@ import {
   QUIZZES_LOADING,
   QUIZZES_SUCCESS,
   QUIZZES_ERROR
-} from '../types/quizzes'
+} from '../types/actions/quizzes'
 
 import quiz from '../db/quiz'
 

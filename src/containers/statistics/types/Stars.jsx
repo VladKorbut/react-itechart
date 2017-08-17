@@ -1,5 +1,6 @@
 import React from 'react'
 import { HorizontalBar } from 'react-chartjs-2'
+import getChartData, { percentageOptions } from '../../../common/graphs'
 
 const countAnswers = (answers, value) => {
   let count = 0;
@@ -11,24 +12,14 @@ const countAnswers = (answers, value) => {
   return count;
 }
 
-function getChartData(options, answers, title) {
-  return {
-    labels: options.map(option => option),
-    datasets: [{
-      label: title || 'results',
-      data: options.map(option => countAnswers(answers, option)),
-      backgroundColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 0,
-      barPercentage: 1.0,
-      categoryPercentage: 0.5,
-    }],
-    options: {
-      responsive: true,
-      scaleBeginAtZero: false,
-      barBeginAtOrigin: true
+const starsOptions = (() => {
+  return ([1, 2, 3, 4, 5]).map((item, index) => {
+    return {
+      id: index + 1,
+      value: index + 1
     }
-  }
-}
+  })
+})()
 
 function Stars(props) {
   return (
@@ -36,13 +27,18 @@ function Stars(props) {
       <h4>{props.question.title}</h4>
       <ul>
         {
-          [1, 2, 3, 4, 5].map((item, i) => {
-            return <li key={i}>{item} - {countAnswers(props.question.answers, item)}</li>
+          starsOptions.map((item, i) => {
+            return <li key={i}>{item.value} - {countAnswers(props.question.answers, item.value)}</li>
           })
         }
       </ul>
       <HorizontalBar
-        data={getChartData([1, 2, 3, 4, 5], props.question.answers)}
+        data={getChartData(
+          { ...props.question, options: starsOptions },
+          countAnswers,
+          'purple'
+        )}
+        options={percentageOptions}
       />
     </div>
   )

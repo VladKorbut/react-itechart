@@ -79,7 +79,14 @@ class Login extends Component {
             <ControlLabel>Password</ControlLabel>
             <FormControl type="password" onChange={this.passwordHandler} value={this.state.password} />
           </FormGroup>
-          <Button bsSize="large" bsStyle='primary' onClick={this.submitFrom} disabled={this.getButtonDisableState()}>Login</Button>
+          <Button
+            bsSize="large"
+            bsStyle='primary'
+            onClick={this.submitFrom}
+            disabled={this.getButtonDisableState()}
+          >
+            Login
+          </Button>
         </form>
       </Col>
     )
