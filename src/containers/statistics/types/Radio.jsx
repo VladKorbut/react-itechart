@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2'
 
 const countAnswers = (answers, optionId) => {
   let count = 0;
@@ -11,12 +11,12 @@ const countAnswers = (answers, optionId) => {
   return count;
 }
 
-function getChartData(options, answers) {
-  console.log(options.map(option=>option.value))
+function getChartData(options, answers, title) {
   return {
-    labels: options.map(option=>option.value),
+    labels: options.map(option => option.value + ` (${countAnswers(answers, option.id)})`),
     datasets: [{
-      data: options.map(option=>countAnswers(answers, option.id)),
+      label: title || 'results',
+      data: options.map(option => countAnswers(answers, option.id)),
       backgroundColor: [
         'rgba(255,99,132,1)',
         'rgba(54, 162, 235, 1)',
@@ -42,7 +42,7 @@ function Radio(props) {
           })
         }
       </ul>
-      <Pie height={80} data={getChartData(props.question.options, props.question.answers)} />
+      <Doughnut data={getChartData(props.question.options, props.question.answers)} />
     </div>
   )
 }

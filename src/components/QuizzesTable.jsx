@@ -9,11 +9,13 @@ const quizLink = id => {
   return <Link to={'/quiz/' + id}>Link to quiz</Link>
 }
 
-const resultsLink = id => {
+const resultsLink = (id, row) => {
+  if (!row.answers) { return null }
   return <Link to={'/results/' + id}>Results</Link>
 }
 
-const statLink = id => {
+const statLink = (id, row) => {
+  if (!row.answers) { return null }
   return <Link to={'/stat/' + id}>Statistics</Link>
 }
 

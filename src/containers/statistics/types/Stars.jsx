@@ -1,4 +1,5 @@
 import React from 'react'
+import { HorizontalBar } from 'react-chartjs-2'
 
 const countAnswers = (answers, value) => {
   let count = 0;
@@ -8,6 +9,25 @@ const countAnswers = (answers, value) => {
     }
   })
   return count;
+}
+
+function getChartData(options, answers, title) {
+  return {
+    labels: options.map(option => option),
+    datasets: [{
+      label: title || 'results',
+      data: options.map(option => countAnswers(answers, option)),
+      backgroundColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 0,
+      barPercentage: 1.0,
+      categoryPercentage: 0.5,
+    }],
+    options: {
+      responsive: true,
+      scaleBeginAtZero: false,
+      barBeginAtOrigin: true
+    }
+  }
 }
 
 function Stars(props) {
@@ -21,6 +41,9 @@ function Stars(props) {
           })
         }
       </ul>
+      <HorizontalBar
+        data={getChartData([1, 2, 3, 4, 5], props.question.answers)}
+      />
     </div>
   )
 }

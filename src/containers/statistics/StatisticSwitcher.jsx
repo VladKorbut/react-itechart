@@ -1,5 +1,6 @@
 import React from 'react'
 import { CHECKBOX, RADIO, STARS, TEXT } from '../../types/questions'
+import {Thumbnail} from 'react-bootstrap'
 import Checkbox from './types/Checkbox'
 import Radio from './types/Radio'
 import Stars from './types/Stars'
@@ -12,7 +13,7 @@ function StatisticSwitcher(props) {
     [STARS]: <Stars {...props} />,
     [TEXT]: <Text {...props} />,
   }
-  return types[props.question.type]
+  return <Thumbnail>{types[props.question.type]}</Thumbnail>
 }
 
 export default StatisticSwitcher

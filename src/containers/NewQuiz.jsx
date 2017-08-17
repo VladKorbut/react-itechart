@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { FormControl, Col, Checkbox, Button, Row, ButtonGroup } from 'react-bootstrap'
-import Fa from 'react-fontawesome'
+import { FormControl, Col, Button } from 'react-bootstrap'
 import quiz from '../db/quiz'
 import Questions from './questions/Questions'
 import QuizLinkModal from '../components/QuizLinkModal'
-import { CHECKBOX, RADIO, STARS, TEXT } from '../types/questions'
+import Settings from '../components/Settings'
 
 class NewQuiz extends Component {
   constructor() {
@@ -26,7 +25,7 @@ class NewQuiz extends Component {
       browserHistory.push('/login');
     }
   }
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.quiz) {
       this.setState({
         id: this.props.quiz.id,
@@ -76,7 +75,7 @@ class NewQuiz extends Component {
       quiz.create(this.state)
         .then(res => {
           this.setState({
-            insertedQuiz: (this.props.quiz && this.props.quiz.id)|| res.insertId,
+            insertedQuiz: (this.props.quiz && this.props.quiz.id) || res.insertId,
             showModal: true,
             title: '',
             isAnon: false,
@@ -103,24 +102,13 @@ class NewQuiz extends Component {
       <div>
         <h2>Create Quiz</h2>
         <Col md={4} mdPush={8}>
-          <Row>
-            <h4>Type Of Question</h4>
-            <ButtonGroup vertical>
-              <Button onClick={this.addQuestion(CHECKBOX)}><Fa name='check-square-o'></Fa>Multiple choise</Button>
-              <Button onClick={this.addQuestion(RADIO)}><Fa name='dot-circle-o'></Fa>Single choise</Button>
-              <Button onClick={this.addQuestion(STARS)}><Fa name='star-half-o'></Fa>Stars rating</Button>
-              <Button onClick={this.addQuestion(TEXT)}><Fa name='font'></Fa>Text input</Button>
-            </ButtonGroup>
-          </Row>
-          <Row>
-            <h4>Quiz params</h4>
-            <Checkbox checked={this.state.isAnon} onChange={this.anonHandler}>
-              Anonymous quiz
-            </Checkbox>
-            <Checkbox checked={this.state.isRand} onChange={this.randHandler}>
-              Random Questions
-            </Checkbox>
-          </Row>
+          <Settings
+            addQuestion={this.addQuestion}
+            anonHandler={this.anonHandler}
+            isAnon={this.state.isAnon}
+            randHandler={this.randHandler}
+            isRand={this.state.isRand}
+          />
         </Col>
         <Col md={8} mdPull={4}>
           <FormControl
@@ -135,7 +123,8 @@ class NewQuiz extends Component {
             edit
             questions={this.state.questions}
             editQuestion={this.editQuestion}
-            deleteQuestion={this.deleteQuestion} />
+            deleteQuestion={this.deleteQuestion}
+          />
           <Button bsStyle="primary" onClick={this.createQuiz} disabled={this.getButtonState()}>Create</Button>
         </Col>
         <QuizLinkModal quizId={this.state.insertedQuiz} show={this.state.showModal} close={this.closeModal} />
