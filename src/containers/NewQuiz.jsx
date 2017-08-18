@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { FormControl, Col, Button, Row } from 'react-bootstrap'
+import { FormControl, Col, Button, Row, Clearfix } from 'react-bootstrap'
 import quiz from '../db/quiz'
 import Questions from './questions/Questions'
 import QuizLinkModal from '../components/QuizLinkModal'
@@ -98,9 +98,9 @@ class NewQuiz extends Component {
   }
   render() {
     return (
-      <div>
+      <Clearfix>
         <h2>{this.props.edit ? 'Edit' : 'Create'} Quiz</h2>
-        <Col md={4} mdPush={8}>
+        <Col md={3} mdPush={9} className='sticky'>
           <Settings
             addQuestion={this.addQuestion}
             anonHandler={this.anonHandler}
@@ -119,24 +119,26 @@ class NewQuiz extends Component {
             </Button>
           </Row>
         </Col>
-        <Col md={8} mdPull={4}>
-          <FormControl
-            type="text"
-            bsSize={'large'}
-            value={this.state.title}
-            onChange={this.titleHandler}
-            placeholder="Quiz Title"
-          />
-          <span>Number of questions: {this.state.questions.length}</span>
-          <Questions
-            edit
-            questions={this.state.questions}
-            editQuestion={this.editQuestion}
-            deleteQuestion={this.deleteQuestion}
-          />
+        <Col md={8} mdPull={3}>
+          <Row>
+            <FormControl
+              type="text"
+              bsSize={'large'}
+              value={this.state.title}
+              onChange={this.titleHandler}
+              placeholder="Quiz Title"
+            />
+            <span>Number of questions: {this.state.questions.length}</span>
+            <Questions
+              edit
+              questions={this.state.questions}
+              editQuestion={this.editQuestion}
+              deleteQuestion={this.deleteQuestion}
+            />
+          </Row>
         </Col>
         <QuizLinkModal quizId={this.state.insertedQuiz} show={this.state.showModal} close={this.closeModal} />
-      </div>
+      </Clearfix>
     )
   }
 }

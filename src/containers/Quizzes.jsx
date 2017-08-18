@@ -2,18 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Alert } from 'react-bootstrap'
 import QuizzesTable from '../components/QuizzesTable'
-import { getMyQuizzes } from '../actions/getQuizzes'
+import { getQuizzes } from '../actions/getQuizzes'
 import Spinner from '../components/Spinner'
 
-class MyQuizzes extends Component {
-  constructor() {
-    super();
-    this.state = {
-      quizzes: [],
-    }
-  }
+class Quizzes extends Component {
   componentDidMount() {
-    this.props.getMy();
+    this.props.get();
   }
   render() {
     return (
@@ -39,8 +33,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMy: () => getMyQuizzes()(dispatch)
+    get: (my) => getQuizzes(my)(dispatch)
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyQuizzes)
+export default connect(mapStateToProps, mapDispatchToProps)(Quizzes)

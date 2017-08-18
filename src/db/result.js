@@ -2,7 +2,7 @@ import db from './db'
 import processResult, { processStat } from '../common/processResult'
 
 const result = {
-  getResult(quizId, userId) {
+  getResult(quizResultId) {
     return db.executeTransaction(`SELECT
     quiz.id, quiz.title, quiz.isRand, quiz.isAnon, quiz.date,
     quest.title as question_title, quest.type, quest.isRequired, quest.id as question_id,
@@ -17,9 +17,7 @@ const result = {
       ON ans.question_id = quest.id
       JOIN quiz_result
       ON quiz_result.id = ans.quiz_result_id
-      WHERE quiz.id = ${quizId}
-      AND
-      quiz_result.user_id = ${userId}`)
+      WHERE quiz_result.id = ${quizResultId}`)
       .then(result => {
         return processResult(result)
       })

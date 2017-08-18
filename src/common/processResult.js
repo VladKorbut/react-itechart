@@ -45,7 +45,6 @@ const processResult = (quiz) => {
 
 const processStat = (quiz) => {
   quiz = [...quiz.rows];
-
   let res = {};
   res.id = quiz[0].id;
   res.title = quiz[0].title;

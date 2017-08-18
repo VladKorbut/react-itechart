@@ -14,10 +14,16 @@ class AddQuestions extends Component {
 
   }
 
+  changeVerticalState = () => {
+    this.setState({ isVertical: getWindowWidth() })
+  }
+
   componentDidMount() {
-    window.addEventListener('resize', () => {
-      this.setState({isVertical: getWindowWidth()})
-    })
+    window.addEventListener('resize', this.changeVerticalState)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.changeVerticalState)
   }
 
   render() {

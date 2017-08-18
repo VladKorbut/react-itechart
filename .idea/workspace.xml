@@ -3,30 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="6807782b-b72e-4d8c-99bc-9749aa546448" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/getQuiz.js" afterPath="$PROJECT_DIR$/src/actions/getQuiz.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/getQuizzes.js" afterPath="$PROJECT_DIR$/src/actions/getQuizzes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/getResults.js" afterPath="$PROJECT_DIR$/src/actions/getResults.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/getUsers.js" afterPath="$PROJECT_DIR$/src/actions/getUsers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/login.js" afterPath="$PROJECT_DIR$/src/actions/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Login.jsx" afterPath="$PROJECT_DIR$/src/containers/Login.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Quiz.jsx" afterPath="$PROJECT_DIR$/src/containers/Quiz.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Register.jsx" afterPath="$PROJECT_DIR$/src/containers/Register.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Routing.jsx" afterPath="$PROJECT_DIR$/src/Routing.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/processResult.js" afterPath="$PROJECT_DIR$/src/common/processResult.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/AddQuestions.jsx" afterPath="$PROJECT_DIR$/src/components/AddQuestions.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/ResultsTable.jsx" afterPath="$PROJECT_DIR$/src/components/ResultsTable.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Result.js" afterPath="$PROJECT_DIR$/src/containers/Result.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Statistic.jsx" afterPath="$PROJECT_DIR$/src/containers/Statistic.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/db/answers.js" afterPath="$PROJECT_DIR$/src/db/answers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/db/quiz.js" afterPath="$PROJECT_DIR$/src/db/quiz.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/loginReducer.js" afterPath="$PROJECT_DIR$/src/reducers/loginReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/quizReducer.js" afterPath="$PROJECT_DIR$/src/reducers/quizReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/quizzesReducer.js" afterPath="$PROJECT_DIR$/src/reducers/quizzesReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/resultsReducer.js" afterPath="$PROJECT_DIR$/src/reducers/resultsReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/usersReducer.js" afterPath="$PROJECT_DIR$/src/reducers/usersReducer.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/containers/questions/Question.jsx" afterPath="$PROJECT_DIR$/src/containers/questions/QuestionSwitcher.jsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/containers/questions/QuestionsResults.jsx" afterPath="$PROJECT_DIR$/src/containers/questions/QuestionsResultsSwitcher.jsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/types/login.js" afterPath="$PROJECT_DIR$/src/types/actions/login.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/types/quiz.js" afterPath="$PROJECT_DIR$/src/types/actions/quiz.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/types/quizzes.js" afterPath="$PROJECT_DIR$/src/types/actions/quizzes.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/types/results.js" afterPath="$PROJECT_DIR$/src/types/actions/results.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/types/users.js" afterPath="$PROJECT_DIR$/src/types/actions/users.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/db/result.js" afterPath="$PROJECT_DIR$/src/db/result.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/containers/MyQuizzes.jsx" afterPath="$PROJECT_DIR$/src/containers/Quizzes.jsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -64,7 +47,7 @@
       <file leaf-file-name="processQuiz.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/common/processQuiz.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-323">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -90,6 +73,23 @@
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#65#0" expanded="true" />
+                <marker date="1503058170601" expanded="true" signature="1207:2548" ph="{...}" />
+                <marker date="1503058170601" expanded="true" signature="1482:1886" ph="{...}" />
+                <marker date="1503058170601" expanded="true" signature="1533:1856" ph="{...}" />
+                <marker date="1503058170601" expanded="true" signature="1862:1882" ph="{...}" />
+                <marker date="1503058170601" expanded="true" signature="1910:2216" ph="{...}" />
+                <marker date="1503058170601" expanded="true" signature="2042:2212" ph="{...}" />
+                <marker date="1503058170601" expanded="true" signature="2115:2205" ph="{&quot;id&quot;: item.answer_id...}" />
+                <marker date="1503058170601" expanded="true" signature="2242:2501" ph="{...}" />
+                <marker date="1503058170601" expanded="true" signature="2362:2497" ph="{...}" />
+                <marker date="1503058170601" expanded="true" signature="2435:2489" ph="{&quot;id&quot;: item.option_id...}" />
+                <marker date="1503058170601" expanded="true" signature="2588:2799" ph="{...}" />
+                <marker date="1503058170601" expanded="true" signature="2606:2797" ph="{...}" />
+                <marker date="1503058170601" expanded="true" signature="2626:2671" ph="..." />
+                <marker date="1503058170601" expanded="true" signature="2687:2703" ph="..." />
+                <marker date="1503058170601" expanded="true" signature="2719:2735" ph="..." />
+                <marker date="1503058170601" expanded="true" signature="2750:2765" ph="..." />
+                <marker date="1503058170601" expanded="true" signature="2778:2793" ph="..." />
               </folding>
             </state>
           </provider>
@@ -159,6 +159,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -186,9 +187,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-itechart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-itechart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="containers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -302,11 +320,13 @@
       <workItem from="1502279771407" duration="598000" />
       <workItem from="1502350764186" duration="597000" />
       <workItem from="1502963088389" duration="1271000" />
+      <workItem from="1503046532118" duration="597000" />
+      <workItem from="1503060493066" duration="638000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3581000" />
+    <option name="totallyTimeSpent" value="4816000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -341,174 +361,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="3" lean-forward="false" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AddQuestions.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/NotFound.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Progressbar.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/QuizLinkModal.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/QuizParams.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/QuizzesTable.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ResultsTable.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Settings.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Spinner.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/UsersTable.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/converter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -527,7 +379,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/processQuiz.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -549,6 +401,296 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#65#0" expanded="true" />
+            <marker date="1503058170601" expanded="true" signature="1207:2548" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1482:1886" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1533:1856" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1862:1882" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1910:2216" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2042:2212" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2115:2205" ph="{&quot;id&quot;: item.answer_id...}" />
+            <marker date="1503058170601" expanded="true" signature="2242:2501" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2362:2497" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2435:2489" ph="{&quot;id&quot;: item.option_id...}" />
+            <marker date="1503058170601" expanded="true" signature="2588:2799" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2606:2797" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2626:2671" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2687:2703" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2719:2735" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2750:2765" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2778:2793" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processUsers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/converter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/dateConverter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processQuiz.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processQuizzes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processResult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#65#0" expanded="true" />
+            <marker date="1503058170601" expanded="true" signature="1207:2548" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1482:1886" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1533:1856" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1862:1882" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1910:2216" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2042:2212" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2115:2205" ph="{&quot;id&quot;: item.answer_id...}" />
+            <marker date="1503058170601" expanded="true" signature="2242:2501" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2362:2497" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2435:2489" ph="{&quot;id&quot;: item.option_id...}" />
+            <marker date="1503058170601" expanded="true" signature="2588:2799" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2606:2797" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2626:2671" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2687:2703" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2719:2735" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2750:2765" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2778:2793" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processUsers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/NewQuiz.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="3" lean-forward="false" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AddQuestions.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/NotFound.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Progressbar.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/QuizLinkModal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/QuizParams.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/QuizzesTable.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ResultsTable.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Settings.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Spinner.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/UsersTable.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/converter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/dateConverter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processQuiz.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processQuizzes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processResult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#65#0" expanded="true" />
+            <marker date="1503058170601" expanded="true" signature="1207:2548" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1482:1886" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1533:1856" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1862:1882" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="1910:2216" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2042:2212" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2115:2205" ph="{&quot;id&quot;: item.answer_id...}" />
+            <marker date="1503058170601" expanded="true" signature="2242:2501" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2362:2497" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2435:2489" ph="{&quot;id&quot;: item.option_id...}" />
+            <marker date="1503058170601" expanded="true" signature="2588:2799" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2606:2797" ph="{...}" />
+            <marker date="1503058170601" expanded="true" signature="2626:2671" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2687:2703" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2719:2735" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2750:2765" ph="..." />
+            <marker date="1503058170601" expanded="true" signature="2778:2793" ph="..." />
           </folding>
         </state>
       </provider>

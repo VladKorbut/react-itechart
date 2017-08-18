@@ -5,7 +5,7 @@ import dc from '../common/dateConverter'
 
 function ResultsTable(props) {
   const formatLink = (id) => {
-    return <Link to={'/results/' + props.quizId +'/user/'+ id}>Show Answers</Link>
+    return <Link to={'/result/' + id}>Show Answers</Link>
   }
   return (
     <BootstrapTable striped hover

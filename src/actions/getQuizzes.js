@@ -6,8 +6,11 @@ import {
 
 import quiz from '../db/quiz'
 
-export const getMyQuizzes = () => dispatch => {
+
+
+export const getQuizzes = (my) => dispatch => {
   dispatch({ type: QUIZZES_LOADING });
+
   quiz.getMy()
     .then((quizzes) => {
       dispatch({

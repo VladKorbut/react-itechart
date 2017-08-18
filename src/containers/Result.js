@@ -12,7 +12,7 @@ class Result extends Component {
     }
   }
   componentDidMount() {
-    result.getResult(this.props.params.quizId, this.props.params.userId)
+    result.getResult(this.props.params.quizResultId)
       .then(quiz => {
         this.setState({
           questions: quiz.questions

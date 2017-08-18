@@ -65,14 +65,17 @@ let quiz = {
     })
   },
   getAll() {
-    return processQuizzes(db.executeTransaction(`SELECT
+    return db.executeTransaction(`SELECT
     quizzes.*, COUNT(quiz_result.id) as answers
     FROM quizzes
     LEFT JOIN quiz_result
     ON quizzes.id = quiz_result.quiz_id
-    GROUP BY quizzes.id`))
+    GROUP BY quizzes.id`)
       .then(res => {
         return processQuizzes([...res.rows]);
+      })
+      .catch(error => {
+        throw new Error(error);
       });
   },
   getMy() {
