@@ -34,7 +34,7 @@ function getChartData(question, countAnswers, hue) {
   }
 }
 
-const percentageOptions = {
+const horisontalPercentage = {
   scales: {
     xAxes: [{
       ticks: {
@@ -46,11 +46,28 @@ const percentageOptions = {
         display: true,
         labelString: "Percentage"
       }
-    }]
+    }],
+  }
+}
+
+const percentage = {
+  scales: {
+    yAxes: [{
+      ticks: {
+        min: 0,
+        max: 100,
+        callback: function (value) { return value + "%" }
+      },
+      scaleLabel: {
+        display: true,
+        labelString: "Percentage"
+      }
+    }],
   }
 }
 
 export default getChartData
 export {
-  percentageOptions
+  percentage,
+  horisontalPercentage
 }

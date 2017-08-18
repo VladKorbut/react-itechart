@@ -43,9 +43,13 @@ class App extends Component {
                   <LinkContainer to={'/my-quizzes'}>
                     <NavItem>My Quizzes</NavItem>
                   </LinkContainer>
-                  <LinkContainer to={'/users'}>
-                    <NavItem>Users</NavItem>
-                  </LinkContainer>
+                  {
+                    this.props.user.isAdmin ?
+                      <LinkContainer to={'/users'}>
+                        <NavItem>Users</NavItem>
+                      </LinkContainer>
+                      : null
+                  }
                 </Nav>
                 <Navbar.Text pullRight>
                   Hello, {this.props.user.login} <Navbar.Link onClick={this.logout}>Logout</Navbar.Link>

@@ -5,7 +5,7 @@ import {
 import storage from '../localStorage/storage'
 
 export const login = (user) => dispatch => {
-  storage.pushUser(user.id, user.login);
+  storage.pushUser(user);
   dispatch({
     type: LOGIN,
     user: user,

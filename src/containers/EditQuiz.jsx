@@ -15,7 +15,7 @@ class EditQuiz extends Component {
     this.props.get(this.props.params.id);
   }
   render() {
-    return (this.props.success === null || this.props.loading) ? <Spinner /> : <NewQuiz quiz={this.props.quiz} />
+    return (this.props.success === null || this.props.loading) ? <Spinner /> : <NewQuiz quiz={this.props.quiz} edit/>
   }
 }
 

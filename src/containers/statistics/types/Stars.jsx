@@ -1,6 +1,6 @@
 import React from 'react'
 import { HorizontalBar } from 'react-chartjs-2'
-import getChartData, { percentageOptions } from '../../../common/graphs'
+import getChartData, { horisontalPercentage } from '../../../common/graphs'
 
 const countAnswers = (answers, value) => {
   let count = 0;
@@ -38,7 +38,7 @@ function Stars(props) {
           countAnswers,
           'purple'
         )}
-        options={percentageOptions}
+        options={horisontalPercentage}
       />
     </div>
   )

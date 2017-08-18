@@ -5,6 +5,7 @@ import { FormGroup, ControlLabel, FormControl, Col, Button } from 'react-bootstr
 import users from '../db/users'
 import getUser from '../db/login'
 import { login } from '../actions/login'
+import cv from '../common/converter'
 
 class Login extends Component {
   constructor() {
@@ -27,7 +28,11 @@ class Login extends Component {
         alert('Password is incorrect');
         this.setState({ password: '', passwordIsValid: null });
       } else {
-        let user = { id: data.rows[0].id, login: data.rows[0].login };
+        let user = {
+          id: data.rows[0].id,
+          login: data.rows[0].login,
+          isAdmin: cv.strToBool(data.rows[0].isAdmin),
+        };
         this.props.login(user);
         browserHistory.push('/')
       }

@@ -1,6 +1,6 @@
 import React from 'react'
-import { HorizontalBar } from 'react-chartjs-2'
-import getChartData, { percentageOptions } from '../../../common/graphs'
+import { Bar } from 'react-chartjs-2'
+import getChartData, { percentage } from '../../../common/graphs'
 
 const countAnswers = (answers, optionId) => {
   let count = 0;
@@ -25,9 +25,9 @@ function Checkbox(props) {
           })
         }
       </ul>
-      <HorizontalBar
+      <Bar
         data={getChartData(props.question, countAnswers, 'blue')}
-        options={percentageOptions}
+        options={percentage}
       />
     </div>
   )

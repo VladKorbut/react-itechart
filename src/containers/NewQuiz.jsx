@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { FormControl, Col, Button } from 'react-bootstrap'
+import { FormControl, Col, Button, Row } from 'react-bootstrap'
 import quiz from '../db/quiz'
 import Questions from './questions/Questions'
 import QuizLinkModal from '../components/QuizLinkModal'
@@ -64,7 +64,6 @@ class NewQuiz extends Component {
     let answersIsValid = true;
     this.state.questions.forEach((item, i) => {
       if (!item.isValid) {
-        console.log(item)
         answersIsValid = false;
       }
     })
@@ -100,7 +99,7 @@ class NewQuiz extends Component {
   render() {
     return (
       <div>
-        <h2>Create Quiz</h2>
+        <h2>{this.props.edit ? 'Edit' : 'Create'} Quiz</h2>
         <Col md={4} mdPush={8}>
           <Settings
             addQuestion={this.addQuestion}
@@ -109,6 +108,16 @@ class NewQuiz extends Component {
             randHandler={this.randHandler}
             isRand={this.state.isRand}
           />
+          <Row>
+            <Button
+              bsStyle="primary"
+              bsSize="lg"
+              onClick={this.createQuiz}
+              disabled={this.getButtonState()}
+            >
+              {this.props.edit ? 'Edit' : 'Create'}
+            </Button>
+          </Row>
         </Col>
         <Col md={8} mdPull={4}>
           <FormControl
@@ -125,7 +134,6 @@ class NewQuiz extends Component {
             editQuestion={this.editQuestion}
             deleteQuestion={this.deleteQuestion}
           />
-          <Button bsStyle="primary" onClick={this.createQuiz} disabled={this.getButtonState()}>Create</Button>
         </Col>
         <QuizLinkModal quizId={this.state.insertedQuiz} show={this.state.showModal} close={this.closeModal} />
       </div>
