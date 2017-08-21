@@ -22,14 +22,9 @@ class Multiple extends Component {
       type: this.props.question.type,
     }, this.validateQuestion);
   }
-  validateQuestion = () => {
-    let optionsIsValid = true;
-    this.state.options.forEach((option, i) => {
-      if (!option.value.length) {
-        optionsIsValid = false;
-      }
-    })
 
+  validateQuestion = () => {
+    const optionsIsValid = !this.state.options.find(option => !option.value.length);
     this.setState({
       isValid: !!(optionsIsValid && this.props.question.title.length && this.props.question.options.length > 1)
     }, this.editQuestion);

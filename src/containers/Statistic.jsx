@@ -14,6 +14,7 @@ class Statistic extends Component {
   componentDidMount() {
     result.getStat(this.props.params.id)
       .then(quiz => {
+        console.log(quiz);
         this.setState({
           title: quiz.title,
           questions: quiz.questions,

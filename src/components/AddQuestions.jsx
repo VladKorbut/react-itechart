@@ -3,19 +3,18 @@ import { Button, ButtonGroup, Row } from 'react-bootstrap'
 import { CHECKBOX, RADIO, STARS, TEXT } from '../types/questions'
 import Fa from 'react-fontawesome'
 
-const getWindowWidth = () => window.innerWidth > 991;
+const checkWidthLarge = (width) => width > 991;
 
 class AddQuestions extends Component {
   constructor() {
     super();
     this.state = {
-      isVertical: getWindowWidth()
+      isVertical: checkWidthLarge(window.innerWidth)
     }
-
   }
 
-  changeVerticalState = () => {
-    this.setState({ isVertical: getWindowWidth() })
+  changeVerticalState = (e) => {
+    this.setState({ isVertical: checkWidthLarge(e.target.innerWidth) })
   }
 
   componentDidMount() {

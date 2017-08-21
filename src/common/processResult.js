@@ -51,7 +51,7 @@ const processStat = (quiz) => {
   res.isAnon = cv.strToBool(quiz[0].isAnon);
   res.isRand = cv.strToBool(quiz[0].isRand);
   res.date = dc.getDDMMYYYY(quiz[0].date);
-
+  res.answers = countAnswers(quiz);
   let questions = [];
 
   quiz.forEach(item => {
@@ -92,14 +92,23 @@ const processStat = (quiz) => {
   return res;
 }
 
+const countAnswers = (quiz) => {
+  let resultsId = [];
+  quiz.forEach(item=>{
+    if(!resultsId.includes(item.quiz_result_id)){
+      resultsId.push(item.quiz_result_id);
+    }
+  });
+  return resultsId.length;
+}
 
 function processAnswer(answer, type) {
   switch (type) {
-    case CHECKBOX: return answer.split(',').map(item => +item);
+    case CHECKBOX: return answer ? answer.split(',').map(item => +item) : [];
     case RADIO: return +answer;
     case STARS: return +answer;
-    case TEXT: return answer;
-    default: return answer;
+    case TEXT: return answer || '';
+    default: return answer || '';
   }
 }
 
