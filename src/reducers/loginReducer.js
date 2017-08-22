@@ -1,8 +1,8 @@
 import {
   LOGIN,
-  LOGOUT
-} from '../types/actions/login'
-import storage from '../localStorage/storage'
+  LOGOUT,
+} from '../types/actions/login';
+import storage from '../localStorage/storage';
 
 const isLoggedIn = { isLoggedIn: !!storage.getUser().login, ...storage.getUser() };
 
@@ -15,11 +15,11 @@ const loginReducer = (loggedIn = isLoggedIn, action) => {
       };
     case LOGOUT:
       return {
-        isLoggedIn: false
+        isLoggedIn: false,
       };
     default:
       return loggedIn;
   }
-}
+};
 
-export default loginReducer
+export default loginReducer;

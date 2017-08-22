@@ -1,4 +1,4 @@
-import cv from '../common/converter'
+import cv from '../common/converter';
 
 export default {
   pushUser(user) {
@@ -11,11 +11,11 @@ export default {
       id: +localStorage.getItem('id'),
       login: localStorage.getItem('login'),
       isAdmin: localStorage.getItem('isAdmin') ? cv.strToBool(localStorage.getItem('isAdmin')) : null,
-    }
+    };
   },
   removeUser() {
     localStorage.removeItem('id');
     localStorage.removeItem('login');
     localStorage.removeItem('isAdmin');
-  }
-}
+  },
+};

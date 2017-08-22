@@ -1,23 +1,23 @@
 import {
   RESULTS_LOADING,
   RESULTS_SUCCESS,
-  RESULTS_ERROR
-} from '../types/actions/results'
+  RESULTS_ERROR,
+} from '../types/actions/results';
 
-import results from '../db/results'
+import results from '../db/results';
 
-export const getResults = quizId => dispatch => {
+export const getResults = (quizId) => (dispatch) => {
   dispatch({ type: RESULTS_LOADING });
   results.get(quizId)
-    .then(results => {
+    .then((res) => {
       dispatch({
         type: RESULTS_SUCCESS,
-        results: [...results.rows],
-      })
+        results: [...res.rows],
+      });
     })
-    .catch(error => {
+    .catch(() => {
       dispatch({
         type: RESULTS_ERROR,
-      })
-    })
-}
+      });
+    });
+};

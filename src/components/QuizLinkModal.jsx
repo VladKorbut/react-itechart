@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import propTypes from 'prop-types'
-import { Modal, FormGroup, FormControl, Button } from 'react-bootstrap'
-import CopyToClipboard from 'react-copy-to-clipboard'
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import { Modal, FormGroup, FormControl, Button } from 'react-bootstrap';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 class QuizLinkModal extends Component {
   constructor() {
     super();
     this.state = {
       copied: false,
-    }
+    };
   }
   getLink() {
     if (this.props.quizId) {
-      return window.location.host + '/quiz/' + this.props.quizId;
+      return `${window.location.host}/quiz/${this.props.quizId}`;
     } else {
-      return ''
+      return '';
     }
   }
   render() {
@@ -50,4 +50,4 @@ QuizLinkModal.propTypes = {
   close: propTypes.func,
 }
 
-export default QuizLinkModal
+export default QuizLinkModal;

@@ -1,12 +1,10 @@
-import cv from './converter'
+import cv from './converter';
 
-const processUser = (user) => {
-  return {
-    id: user.id,
-    login: user.login,
-    date: user.date,
-    isAdmin: cv.strToBool(user.isAdmin),
-  };
-}
+const processUser = user => ({
+  id: user.id,
+  login: user.login,
+  date: user.date,
+  isAdmin: cv.strToBool(user.isAdmin),
+});
 
-export default processUser
+export default processUser;

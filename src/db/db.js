@@ -1,16 +1,16 @@
-let db = {
+const db = {
   executeTransaction(query) {
-    db = openDatabase('quizzes', '0.1', 'Course project iTechArt', 2 * 1024 * 1024);
+    const dbase = openDatabase('quizzes', '0.1', 'Course project iTechArt', 2 * 1024 * 1024);
     return new Promise((resolve, reject) => {
-      db.transaction((transaction) => {
+      dbase.transaction((transaction) => {
         transaction.executeSql(query, [],
           (tx, result) => {
             resolve(result);
           }, (tx, error) => {
             reject(error);
-          })
-      })
-    })
+          });
+      });
+    });
   },
   createUsersTable() {
     this.executeTransaction(`CREATE TABLE IF NOT EXISTS
@@ -21,7 +21,7 @@ let db = {
       'password' VARCHAR(16) NOT NULL,
       'isAdmin' BOOLEAN DEFAULT FALSE,
       'date' DATETIME NOT NULL
-    )`)
+    )`);
   },
   createQuizzesTable() {
     this.executeTransaction(`CREATE TABLE IF NOT EXISTS
@@ -33,7 +33,7 @@ let db = {
       'date' DATETIME NOT NULL,
       'author_id' INTEGER NOT NULL,
       FOREIGN KEY (author_id) REFERENCES users (id)
-    )`)
+    )`);
   },
   createQuestionsTable() {
     this.executeTransaction(`CREATE TABLE IF NOT EXISTS
@@ -44,7 +44,7 @@ let db = {
       'isRequired' BOOLEAN DEFAULT FALSE,
       'quiz_id' INTEGER NOT NULL,
       FOREIGN KEY (quiz_id) REFERENCES quizzes (id)
-    )`)
+    )`);
   },
   createOptionsTable() {
     this.executeTransaction(`CREATE TABLE IF NOT EXISTS
@@ -53,7 +53,7 @@ let db = {
       'text' VARCHAR(50) NOT NULL,
       'question_id' INTEGER NOT NULL,
       FOREIGN KEY (question_id) REFERENCES questions (id)
-    )`)
+    )`);
   },
   createQuizResultTable() {
     this.executeTransaction(`CREATE TABLE IF NOT EXISTS
@@ -64,7 +64,7 @@ let db = {
       'quiz_id' INTEGER NOT NULL,
       FOREIGN KEY (user_id) REFERENCES users (id),
       FOREIGN KEY (quiz_id) REFERENCES quizzes (id)
-    )`)
+    )`);
   },
   createAnswersTable() {
     this.executeTransaction(`CREATE TABLE IF NOT EXISTS
@@ -75,7 +75,7 @@ let db = {
       'quiz_result_id' INTEGER NOT NULL,
       FOREIGN KEY (question_id) REFERENCES questions (id),
       FOREIGN KEY (quiz_result_id) REFERENCES quiz_result (id)
-    )`)
+    )`);
   },
   init() {
     this.createUsersTable();
@@ -84,6 +84,6 @@ let db = {
     this.createOptionsTable();
     this.createAnswersTable();
     this.createQuizResultTable();
-  }
-}
-export default db
+  },
+};
+export default db;

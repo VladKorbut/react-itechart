@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import propTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
-import { FormGroup, ControlLabel, FormControl, Col, Button } from 'react-bootstrap'
-import users from '../db/users'
-import getUser from '../db/login'
-import { login } from '../actions/login'
-import cv from '../common/converter'
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import { FormGroup, ControlLabel, FormControl, Col, Button } from 'react-bootstrap';
+import users from '../db/users';
+import getUser from '../db/login';
+import { login } from '../actions/login';
+import cv from '../common/converter';
 
 class Login extends Component {
   constructor() {
@@ -23,6 +23,7 @@ class Login extends Component {
       browserHistory.push('/');
     }
   }
+
   submitFrom = () => {
     getUser(this.state.login, this.state.password).then((data) => {
       if (!data.rows.length) {

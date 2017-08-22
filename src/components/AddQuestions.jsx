@@ -60,6 +60,4 @@ AddQuestions.propTypes = {
   addQuestion: propTypes.func,
 }
 
-
-
 export default AddQuestions

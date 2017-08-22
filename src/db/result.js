@@ -1,5 +1,5 @@
-import db from './db'
-import processResult, { processStat } from '../common/processResult'
+import db from './db';
+import processResult, { processStat } from '../common/processResult';
 
 const result = {
   getResult(quizResultId) {
@@ -18,9 +18,7 @@ const result = {
       LEFT JOIN answers ans
       ON ans.question_id = quest.id AND ans.quiz_result_id = quiz_result.id
       WHERE quiz_result.id = ${quizResultId}`)
-      .then(result => {
-        return processResult(result)
-      })
+      .then(result => processResult(result));
   },
   getStat(quizId) {
     return db.executeTransaction(`SELECT
@@ -40,10 +38,8 @@ const result = {
       JOIN quiz_result
       ON quiz_result.id = ans.quiz_result_id
       WHERE quiz.id = ${quizId}`)
-      .then(result => {
-        return processStat(result)
-      })
-  }
-}
+      .then(result => processStat(result));
+  },
+};
 
-export default result
+export default result;

@@ -1,6 +1,6 @@
-import React from 'react'
-import propTypes from 'prop-types'
-import { Checkbox, Row } from 'react-bootstrap'
+import React from 'react';
+import propTypes from 'prop-types';
+import { Checkbox, Row } from 'react-bootstrap';
 
 function QuizParams(props) {
   return (
@@ -13,7 +13,7 @@ function QuizParams(props) {
         Random Questions
       </Checkbox>
     </Row>
-  )
+  );
 }
 
 QuizParams.propTypes = {

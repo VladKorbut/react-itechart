@@ -1,25 +1,25 @@
 import {
   QUIZ_LOADING,
   QUIZ_SUCCESS,
-  QUIZ_ERROR
-} from '../types/actions/quiz'
+  QUIZ_ERROR,
+} from '../types/actions/quiz';
 
-import quizdb from '../db/quiz'
+import quizdb from '../db/quiz';
 
-export const getQuiz = id => dispatch => {
+export const getQuiz = (id) => (dispatch) => {
   dispatch({ type: QUIZ_LOADING });
   return quizdb.getSingle(id)
     .then((quiz) => {
       dispatch({
         type: QUIZ_SUCCESS,
-        quiz: quiz,
+        quiz,
       });
       return quiz;
     })
-    .catch((error) => {
+    .catch(() => {
       dispatch({
         type: QUIZ_ERROR,
-      })
+      });
       return false;
-    })
-}
+    });
+};

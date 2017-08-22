@@ -10,10 +10,10 @@ import createAnswers from '../db/answers'
 import Progressbar from '../components/Progressbar'
 
 const indexOfAnswer = (answers, id) => {
-  return answers.findIndex((item) => item.id === id);
+  return answers.findIndex(item => item.id === id);
 }
 
-const randomizeArray = (arr) => arr.sort(() => (Math.random() - 0.5))
+const randomizeArray = arr => arr.sort(() => (Math.random() - 0.5))
 
 class Quiz extends Component {
   constructor() {
@@ -30,6 +30,7 @@ class Quiz extends Component {
   componentDidMount() {
     this.props.get(this.props.params.id)
       .catch((error) => {
+        console.log(error);
         browserHistory.push('/404');
       })
   }
@@ -109,6 +110,7 @@ class Quiz extends Component {
   }
 
   render() {
+    console.log(this.props.quiz.isAnon, this.props.isLoggedIn);
     return (
       <div>
         {(this.props.success === null || this.props.loading) ? <Spinner />
@@ -118,7 +120,14 @@ class Quiz extends Component {
               <div>
                 <h2>Quiz name: {this.props.quiz.title}</h2>
                 <p>Last modified: {this.props.quiz.date}</p>
-                <Button onClick={this.startQuiz} bsSize='lg' bsStyle='primary'>Start</Button>
+                <Button
+                  onClick={this.startQuiz}
+                  bsSize='lg'
+                  bsStyle='primary'
+                  disabled={!(this.props.isLoggedIn || this.props.quiz.isAnon)}
+                >
+                  Start
+                </Button>
               </div>
               :
               <Col md={8} lg={6} mdOffset={2} lgOffset={4}>
@@ -165,6 +174,7 @@ const mapStateToProps = (store) => {
     quiz: store.quizReducer.quiz,
     loading: store.quizReducer.loading,
     success: store.quizReducer.success,
+    isLoggedIn: store.loginReducer.isLoggedIn,
   }
 }
 

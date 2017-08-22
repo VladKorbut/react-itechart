@@ -11,12 +11,13 @@ export default (func, ms) => {
     func.apply(this, arguments);
     isThrottled = true;
     setTimeout(() => {
-      isThrottled = false; // (3)
+      isThrottled = false;
       if (savedArgs) {
         wrapper.apply(savedThis, savedArgs);
-        savedArgs = savedThis = null;
+        savedThis = null;
+        savedArgs = savedThis;
       }
     }, ms);
-  }
+  };
   return wrapper;
-}
+};

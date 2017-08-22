@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 import GoogleMapReact from 'google-map-react';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
 
 const Marker = () => <img src={logo} alt="" />;
 
 function Home() {
   const mapSettings = {
     center: { lat: 53.8882836, lng: 27.5442615 },
-    zoom: 13
+    zoom: 13,
   };
   return (
     <div>
@@ -24,8 +24,8 @@ function Home() {
         </GoogleMapReact>
       </div>
     </div>
-  )
+  );
 }
 
 
-export default Home
+export default Home;

@@ -1,14 +1,14 @@
 import {
   QUIZ_LOADING,
   QUIZ_SUCCESS,
-  QUIZ_ERROR
-} from '../types/actions/quiz'
+  QUIZ_ERROR,
+} from '../types/actions/quiz';
 
-let quizInitState = {
+const quizInitState = {
   loading: false,
   success: null,
   quiz: {},
-}
+};
 
 const quizReducer = (quizState = quizInitState, action) => {
   switch (action.type) {
@@ -27,8 +27,8 @@ const quizReducer = (quizState = quizInitState, action) => {
       success: false,
       quiz: {},
     };
-    default: return quizInitState;
+    default: return quizState;
   }
-}
+};
 
 export default quizReducer;

@@ -1,40 +1,40 @@
-import db from './db'
-import cv from '../common/converter'
-import processQuiz from '../common/processQuiz'
-import processQuizzes from '../common/processQuizzes'
-import ls from '../localStorage/storage'
+import db from './db';
+import cv from '../common/converter';
+import processQuiz from '../common/processQuiz';
+import processQuizzes from '../common/processQuizzes';
+import ls from '../localStorage/storage';
 
-let quiz = {
+const quiz = {
   create(quiz) {
     if (quiz.id) return this.updateQuiz(quiz);
     return db.executeTransaction(`INSERT INTO
     quizzes(title, isAnon, isRand, date, author_id)
     VALUES('${quiz.title}', '${cv.boolToStr(quiz.isAnon)}', '${cv.boolToStr(quiz.isRand)}', ${Date.now()}, ${ls.getUser().id})`)
-      .then(data => {
+      .then((data) => {
         this.createQuestion(quiz.questions, data.insertId);
         return data;
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(error);
-      })
+      });
   },
   createQuestion(questions, quizId) {
-    questions.forEach(item => {
+    questions.forEach((item) => {
       db.executeTransaction(`INSERT INTO
       questions(title, isRequired, type, quiz_id)
       VALUES ('${item.title}', '${cv.boolToStr(item.isRequired)}', ${item.type}, ${+quizId})`)
-        .then(data => {
+        .then((data) => {
           if (item.options && item.options.length) {
             this.createOption(item.options, data.insertId);
           }
         })
-        .catch(error => {
+        .catch((error) => {
           throw new Error(error);
-        })
+        });
     });
   },
   createOption(options, questionId) {
-    let insert = options.map(item => (`('${item.value}', ${questionId})`));
+    const insert = options.map(item => (`('${item.value}', ${questionId})`));
     return db.executeTransaction(`INSERT INTO
     question_options(text, question_id)
     VALUES ${insert.join(', ')}`);
@@ -44,25 +44,25 @@ let quiz = {
     SET title='${quiz.title}', isAnon='${cv.boolToStr(quiz.isAnon)}',
     isRand='${cv.boolToStr(quiz.isRand)}', date=${Date.now()}, author_id=${ls.getUser().id}
     WHERE id=${quiz.id}`)
-      .then(res => {
+      .then(() => {
         this.deleteQuestions(quiz.questions, quiz.id)
           .then(() => {
-            this.createQuestion(quiz.questions, quiz.id)
+            this.createQuestion(quiz.questions, quiz.id);
           });
-      })
+      });
   },
   deleteQuestions(questions, quizId) {
     return db.executeTransaction(`DELETE FROM questions WHERE quiz_id=${quizId}`)
-      .then(res => {
-        questions.forEach(item => {
+      .then(() => {
+        questions.forEach((item) => {
           this.deleteOption(item.options, item.id);
-        })
+        });
       });
   },
-  deleteOption(options, questionId) {
-    options.forEach(option => {
-      db.executeTransaction(`DELETE FROM question_options WHERE id=${option.id}`)
-    })
+  deleteOption(options) {
+    options.forEach((option) => {
+      db.executeTransaction(`DELETE FROM question_options WHERE id=${option.id}`);
+    });
   },
   getAll() {
     return db.executeTransaction(`SELECT
@@ -71,10 +71,8 @@ let quiz = {
     LEFT JOIN quiz_result
     ON quizzes.id = quiz_result.quiz_id
     GROUP BY quizzes.id`)
-      .then(res => {
-        return processQuizzes([...res.rows]);
-      })
-      .catch(error => {
+      .then((res) => processQuizzes([...res.rows]))
+      .catch((error) => {
         throw new Error(error);
       });
   },
@@ -86,10 +84,8 @@ let quiz = {
     ON quizzes.id = quiz_result.quiz_id
     WHERE quizzes.author_id=${ls.getUser().id}
     GROUP BY quizzes.id`)
-      .then(res => {
-        return processQuizzes([...res.rows]);
-      })
-      .catch(error => {
+      .then(res => processQuizzes([...res.rows]))
+      .catch((error) => {
         throw new Error(error);
       });
   },
@@ -103,16 +99,14 @@ let quiz = {
       On quiz.id = quest.quiz_id
       LEFT JOIN question_options opt
       ON opt.question_id = quest.id
-      where quiz.id = ${id}`).then(data => {
-        return processQuiz(data);
-      })
+      where quiz.id = ${id}`).then(data => processQuiz(data));
   },
   getQuestions(id) {
     return db.executeTransaction(`SELECT * FROM questions WHERE quiz_id=${id}`);
   },
   getOptions(id) {
     return db.executeTransaction(`SELECT * FROM question_options WHERE question_id=${id}`);
-  }
-}
+  },
+};
 
-export default quiz
+export default quiz;

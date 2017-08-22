@@ -1,23 +1,23 @@
-import { CHECKBOX, RADIO, STARS, TEXT } from '../types/questions'
-import { itemExist, indexOfById } from './processQuiz'
-import cv from './converter'
-import dc from './dateConverter'
+import { CHECKBOX, RADIO, STARS, TEXT } from '../types/questions';
+import { itemExist, indexOfById } from './processQuiz';
+import cv from './converter';
+import dc from './dateConverter';
 
 const processResult = (quiz) => {
   quiz = [...quiz.rows];
 
-  let res = {};
+  const res = {};
   res.id = quiz[0].id;
   res.title = quiz[0].title;
   res.isAnon = cv.strToBool(quiz[0].isAnon);
   res.isRand = cv.strToBool(quiz[0].isRand);
   res.date = dc.getDDMMYYYY(quiz[0].date);
 
-  let questions = [];
+  const questions = [];
 
   quiz.forEach((item) => {
     if (!itemExist(questions, item.question_id)) {
-      let question = {};
+      const question = {};
       question.title = item.question_title;
       question.type = item.type;
       question.isRequired = cv.strToBool(item.isRequired);
@@ -25,38 +25,36 @@ const processResult = (quiz) => {
       question.options = item.type < STARS ? [] : null;
       question.answer = processAnswer(item.answer, item.type);
       questions.push(question);
-    } else {
-      return
     }
-  })
+  });
 
   quiz.forEach((item) => {
     if (item.type < STARS) {
       questions[indexOfById(questions, item.question_id)].options.push({
-        id: item.option_id, value: item.text
+        id: item.option_id, value: item.text,
       });
     }
-  })
+  });
 
-  res.questions = questions
+  res.questions = questions;
 
   return res;
-}
+};
 
 const processStat = (quiz) => {
   quiz = [...quiz.rows];
-  let res = {};
+  const res = {};
   res.id = quiz[0].id;
   res.title = quiz[0].title;
   res.isAnon = cv.strToBool(quiz[0].isAnon);
   res.isRand = cv.strToBool(quiz[0].isRand);
   res.date = dc.getDDMMYYYY(quiz[0].date);
   res.answers = countAnswers(quiz);
-  let questions = [];
+  const questions = [];
 
-  quiz.forEach(item => {
+  quiz.forEach((item) => {
     if (!itemExist(questions, item.question_id)) {
-      let question = {};
+      const question = {};
       question.title = item.question_title;
       question.type = item.type;
       question.isRequired = cv.strToBool(item.isRequired);
@@ -64,43 +62,42 @@ const processStat = (quiz) => {
       question.options = item.type < STARS ? [] : null;
       question.answers = [];
       questions.push(question);
-    } else {
-      return
     }
-  })
+  });
 
-  quiz.forEach(item=>{
-    let question = questions[indexOfById(questions, item.question_id)];
-    if(!(indexOfById(question.answers, item.answer_id)+1)){
+  quiz.forEach((item) => {
+    const question = questions[indexOfById(questions, item.question_id)];
+    if (!(indexOfById(question.answers, item.answer_id) + 1)) {
       questions[indexOfById(questions, item.question_id)].answers.push({
         id: item.answer_id,
-        value: processAnswer(item.answer, item.type)
-      })
-    }
-  })
-
-  quiz.forEach(item => {
-    if (item.type < STARS && !itemExist(questions[indexOfById(questions, item.question_id)].options, item.option_id)) {
-      questions[indexOfById(questions, item.question_id)].options.push({
-        id: item.option_id, value: item.text
+        value: processAnswer(item.answer, item.type),
       });
     }
-  })
+  });
 
-  res.questions = questions
+  quiz.forEach((item) => {
+    if (item.type < STARS
+      && !itemExist(questions[indexOfById(questions, item.question_id)].options, item.option_id)) {
+      questions[indexOfById(questions, item.question_id)].options.push({
+        id: item.option_id, value: item.text,
+      });
+    }
+  });
+
+  res.questions = questions;
 
   return res;
-}
+};
 
 const countAnswers = (quiz) => {
-  let resultsId = [];
-  quiz.forEach(item=>{
-    if(!resultsId.includes(item.quiz_result_id)){
+  const resultsId = [];
+  quiz.forEach((item) => {
+    if (!resultsId.includes(item.quiz_result_id)) {
       resultsId.push(item.quiz_result_id);
     }
   });
   return resultsId.length;
-}
+};
 
 function processAnswer(answer, type) {
   switch (type) {
@@ -112,5 +109,5 @@ function processAnswer(answer, type) {
   }
 }
 
-export default processResult
-export { processStat }
+export default processResult;
+export { processStat };

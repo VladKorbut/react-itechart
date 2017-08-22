@@ -1,23 +1,23 @@
 import {
   USERS_LOADING,
   USERS_SUCCESS,
-  USERS_ERROR
-} from '../types/actions/users'
+  USERS_ERROR,
+} from '../types/actions/users';
 
-import users from '../db/users'
+import users from '../db/users';
 
-export const getUsers = () => dispatch => {
+export const getUsers = () => (dispatch) => {
   dispatch({ type: USERS_LOADING });
   users.get()
-    .then(users => {
+    .then((users) => {
       dispatch({
         type: USERS_SUCCESS,
-        users: users
-      })
+        users
+      });
     })
-    .catch(error => {
+    .catch(() => {
       dispatch({
-        type: USERS_ERROR
-      })
-    })
-}
+        type: USERS_ERROR,
+      });
+    });
+};
