@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import propTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Alert } from 'react-bootstrap'
-import QuizzesTable from '../components/QuizzesTable'
-import { getQuizzes } from '../actions/getQuizzes'
-import Spinner from '../components/Spinner'
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Alert } from 'react-bootstrap';
+import QuizzesTable from '../components/QuizzesTable';
+import { getQuizzes } from '../actions/getQuizzes';
+import Spinner from '../components/Spinner';
 
 class Quizzes extends Component {
   componentDidMount() {
@@ -17,10 +17,10 @@ class Quizzes extends Component {
           <Spinner /> :
           (this.props.quizzes.length ?
             <QuizzesTable data={this.props.quizzes} /> :
-            <Alert bsStyle='info'>You're haven't created any quizzes</Alert>)
+            <Alert bsStyle="info">You're haven't created any quizzes</Alert>)
         }
       </div>
-    )
+    );
   }
 }
 
@@ -28,20 +28,16 @@ Quizzes.propTypes = {
   quizzes: propTypes.arrayOf(propTypes.object),
   loading: propTypes.bool,
   success: propTypes.bool,
-}
+};
 
-const mapStateToProps = (store) => {
-  return {
-    quizzes: store.quizzesReducer.quizzes,
-    loading: store.quizzesReducer.loading,
-    success: store.quizzesReducer.success,
-  }
-}
+const mapStateToProps = store => ({
+  quizzes: store.quizzesReducer.quizzes,
+  loading: store.quizzesReducer.loading,
+  success: store.quizzesReducer.success,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    get: (my) => getQuizzes(my)(dispatch)
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  get: my => getQuizzes(my)(dispatch),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Quizzes)
+export default connect(mapStateToProps, mapDispatchToProps)(Quizzes);

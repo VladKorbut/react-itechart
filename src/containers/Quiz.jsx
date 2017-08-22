@@ -1,19 +1,16 @@
-import React, { Component } from 'react'
-import propTypes from 'prop-types'
-import { browserHistory } from 'react-router'
-import { connect } from 'react-redux'
-import { Button, Col } from 'react-bootstrap'
-import { getQuiz } from '../actions/getQuiz'
-import Spinner from '../components/Spinner'
-import Question from './questions/QuestionSwitcher'
-import createAnswers from '../db/answers'
-import Progressbar from '../components/Progressbar'
+import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { Button, Col } from 'react-bootstrap';
+import { getQuiz } from '../actions/getQuiz';
+import Spinner from '../components/Spinner';
+import Question from './questions/QuestionSwitcher';
+import createAnswers from '../db/answers';
+import Progressbar from '../components/Progressbar';
 
-const indexOfAnswer = (answers, id) => {
-  return answers.findIndex(item => item.id === id);
-}
+const indexOfAnswer = (answers, id) => answers.findIndex(item => item.id === id);
 
-const randomizeArray = arr => arr.sort(() => (Math.random() - 0.5))
+const randomizeArray = arr => arr.sort(() => (Math.random() - 0.5));
 
 class Quiz extends Component {
   constructor() {
@@ -24,7 +21,7 @@ class Quiz extends Component {
       nextQuestions: [],
       answerIsValid: false,
       answers: [],
-    }
+    };
   }
 
   componentDidMount() {
@@ -32,156 +29,157 @@ class Quiz extends Component {
       .catch((error) => {
         console.log(error);
         browserHistory.push('/404');
-      })
+      });
   }
 
   startQuiz = () => {
-    let questions = this.props.quiz.isRand ? randomizeArray(this.props.quiz.questions) : [...this.props.quiz.questions];
+    const questions = this.props.quiz.isRand ?
+      randomizeArray(this.props.quiz.questions) : [...this.props.quiz.questions];
     this.setState({
       currentQuestion: questions.pop(),
-      nextQuestions: questions
+      nextQuestions: questions,
     });
   }
 
   nextQuestion = () => {
     this.setState({ answerIsValid: false });
-    let prevQuestions = [...this.state.prevQuestions];
+    const prevQuestions = [...this.state.prevQuestions];
     prevQuestions.push(this.state.currentQuestion);
-    let nextQuestions = [...this.state.nextQuestions];
-    let currentQuestion = nextQuestions.pop();
+    const nextQuestions = [...this.state.nextQuestions];
+    const currentQuestion = nextQuestions.pop();
     this.setState({
-      prevQuestions: prevQuestions,
-      currentQuestion: currentQuestion,
-      nextQuestions: nextQuestions,
+      prevQuestions,
+      currentQuestion,
+      nextQuestions,
     });
   }
 
   prevQuestion = () => {
-    let nextQuestions = [...this.state.nextQuestions];
+    const nextQuestions = [...this.state.nextQuestions];
     nextQuestions.push(this.state.currentQuestion);
-    let prevQuestions = [...this.state.prevQuestions];
-    let currentQuestion = prevQuestions.pop();
+    const prevQuestions = [...this.state.prevQuestions];
+    const currentQuestion = prevQuestions.pop();
     this.setState({
-      prevQuestions: prevQuestions,
-      currentQuestion: currentQuestion,
-      nextQuestions: nextQuestions,
+      prevQuestions,
+      currentQuestion,
+      nextQuestions,
     });
-    let answers = [...this.state.answers]
+    const answers = [...this.state.answers];
     answers.length = indexOfAnswer(this.state.answers, currentQuestion.id) + 1;
     this.setState({
       answerIsValid: !!(indexOfAnswer(this.state.answers, currentQuestion.id) + 1),
-      answers: answers,
+      answers,
     });
   }
 
   finishQuiz = () => {
-    let prevQuestions = [...this.state.prevQuestions];
+    const prevQuestions = [...this.state.prevQuestions];
     prevQuestions.push(this.state.currentQuestion);
-    this.setState({ prevQuestions: prevQuestions });
-    createAnswers(this.state.answers, this.props.quiz.id).then((data) => {
+    this.setState({ prevQuestions });
+    createAnswers(this.state.answers, this.props.quiz.id).then(() => {
       this.setState({ currentQuestion: {}, nextQuestion: [], prevQuestions: [], answers: [] });
-    })
+    });
   }
 
   getAnswers = (id, answer) => {
-    let answers = [...this.state.answers];
+    const answers = [...this.state.answers];
     if (indexOfAnswer(answers, id) + 1) {
-      answers[indexOfAnswer(answers, id)] = { id: id, answer: answer }
+      answers[indexOfAnswer(answers, id)] = { id, answer };
     } else {
-      answers.push({ id: id, answer: answer });
+      answers.push({ id, answer });
     }
-    this.setState({ answers: answers });
+    this.setState({ answers });
     if (typeof answer === 'number') {
-      this.setState({ answerIsValid: !!answer })
+      this.setState({ answerIsValid: !!answer });
     } else {
-      this.setState({ answerIsValid: !!answer.length })
+      this.setState({ answerIsValid: !!answer.length });
     }
   }
 
   getAnswer = () => {
     let answer = [];
     const currentQuestionId = this.state.currentQuestion.id;
-    this.state.answers.forEach((item, i) => {
+    this.state.answers.forEach((item) => {
       if (item.id === currentQuestionId) {
         answer = item.answer;
       }
-    })
+    });
     return answer;
   }
 
   render() {
-    console.log(this.props.quiz.isAnon, this.props.isLoggedIn);
     return (
-      <div>
-        {(this.props.success === null || this.props.loading) ? <Spinner />
-          :
-          <div className='centered'>
-            {!Object.keys(this.state.currentQuestion).length ?
-              <div>
-                <h2>Quiz name: {this.props.quiz.title}</h2>
-                <p>Last modified: {this.props.quiz.date}</p>
-                <Button
-                  onClick={this.startQuiz}
-                  bsSize='lg'
-                  bsStyle='primary'
-                  disabled={!(this.props.isLoggedIn || this.props.quiz.isAnon)}
-                >
-                  Start
+      <div>{(this.props.success === null || this.props.loading) ? <Spinner /> :
+      <div className="centered">
+        {!Object.keys(this.state.currentQuestion).length ?
+            <div>
+              <h2>Quiz name: {this.props.quiz.title}</h2>
+              <p>Last modified: {this.props.quiz.date}</p>
+              <Button
+                onClick={this.startQuiz}
+                bsSize="lg"
+                bsStyle="primary"
+                disabled={!(this.props.isLoggedIn || this.props.quiz.isAnon)}
+              >
+                Start
                 </Button>
-              </div>
-              :
-              <Col md={8} lg={6} mdOffset={2} lgOffset={4}>
-                <Question
-                  sendAnswers={this.getAnswers}
-                  answer={this.getAnswer()}
-                  question={this.state.currentQuestion || null}
-                  index={this.state.prevQuestions.length}
-                />
-                <Progressbar current={this.state.prevQuestions.length} length={this.props.quiz.questions.length}> </Progressbar>
-                <div className={'quiz-nav'}>
+            </div>
+            :
+            <Col md={8} lg={6} mdOffset={2} lgOffset={4}>
+              <Question
+                sendAnswers={this.getAnswers}
+                answer={this.getAnswer()}
+                question={this.state.currentQuestion || null}
+                index={this.state.prevQuestions.length}
+              />
+              <Progressbar
+                current={this.state.prevQuestions.length}
+                length={this.props.quiz.questions.length}
+              />
+              <div className={'quiz-nav'}>
+                <Button
+                  onClick={this.prevQuestion}
+                  disabled={!this.state.prevQuestions.length}
+                  bsSize="lg"
+                  bsStyle="primary"
+                  className="left"
+                >Prev</Button>
+                {this.state.nextQuestions.length ?
                   <Button
-                    onClick={this.prevQuestion}
-                    disabled={!this.state.prevQuestions.length}
-                    bsSize='lg'
-                    bsStyle='primary'
-                    className={'left'}>Prev</Button>
-                  {this.state.nextQuestions.length ?
-                    <Button
-                      onClick={this.nextQuestion}
-                      disabled={this.state.currentQuestion.isRequired && !this.state.answerIsValid}
-                      bsSize='lg'
-                      bsStyle='primary'
-                      className={'right'}>Next</Button>
-                    :
-                    <Button
-                      onClick={this.finishQuiz}
-                      disabled={!this.state.answerIsValid}
-                      bsSize='lg' bsStyle='primary'
-                      className={'right'}>Finish</Button>
-                  }
-                </div>
-              </Col>
-            }
-          </div>
-        }
+                    onClick={this.nextQuestion}
+                    disabled={this.state.currentQuestion.isRequired && !this.state.answerIsValid}
+                    bsSize="lg"
+                    bsStyle="primary"
+                    className="right"
+                  >Next</Button>
+                  :
+                  <Button
+                    onClick={this.finishQuiz}
+                    disabled={!this.state.answerIsValid}
+                    bsSize="lg"
+                    bsStyle="primary"
+                    className="right"
+                  >Finish</Button>
+                }
+              </div>
+            </Col>
+          }
       </div>
-    )
+      }
+      </div>
+    );
   }
 }
 
-const mapStateToProps = (store) => {
-  return {
-    quiz: store.quizReducer.quiz,
-    loading: store.quizReducer.loading,
-    success: store.quizReducer.success,
-    isLoggedIn: store.loginReducer.isLoggedIn,
-  }
-}
+const mapStateToProps = store => ({
+  quiz: store.quizReducer.quiz,
+  loading: store.quizReducer.loading,
+  success: store.quizReducer.success,
+  isLoggedIn: store.loginReducer.isLoggedIn,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    get: (id) => getQuiz(id)(dispatch),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  get: id => getQuiz(id)(dispatch),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Quiz)
+export default connect(mapStateToProps, mapDispatchToProps)(Quiz);

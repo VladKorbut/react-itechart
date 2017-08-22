@@ -14,5 +14,5 @@ ReactDOM.render(
   <Provider store={store}>
     {Routing}
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );

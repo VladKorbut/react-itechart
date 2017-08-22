@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import propTypes from 'prop-types'
-import { Checkbox, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
-import Fa from 'react-fontawesome'
-import RatingStars from 'react-rating'
-import { STARS } from '../../../types/questions'
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import { Checkbox, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap';
+import Fa from 'react-fontawesome';
+import RatingStars from 'react-rating';
+import { STARS } from '../../../types/questions';
 
 class Single extends Component {
   constructor() {

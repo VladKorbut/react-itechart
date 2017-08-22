@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import { browserHistory } from 'react-router'
-import { connect } from 'react-redux'
-import { Navbar, Nav, Grid, NavItem } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Link } from 'react-router'
-import { logout } from './actions/login'
-import storage from './localStorage/storage'
+import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { Navbar, Nav, Grid, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router';
+import { logout } from './actions/login';
+import storage from './localStorage/storage';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       login: storage.getUser().login,
-    }
+    };
   }
   componentWillReceiveProps() {
-    this.setState({ login: storage.getUser().login })
+    this.setState({ login: storage.getUser().login });
   }
   logout = () => {
     this.props.logout();
@@ -52,7 +52,8 @@ class App extends Component {
                   }
                 </Nav>
                 <Navbar.Text pullRight>
-                  Hello, {this.props.user.login} <Navbar.Link onClick={this.logout}>Logout</Navbar.Link>
+                  Hello, {this.props.user.login}
+                  <Navbar.Link onClick={this.logout}> Logout</Navbar.Link>
                 </Navbar.Text>
               </div>
               :
@@ -67,7 +68,7 @@ class App extends Component {
             }
           </Navbar.Collapse>
         </Navbar>
-        <Grid bsClass='container'>
+        <Grid bsClass="container">
           {this.props.children}
         </Grid>
       </div>
@@ -75,16 +76,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (store) => {
-  return {
-    user: store.loginReducer
-  }
-}
+const mapStateToProps = store => ({
+  user: store.loginReducer,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logout: () => logout()(dispatch)
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  logout: () => logout()(dispatch),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);

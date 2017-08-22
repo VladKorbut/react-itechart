@@ -6,7 +6,7 @@ import {
 
 import quizdb from '../db/quiz';
 
-export const getQuiz = (id) => (dispatch) => {
+export const getQuiz = id => (dispatch) => {
   dispatch({ type: QUIZ_LOADING });
   return quizdb.getSingle(id)
     .then((quiz) => {

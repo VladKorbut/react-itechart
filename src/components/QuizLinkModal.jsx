@@ -48,6 +48,6 @@ QuizLinkModal.propTypes = {
   quizId: propTypes.number,
   show: propTypes.bool,
   close: propTypes.func,
-}
+};
 
 export default QuizLinkModal;

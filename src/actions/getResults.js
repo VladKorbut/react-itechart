@@ -6,7 +6,7 @@ import {
 
 import results from '../db/results';
 
-export const getResults = (quizId) => (dispatch) => {
+export const getResults = quizId => (dispatch) => {
   dispatch({ type: RESULTS_LOADING });
   results.get(quizId)
     .then((res) => {

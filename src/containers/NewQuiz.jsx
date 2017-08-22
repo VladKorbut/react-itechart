@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import propTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
-import { FormControl, Col, Button, Row, Clearfix } from 'react-bootstrap'
-import quiz from '../db/quiz'
-import Questions from './questions/Questions'
-import QuizLinkModal from '../components/QuizLinkModal'
-import Settings from '../components/Settings'
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import { FormControl, Col, Button, Row, Clearfix } from 'react-bootstrap';
+import quiz from '../db/quiz';
+import Questions from './questions/Questions';
+import QuizLinkModal from '../components/QuizLinkModal';
+import Settings from '../components/Settings';
 
 class NewQuiz extends Component {
   constructor() {
@@ -19,26 +19,26 @@ class NewQuiz extends Component {
       questions: [],
       showModal: false,
       insertedQuiz: 0,
-    }
+    };
   }
   componentWillMount() {
     if (!this.props.isLoggedIn) {
       browserHistory.push('/login');
     }
   }
-  componentDidMount() {
+  componentWillReceiveProps(props) {
     if (this.props.quiz) {
       this.setState({
-        id: this.props.quiz.id,
-        title: this.props.quiz.title,
-        isAnon: this.props.quiz.isAnon,
-        isRand: this.props.quiz.isRand,
-        questions: this.props.quiz.questions,
-      })
+        id: props.quiz.id,
+        title: props.quiz.title,
+        isAnon: props.quiz.isAnon,
+        isRand: props.quiz.isRand,
+        questions: props.quiz.questions,
+      });
     }
   }
   titleHandler = (e) => {
-    this.setState({ title: e.target.value })
+    this.setState({ title: e.target.value });
   }
   anonHandler = (e) => {
     this.setState({ isAnon: e.target.checked });
@@ -46,34 +46,34 @@ class NewQuiz extends Component {
   randHandler = (e) => {
     this.setState({ isRand: e.target.checked });
   }
-  addQuestion = (type) => () => {
-    let questions = [...this.state.questions];
-    questions.push({ title: '', type: type, isRequired: true, options: [] });
-    this.setState({ questions: questions });
+  addQuestion = type => () => {
+    const questions = [...this.state.questions];
+    questions.push({ title: '', type, isRequired: true, options: [] });
+    this.setState({ questions });
   }
   editQuestion = (index, question) => {
-    let questions = [...this.state.questions];
+    const questions = [...this.state.questions];
     questions[index] = Object.assign(questions[index], question);
-    this.setState({ questions: questions });
+    this.setState({ questions });
   }
   deleteQuestion = (index) => {
-    let questions = [...this.state.questions];
+    const questions = [...this.state.questions];
     questions.splice(index, 1);
-    this.setState({ questions: questions });
+    this.setState({ questions });
   }
   getButtonState = () => {
     let answersIsValid = true;
-    this.state.questions.forEach((item, i) => {
+    this.state.questions.forEach((item) => {
       if (!item.isValid) {
         answersIsValid = false;
       }
-    })
+    });
     return !(this.state.title.length && this.state.questions.length && answersIsValid);
   }
   createQuiz = () => {
     if (this.props.isLoggedIn) {
       quiz.create(this.state)
-        .then(res => {
+        .then((res) => {
           this.setState({
             insertedQuiz: (this.props.quiz && this.props.quiz.id) || res.insertId,
             showModal: true,
@@ -81,13 +81,12 @@ class NewQuiz extends Component {
             isAnon: false,
             isRand: false,
             questions: [],
-          })
+          });
         })
         .catch((error) => {
           throw new Error(error);
-        })
+        });
     } else {
-      alert(`You're not logged in!`);
       browserHistory.push('/login');
     }
   }
@@ -101,7 +100,7 @@ class NewQuiz extends Component {
     return (
       <Clearfix>
         <h2>{this.props.edit ? 'Edit' : 'Create'} Quiz</h2>
-        <Col md={3} mdPush={9} className='sticky'>
+        <Col md={3} mdPush={9} className="sticky">
           <Settings
             addQuestion={this.addQuestion}
             anonHandler={this.anonHandler}
@@ -138,9 +137,13 @@ class NewQuiz extends Component {
             />
           </Row>
         </Col>
-        <QuizLinkModal quizId={this.state.insertedQuiz} show={this.state.showModal} close={this.closeModal} />
+        <QuizLinkModal
+          quizId={this.state.insertedQuiz}
+          show={this.state.showModal}
+          close={this.closeModal}
+        />
       </Clearfix>
-    )
+    );
   }
 }
 
@@ -148,12 +151,10 @@ NewQuiz.propTypes = {
   edit: propTypes.bool,
   quiz: propTypes.object,
   isLoggedIn: propTypes.bool,
-}
+};
 
-const mapStateToProps = (store) => {
-  return {
-    isLoggedIn: store.loginReducer.isLoggedIn
-  }
-}
+const mapStateToProps = store => ({
+  isLoggedIn: store.loginReducer.isLoggedIn,
+});
 
-export default connect(mapStateToProps, null)(NewQuiz)
+export default connect(mapStateToProps, null)(NewQuiz);

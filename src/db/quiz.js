@@ -71,7 +71,7 @@ const quiz = {
     LEFT JOIN quiz_result
     ON quizzes.id = quiz_result.quiz_id
     GROUP BY quizzes.id`)
-      .then((res) => processQuizzes([...res.rows]))
+      .then(res => processQuizzes([...res.rows]))
       .catch((error) => {
         throw new Error(error);
       });

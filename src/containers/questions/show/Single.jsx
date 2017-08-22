@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import propTypes from 'prop-types'
-import { FormGroup, FormControl, Panel } from 'react-bootstrap'
-import { STARS } from '../../../types/questions'
-import RatingStars from 'react-rating'
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import RatingStars from 'react-rating';
+import { FormGroup, FormControl, Panel } from 'react-bootstrap';
+import { STARS } from '../../../types/questions';
 
 class Single extends Component {
   constructor() {
@@ -45,7 +45,7 @@ class Single extends Component {
           </FormGroup>
         </Panel>
       </div>
-    )
+    );
   }
 }
 
@@ -58,6 +58,6 @@ Single.propTypes = {
   index: propTypes.number,
   question: propTypes.object,
   sendAnswers: propTypes.func,
-}
+};
 
-export default Single
+export default Single;

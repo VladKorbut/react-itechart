@@ -16,34 +16,25 @@ class Login extends Component {
       password: '',
       loginIsValid: null,
       passwordIsValid: null,
-    }
+    };
   }
   componentWillMount() {
     if (this.props.user.isLoggedIn) {
       browserHistory.push('/');
     }
   }
+  getButtonDisableState = () => !(this.state.loginIsValid && this.state.passwordIsValid);
 
-  submitFrom = () => {
-    getUser(this.state.login, this.state.password).then((data) => {
-      if (!data.rows.length) {
-        alert('Password is incorrect');
-        this.setState({ password: '', passwordIsValid: null });
-      } else {
-        let user = {
-          id: data.rows[0].id,
-          login: data.rows[0].login,
-          isAdmin: cv.strToBool(data.rows[0].isAdmin),
-        };
-        this.props.login(user);
-        browserHistory.push('/')
-      }
-    })
+  getLoginValidationState = () => {
+    if (this.state.loginIsValid === null) return null;
+    return (this.state.loginIsValid ? 'success' : 'error');
   }
-  loginHandler = (e) => {
-    this.setState({ login: e.target.value });
-    this.loginValidate(e.target.value);
+
+  getPasswordValidationState = () => {
+    if (this.state.passwordIsValid === null) return null;
+    return (this.state.passwordIsValid ? 'success' : 'error');
   }
+
   loginValidate = (login) => {
     if (login.length) {
       users.getUserByLogin(login).then((data) => {
@@ -57,23 +48,36 @@ class Login extends Component {
       this.setState({ loginIsValid: false });
     }
   }
-  getLoginValidationState = () => {
-    if (this.state.loginIsValid === null) return null;
-    return (this.state.loginIsValid ? 'success' : 'error');
+
+  loginHandler = (e) => {
+    this.setState({ login: e.target.value });
+    this.loginValidate(e.target.value);
   }
+
   passwordHandler = (e) => {
     this.setState({
       password: e.target.value,
-      passwordIsValid: !!e.target.value
+      passwordIsValid: !!e.target.value,
     });
   }
-  getPasswordValidationState = () => {
-    if (this.state.passwordIsValid === null) return null;
-    return (this.state.passwordIsValid ? 'success' : 'error');
+
+  submitFrom = () => {
+    getUser(this.state.login, this.state.password).then((data) => {
+      if (!data.rows.length) {
+        alert('Password is incorrect');
+        this.setState({ password: '', passwordIsValid: null });
+      } else {
+        const user = {
+          id: data.rows[0].id,
+          login: data.rows[0].login,
+          isAdmin: cv.strToBool(data.rows[0].isAdmin),
+        };
+        this.props.login(user);
+        browserHistory.push('/');
+      }
+    });
   }
-  getButtonDisableState = (e) => {
-    return !(this.state.loginIsValid && this.state.passwordIsValid);
-  }
+
   render() {
     return (
       <Col xs={12} sm={8} smOffset={2} md={6} mdOffset={3}>
@@ -88,7 +92,7 @@ class Login extends Component {
           </FormGroup>
           <Button
             bsSize="large"
-            bsStyle='primary'
+            bsStyle="primary"
             onClick={this.submitFrom}
             disabled={this.getButtonDisableState()}
           >
@@ -96,25 +100,21 @@ class Login extends Component {
           </Button>
         </form>
       </Col>
-    )
+    );
   }
 }
 
 Login.propTypes = {
   user: propTypes.object,
-  login: propTypes.func
-}
+  login: propTypes.func,
+};
 
-const mapStateToProps = (store) => {
-  return {
-    user: store.loginReducer
-  }
-}
+const mapStateToProps = store => ({
+  user: store.loginReducer,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    login: (user) => login(user)(dispatch)
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  login: user => login(user)(dispatch),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import propTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
-import { FormGroup, ControlLabel, FormControl, Col, Button, Checkbox } from 'react-bootstrap'
-import { login } from '../actions/login'
-import register from '../db/register'
-import users from '../db/users.js'
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import { FormGroup, ControlLabel, FormControl, Col, Button, Checkbox } from 'react-bootstrap';
+import { login } from '../actions/login';
+import register from '../db/register';
+import users from '../db/users';
 
 class Register extends Component {
   constructor() {
@@ -18,7 +18,7 @@ class Register extends Component {
       loginIsValid: null,
       emailIsValid: null,
       passwordIsValid: null,
-    }
+    };
   }
   componentWillMount() {
     if (this.props.isLoggedIn) {
@@ -30,7 +30,7 @@ class Register extends Component {
       login: this.state.login,
       email: this.state.email,
       password: this.state.password,
-      isAdmin: this.state.isAdmin
+      isAdmin: this.state.isAdmin,
     })
       .then((data) => {
         this.props.login({ id: data.insertId, login: this.state.login });
@@ -42,9 +42,9 @@ class Register extends Component {
           loginIsValid: null,
           emailIsValid: null,
           passwordIsValid: null,
-        })
+        });
         browserHistory.push('/');
-      })
+      });
   }
   loginHandler = (e) => {
     this.setState({ login: e.target.value });
@@ -83,7 +83,7 @@ class Register extends Component {
   passwordHandler = (e) => {
     this.setState({
       password: e.target.value,
-      passwordIsValid: !!e.target.value
+      passwordIsValid: !!e.target.value,
     });
   }
   getPasswordValidationState = () => {
@@ -93,9 +93,8 @@ class Register extends Component {
   checkboxHandler = (e) => {
     this.setState({ isAdmin: e.target.checked });
   }
-  getButtonDisableState = (e) => {
-    return !(this.state.emailIsValid && this.state.loginIsValid && this.state.passwordIsValid);
-  }
+  getButtonDisableState = () => !(this.state.emailIsValid
+    && this.state.loginIsValid && this.state.passwordIsValid)
   render() {
     return (
       <Col xs={12} sm={8} smOffset={2} md={6} mdOffset={3}>
@@ -116,29 +115,25 @@ class Register extends Component {
             <Checkbox onChange={this.checkboxHandler} checked={this.state.isAdmin}>
               Are you admin?
           </Checkbox>
-            <Button bsSize="large" bsStyle='primary' onClick={this.submitFrom} disabled={this.getButtonDisableState()}>Register</Button>
+            <Button bsSize="large" bsStyle="primary" onClick={this.submitFrom} disabled={this.getButtonDisableState()}>Register</Button>
           </FormGroup>
         </form>
       </Col>
-    )
+    );
   }
 }
 
 Register.propTypes = {
   isLoggedIn: propTypes.bool,
   login: propTypes.func,
-}
+};
 
-const mapStateToProps = (store) => {
-  return {
-    isLoggedIn: store.loginReducer.isLoggedIn
-  }
-}
+const mapStateToProps = store => ({
+  isLoggedIn: store.loginReducer.isLoggedIn,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    login: (user) => login(user)(dispatch),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  login: user => login(user)(dispatch),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

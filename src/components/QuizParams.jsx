@@ -19,6 +19,6 @@ function QuizParams(props) {
 QuizParams.propTypes = {
   isAnon: propTypes.bool,
   randHandler: propTypes.func,
-}
+};
 
-export default QuizParams
+export default QuizParams;

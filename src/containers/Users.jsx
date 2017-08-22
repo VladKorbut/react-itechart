@@ -25,14 +25,12 @@ class Users extends Component {
 Users.propTypes = {
   users: propTypes.array,
   loading: propTypes.bool,
-  success: propTypes.bool,
   user: propTypes.object,
 };
 
 const mapStateToProps = store => ({
   users: store.usersReducer.users,
   loading: store.usersReducer.loading,
-  success: store.usersReducer.success,
   user: store.loginReducer,
 });
 

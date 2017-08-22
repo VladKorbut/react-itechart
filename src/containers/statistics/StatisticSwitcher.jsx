@@ -1,10 +1,10 @@
-import React from 'react'
-import { CHECKBOX, RADIO, STARS, TEXT } from '../../types/questions'
-import {Thumbnail} from 'react-bootstrap'
-import Checkbox from './types/Checkbox'
-import Radio from './types/Radio'
-import Stars from './types/Stars'
-import Text from './types/Text'
+import React from 'react';
+import { Thumbnail } from 'react-bootstrap';
+import { CHECKBOX, RADIO, STARS, TEXT } from '../../types/questions';
+import Checkbox from './types/Checkbox';
+import Radio from './types/Radio';
+import Stars from './types/Stars';
+import Text from './types/Text';
 
 function StatisticSwitcher(props) {
   const types = {
@@ -12,8 +12,8 @@ function StatisticSwitcher(props) {
     [RADIO]: <Radio {...props} />,
     [STARS]: <Stars {...props} />,
     [TEXT]: <Text {...props} />,
-  }
-  return <Thumbnail>{types[props.question.type]}</Thumbnail>
+  };
+  return <Thumbnail>{types[props.question.type]}</Thumbnail>;
 }
 
-export default StatisticSwitcher
+export default StatisticSwitcher;

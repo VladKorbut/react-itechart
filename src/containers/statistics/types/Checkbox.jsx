@@ -1,18 +1,18 @@
-import React from 'react'
-import { Bar } from 'react-chartjs-2'
-import getChartData, { percentage } from '../../../common/graphs'
+import React from 'react';
+import { Bar } from 'react-chartjs-2';
+import getChartData, { percentage } from '../../../common/graphs';
 
 const countAnswers = (answers, optionId) => {
   let count = 0;
-  answers.forEach(item => {
-    item.value.forEach(value => {
+  answers.forEach((item) => {
+    item.value.forEach((value) => {
       if (value === optionId) {
         ++count;
       }
-    })
-  })
+    });
+  });
   return count;
-}
+};
 
 function Checkbox(props) {
   return (
@@ -20,9 +20,9 @@ function Checkbox(props) {
       <h4>{props.question.title}</h4>
       <ul>
         {
-          props.question.options.map((option, i) => {
-            return <li key={i}>{option.value} - {countAnswers(props.question.answers, option.id)}</li>
-          })
+          props.question.options.map((option, i) => (<li key={i}>
+            {option.value} - {countAnswers(props.question.answers, option.id)}
+          </li>))
         }
       </ul>
       <Bar
@@ -30,7 +30,7 @@ function Checkbox(props) {
         options={percentage}
       />
     </div>
-  )
+  );
 }
 
-export default Checkbox
+export default Checkbox;

@@ -4,7 +4,7 @@ import {
 } from '../types/actions/login';
 import storage from '../localStorage/storage';
 
-export const login = (user) => (dispatch) => {
+export const login = user => (dispatch) => {
   storage.pushUser(user);
   dispatch({
     type: LOGIN,
