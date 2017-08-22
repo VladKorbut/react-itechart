@@ -42,23 +42,11 @@ const processQuiz = (quiz) => {
 }
 
 const itemExist = (arr, id) => {
-  let result = false;
-  arr.forEach((item) => {
-    if (item.id === id) {
-      result = true;
-    }
-  })
-  return result;
+  return arr.find((item) => item.id === id);
 }
 
 const indexOfById = (arr, id) => {
-  let index = -1;
-  arr.forEach((item, i) => {
-    if (item.id === id) {
-      index = i;
-    }
-  })
-  return index;
+  return arr.findIndex((item) => item.id === id);
 }
 
 export default processQuiz

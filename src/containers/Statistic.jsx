@@ -33,6 +33,4 @@ class Statistic extends Component {
   }
 }
 
-
-
 export default Statistic

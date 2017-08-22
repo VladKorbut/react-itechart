@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { FormGroup, ControlLabel, FormControl, Col, Button, Checkbox } from 'react-bootstrap'
@@ -30,20 +31,20 @@ class Register extends Component {
       email: this.state.email,
       password: this.state.password,
       isAdmin: this.state.isAdmin
-    }
-    ).then((data) => {
-      this.props.login({id: data.insertId, login: this.state.login});
-      this.setState({
-        login: '',
-        email: '',
-        password: '',
-        isAdmin: false,
-        loginIsValid: null,
-        emailIsValid: null,
-        passwordIsValid: null,
-      })
-      browserHistory.push('/');
     })
+      .then((data) => {
+        this.props.login({ id: data.insertId, login: this.state.login });
+        this.setState({
+          login: '',
+          email: '',
+          password: '',
+          isAdmin: false,
+          loginIsValid: null,
+          emailIsValid: null,
+          passwordIsValid: null,
+        })
+        browserHistory.push('/');
+      })
   }
   loginHandler = (e) => {
     this.setState({ login: e.target.value });
@@ -52,11 +53,7 @@ class Register extends Component {
   loginValidate = (login) => {
     if (login.length) {
       users.getUserByLogin(login).then((data) => {
-        if (data.rows.length) {
-          this.setState({ loginIsValid: false });
-        } else {
-          this.setState({ loginIsValid: true });
-        }
+        this.setState({ loginIsValid: !data.rows.length });
       });
     } else {
       this.setState({ loginIsValid: false });
@@ -125,6 +122,11 @@ class Register extends Component {
       </Col>
     )
   }
+}
+
+Register.propTypes = {
+  isLoggedIn: propTypes.bool,
+  login: propTypes.func,
 }
 
 const mapStateToProps = (store) => {

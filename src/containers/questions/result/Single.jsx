@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { FormGroup, FormControl, Panel } from 'react-bootstrap'
 import { STARS } from '../../../types/questions'
 import RatingStars from 'react-rating'
@@ -38,6 +39,11 @@ class Single extends Component {
       </div>
     )
   }
+}
+
+Single.propTypes = {
+  index: propTypes.number,
+  question: propTypes.object,
 }
 
 export default Single

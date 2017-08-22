@@ -1,5 +1,6 @@
 import React from 'react'
-import QuestionResult from './QuestionResult'
+import propTypes from 'prop-types'
+import QuestionResult from './QuestionResultSwitcher'
 
 function QuestionResults(props) {
   return (
@@ -17,5 +18,8 @@ function QuestionResults(props) {
   )
 }
 
+QuestionResults.propTypes = {
+  questions: propTypes.arrayOf(propTypes.object),
+}
 
 export default QuestionResults

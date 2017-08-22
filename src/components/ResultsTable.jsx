@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import { Link } from 'react-router'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import dc from '../common/dateConverter'
@@ -18,6 +19,10 @@ function ResultsTable(props) {
       <TableHeaderColumn dataField='id' dataSort dataFormat={formatLink}>Answers</TableHeaderColumn>
     </BootstrapTable>
   );
+}
+
+ResultsTable.propTypes = {
+  data: propTypes.arrayOf(propTypes.object)
 }
 
 export default ResultsTable;

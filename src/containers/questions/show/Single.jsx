@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { FormGroup, FormControl, Panel } from 'react-bootstrap'
 import { STARS } from '../../../types/questions'
 import RatingStars from 'react-rating'
@@ -46,6 +47,17 @@ class Single extends Component {
       </div>
     )
   }
+}
+
+Single.propTypes = {
+  answer: propTypes.oneOfType([
+    propTypes.string,
+    propTypes.number,
+    propTypes.array,
+  ]),
+  index: propTypes.number,
+  question: propTypes.object,
+  sendAnswers: propTypes.func,
 }
 
 export default Single

@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import { Checkbox, Row } from 'react-bootstrap'
 
 function QuizParams(props) {
@@ -13,6 +14,11 @@ function QuizParams(props) {
       </Checkbox>
     </Row>
   )
+}
+
+QuizParams.propTypes = {
+  isAnon: propTypes.bool,
+  randHandler: propTypes.func,
 }
 
 export default QuizParams

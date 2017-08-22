@@ -5,6 +5,8 @@
   "dependencies": {
     "chart.js": "^2.6.0",
     "google-map-react": "^0.24.0",
+    "prop-types": "^15.5.10",
+    "randomcolor": "^0.5.3",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.1",
     "react-bootstrap-table": "^3.5.1",

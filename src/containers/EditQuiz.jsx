@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import NewQuiz from './NewQuiz'
 import Spinner from '../components/Spinner'
@@ -17,6 +18,13 @@ class EditQuiz extends Component {
   render() {
     return (this.props.success === null || this.props.loading) ? <Spinner /> : <NewQuiz quiz={this.props.quiz} edit/>
   }
+}
+
+EditQuiz.propTypes = {
+  get: propTypes.func,
+  success: propTypes.bool,
+  loading: propTypes.bool,
+  quiz: propTypes.object,
 }
 
 const mapStateToProps = (store) => {

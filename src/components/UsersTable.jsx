@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { Button, Checkbox } from 'react-bootstrap'
@@ -48,6 +49,11 @@ function UserTable(props) {
       <TableHeaderColumn dataField='id' dataFormat={editButtons} >Setting</TableHeaderColumn>
     </BootstrapTable>
   )
+}
+
+UserTable.propTypes = {
+  user: propTypes.object,
+  data: propTypes.arrayOf(propTypes.object),
 }
 
 const mapStateToProps = (store) => {

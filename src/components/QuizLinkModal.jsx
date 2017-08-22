@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { Modal, FormGroup, FormControl, Button } from 'react-bootstrap'
 import CopyToClipboard from 'react-copy-to-clipboard'
 
@@ -41,6 +42,12 @@ class QuizLinkModal extends Component {
       </Modal>
     );
   }
+}
+
+QuizLinkModal.propTypes = {
+  quizId: propTypes.number,
+  show: propTypes.bool,
+  close: propTypes.func,
 }
 
 export default QuizLinkModal

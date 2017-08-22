@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { Button, ButtonGroup, Row } from 'react-bootstrap'
 import { CHECKBOX, RADIO, STARS, TEXT } from '../types/questions'
 import Fa from 'react-fontawesome'
+import throttle from '../common/throttle'
 
 const checkWidthLarge = (width) => width > 991;
 
@@ -11,18 +13,19 @@ class AddQuestions extends Component {
     this.state = {
       isVertical: checkWidthLarge(window.innerWidth)
     }
+    this.throttler = throttle(this.changeVerticalState, 50);
   }
 
-  changeVerticalState = (e) => {
-    this.setState({ isVertical: checkWidthLarge(e.target.innerWidth) })
+  changeVerticalState = () => {
+    this.setState({ isVertical: checkWidthLarge(window.innerWidth) })
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.changeVerticalState)
+    window.addEventListener('resize', this.throttler)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.changeVerticalState)
+    window.removeEventListener('resize', this.throttler)
   }
 
   render() {
@@ -51,5 +54,12 @@ class AddQuestions extends Component {
     )
   }
 }
+
+
+AddQuestions.propTypes = {
+  addQuestion: propTypes.func,
+}
+
+
 
 export default AddQuestions

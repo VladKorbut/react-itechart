@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import result from '../db/result'
-import QuestionsResults from './questions/QuestionsResultsSwitcher'
+import QuestionsResults from './questions/QuestionsResults'
 import Spinner from '../components/Spinner'
 
 class Result extends Component {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import UsersTable from '../components/UsersTable'
@@ -19,6 +20,13 @@ class Users extends Component {
       <Spinner /> :
       <UsersTable data={this.props.users} reload={this.props.get} />
   }
+}
+
+Users.propTypes = {
+  users: propTypes.array,
+  loading: propTypes.bool,
+  success: propTypes.bool,
+  user: propTypes.object,
 }
 
 const mapStateToProps = (store) => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { Button, Col } from 'react-bootstrap'
@@ -9,13 +10,7 @@ import createAnswers from '../db/answers'
 import Progressbar from '../components/Progressbar'
 
 const indexOfAnswer = (answers, id) => {
-  let index = -1;
-  answers.forEach((item, i) => {
-    if (item.id === id) {
-      index = i;
-    }
-  })
-  return index;
+  return answers.findIndex((item) => item.id === id);
 }
 
 const randomizeArray = (arr) => arr.sort(() => (Math.random() - 0.5))

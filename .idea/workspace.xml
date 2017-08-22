@@ -2,14 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6807782b-b72e-4d8c-99bc-9749aa546448" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Routing.jsx" afterPath="$PROJECT_DIR$/src/Routing.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/processResult.js" afterPath="$PROJECT_DIR$/src/common/processResult.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/getQuiz.js" afterPath="$PROJECT_DIR$/src/actions/getQuiz.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/getQuizzes.js" afterPath="$PROJECT_DIR$/src/actions/getQuizzes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/getResults.js" afterPath="$PROJECT_DIR$/src/actions/getResults.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/getUsers.js" afterPath="$PROJECT_DIR$/src/actions/getUsers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/login.js" afterPath="$PROJECT_DIR$/src/actions/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/converter.js" afterPath="$PROJECT_DIR$/src/common/converter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/graphs.js" afterPath="$PROJECT_DIR$/src/common/graphs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/processQuiz.js" afterPath="$PROJECT_DIR$/src/common/processQuiz.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/AddQuestions.jsx" afterPath="$PROJECT_DIR$/src/components/AddQuestions.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home.jsx" afterPath="$PROJECT_DIR$/src/components/Home.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Progressbar.jsx" afterPath="$PROJECT_DIR$/src/components/Progressbar.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/QuizLinkModal.jsx" afterPath="$PROJECT_DIR$/src/components/QuizLinkModal.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/QuizParams.jsx" afterPath="$PROJECT_DIR$/src/components/QuizParams.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/QuizzesTable.jsx" afterPath="$PROJECT_DIR$/src/components/QuizzesTable.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/ResultsTable.jsx" afterPath="$PROJECT_DIR$/src/components/ResultsTable.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Settings.jsx" afterPath="$PROJECT_DIR$/src/components/Settings.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/UsersTable.jsx" afterPath="$PROJECT_DIR$/src/components/UsersTable.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/EditQuiz.jsx" afterPath="$PROJECT_DIR$/src/containers/EditQuiz.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Login.jsx" afterPath="$PROJECT_DIR$/src/containers/Login.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/NewQuiz.jsx" afterPath="$PROJECT_DIR$/src/containers/NewQuiz.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Quiz.jsx" afterPath="$PROJECT_DIR$/src/containers/Quiz.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Quizzes.jsx" afterPath="$PROJECT_DIR$/src/containers/Quizzes.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Register.jsx" afterPath="$PROJECT_DIR$/src/containers/Register.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Result.js" afterPath="$PROJECT_DIR$/src/containers/Result.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/db/result.js" afterPath="$PROJECT_DIR$/src/db/result.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/containers/MyQuizzes.jsx" afterPath="$PROJECT_DIR$/src/containers/Quizzes.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Results.jsx" afterPath="$PROJECT_DIR$/src/containers/Results.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Statistic.jsx" afterPath="$PROJECT_DIR$/src/containers/Statistic.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Users.jsx" afterPath="$PROJECT_DIR$/src/containers/Users.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yarn.lock" afterPath="$PROJECT_DIR$/yarn.lock" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/containers/questions/QuestionResult.jsx" afterPath="$PROJECT_DIR$/src/containers/questions/QuestionResultSwitcher.jsx" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/containers/questions/QuestionsResultsSwitcher.jsx" afterPath="$PROJECT_DIR$/src/containers/questions/QuestionsResults.jsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,93 +47,26 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="converter.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/converter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dateConverter.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/dateConverter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="processQuiz.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/processQuiz.js">
+      <file leaf-file-name="QuestionSwitcher.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/containers/questions/QuestionSwitcher.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="processQuizzes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/processQuizzes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="processResult.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/processResult.js">
+      <file leaf-file-name="QuestionsResults.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/containers/questions/QuestionsResults.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#0#65#0" expanded="true" />
-                <marker date="1503058170601" expanded="true" signature="1207:2548" ph="{...}" />
-                <marker date="1503058170601" expanded="true" signature="1482:1886" ph="{...}" />
-                <marker date="1503058170601" expanded="true" signature="1533:1856" ph="{...}" />
-                <marker date="1503058170601" expanded="true" signature="1862:1882" ph="{...}" />
-                <marker date="1503058170601" expanded="true" signature="1910:2216" ph="{...}" />
-                <marker date="1503058170601" expanded="true" signature="2042:2212" ph="{...}" />
-                <marker date="1503058170601" expanded="true" signature="2115:2205" ph="{&quot;id&quot;: item.answer_id...}" />
-                <marker date="1503058170601" expanded="true" signature="2242:2501" ph="{...}" />
-                <marker date="1503058170601" expanded="true" signature="2362:2497" ph="{...}" />
-                <marker date="1503058170601" expanded="true" signature="2435:2489" ph="{&quot;id&quot;: item.option_id...}" />
-                <marker date="1503058170601" expanded="true" signature="2588:2799" ph="{...}" />
-                <marker date="1503058170601" expanded="true" signature="2606:2797" ph="{...}" />
-                <marker date="1503058170601" expanded="true" signature="2626:2671" ph="..." />
-                <marker date="1503058170601" expanded="true" signature="2687:2703" ph="..." />
-                <marker date="1503058170601" expanded="true" signature="2719:2735" ph="..." />
-                <marker date="1503058170601" expanded="true" signature="2750:2765" ph="..." />
-                <marker date="1503058170601" expanded="true" signature="2778:2793" ph="..." />
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="processUser.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/processUser.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="processUsers.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/common/processUsers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -124,6 +80,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/containers/NewQuiz.jsx" />
+        <option value="$PROJECT_DIR$/src/containers/questions/QuestionsResults.jsx" />
       </list>
     </option>
   </component>
@@ -202,6 +159,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="containers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-itechart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-itechart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="containers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="questions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -322,21 +301,22 @@
       <workItem from="1502963088389" duration="1271000" />
       <workItem from="1503046532118" duration="597000" />
       <workItem from="1503060493066" duration="638000" />
+      <workItem from="1503393661068" duration="62000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4816000" />
+    <option name="totallyTimeSpent" value="4878000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -383,6 +363,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
+            <marker date="1503392016411" expanded="true" signature="1065:1069" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -401,23 +382,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#65#0" expanded="true" />
-            <marker date="1503058170601" expanded="true" signature="1207:2548" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1482:1886" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1533:1856" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1862:1882" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1910:2216" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2042:2212" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2115:2205" ph="{&quot;id&quot;: item.answer_id...}" />
-            <marker date="1503058170601" expanded="true" signature="2242:2501" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2362:2497" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2435:2489" ph="{&quot;id&quot;: item.option_id...}" />
-            <marker date="1503058170601" expanded="true" signature="2588:2799" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2606:2797" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2626:2671" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2687:2703" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2719:2735" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2750:2765" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2778:2793" ph="..." />
+            <marker date="1503325176751" expanded="true" signature="1207:1435" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -460,6 +425,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
+            <marker date="1503392016411" expanded="true" signature="1065:1069" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -478,23 +444,69 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#65#0" expanded="true" />
-            <marker date="1503058170601" expanded="true" signature="1207:2548" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1482:1886" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1533:1856" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1862:1882" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1910:2216" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2042:2212" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2115:2205" ph="{&quot;id&quot;: item.answer_id...}" />
-            <marker date="1503058170601" expanded="true" signature="2242:2501" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2362:2497" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2435:2489" ph="{&quot;id&quot;: item.option_id...}" />
-            <marker date="1503058170601" expanded="true" signature="2588:2799" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2606:2797" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2626:2671" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2687:2703" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2719:2735" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2750:2765" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2778:2793" ph="..." />
+            <marker date="1503325176751" expanded="true" signature="1207:1435" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processUsers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/converter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/dateConverter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processQuiz.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <marker date="1503392016411" expanded="true" signature="1065:1069" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processQuizzes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/processResult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#65#0" expanded="true" />
+            <marker date="1503325176751" expanded="true" signature="1207:1435" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -656,6 +668,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
+            <marker date="1503392016411" expanded="true" signature="1065:1069" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -674,23 +687,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#65#0" expanded="true" />
-            <marker date="1503058170601" expanded="true" signature="1207:2548" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1482:1886" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1533:1856" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1862:1882" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="1910:2216" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2042:2212" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2115:2205" ph="{&quot;id&quot;: item.answer_id...}" />
-            <marker date="1503058170601" expanded="true" signature="2242:2501" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2362:2497" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2435:2489" ph="{&quot;id&quot;: item.option_id...}" />
-            <marker date="1503058170601" expanded="true" signature="2588:2799" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2606:2797" ph="{...}" />
-            <marker date="1503058170601" expanded="true" signature="2626:2671" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2687:2703" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2719:2735" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2750:2765" ph="..." />
-            <marker date="1503058170601" expanded="true" signature="2778:2793" ph="..." />
+            <marker date="1503325176751" expanded="true" signature="1207:1435" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -708,6 +705,26 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/questions/QuestionSwitcher.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/questions/QuestionsResults.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

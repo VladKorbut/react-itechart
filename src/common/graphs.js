@@ -13,7 +13,7 @@ const getAnswersLength = (answers, type) => {
 }
 
 const getNumberOfColours = (question) => {
-  if(question.type === STARS) {
+  if (question.type === STARS) {
     return 5;
   }
   return getAnswersLength(question.answers, question.type);
@@ -28,7 +28,7 @@ function getChartData(question, countAnswers, hue) {
         let percents = countAnswers(question.answers, option.id) * 100 / getAnswersLength(question.answers, question.type);
         return percents.toPrecision(3)
       }),
-      backgroundColor: randColor({ count: getNumberOfColours(question), hue: hue || '', luminosity: 'bright'}),
+      backgroundColor: randColor({ count: getNumberOfColours(question), hue: hue || '', luminosity: 'bright' }),
       borderWidth: 1,
     }]
   }
@@ -40,7 +40,7 @@ const horisontalPercentage = {
       ticks: {
         min: 0,
         max: 100,
-        callback: function (value) { return value + "%" }
+        callback: value => value + '%'
       },
       scaleLabel: {
         display: true,
@@ -56,7 +56,7 @@ const percentage = {
       ticks: {
         min: 0,
         max: 100,
-        callback: function (value) { return value + "%" }
+        callback: value => value + '%'
       },
       scaleLabel: {
         display: true,

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getResults } from '../actions/getResults'
 import ResultsTable from '../components/ResultsTable'
@@ -12,6 +13,12 @@ class Results extends Component {
   render() {
     return !this.props.success || this.props.loading ? <Spinner /> : <ResultsTable quizId={this.props.params.id} data={this.props.results} />
   }
+}
+
+Results.propTypes = {
+  results: propTypes.array,
+  loading: propTypes.bool,
+  success: propTypes.bool,
 }
 
 const mapStateToProps = (store) => {

@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import Question from './QuestionSwitcher'
 import {Alert} from 'react-bootstrap'
 
@@ -21,6 +22,10 @@ function Questions(props) {
       }
     </div>
   )
+}
+
+Question.propTypes = {
+  questions: propTypes.arrayOf(propTypes.object),
 }
 
 export default Questions

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { Checkbox, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import RatingStars from 'react-rating'
 import { STARS } from '../../../types/questions'
 
-class Rating extends Component {
+class Single extends Component {
   constructor() {
     super();
     this.state = {
@@ -75,4 +76,12 @@ class Rating extends Component {
   }
 }
 
-export default Rating
+Single.propTypes = {
+  edit: propTypes.bool,
+  index: propTypes.number,
+  question: propTypes.object,
+  editQuestion: propTypes.func,
+  deleteQuestion: propTypes.func,
+}
+
+export default Single

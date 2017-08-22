@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { FormGroup, ControlLabel, FormControl, Col, Button } from 'react-bootstrap'
@@ -96,6 +97,11 @@ class Login extends Component {
       </Col>
     )
   }
+}
+
+Login.propTypes = {
+  user: propTypes.object,
+  login: propTypes.func
 }
 
 const mapStateToProps = (store) => {

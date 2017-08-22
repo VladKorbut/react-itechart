@@ -8,17 +8,17 @@ import quiz from '../db/quiz'
 
 
 
-export const getQuizzes = (my) => dispatch => {
+export const getQuizzes = my => dispatch => {
   dispatch({ type: QUIZZES_LOADING });
 
   quiz.getMy()
-    .then((quizzes) => {
+    .then(quizzes => {
       dispatch({
         type: QUIZZES_SUCCESS,
         quizzes: quizzes,
       })
     })
-    .catch((error) => {
+    .catch(error => {
       dispatch({
         type: QUIZZES_ERROR,
       })

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { Checkbox, Radio, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import { CHECKBOX } from '../../../types/questions'
@@ -103,6 +104,14 @@ class Multiple extends Component {
       </Panel>
     )
   }
+}
+
+Multiple.propTypes = {
+  edit: propTypes.bool,
+  index: propTypes.number,
+  question: propTypes.object,
+  editQuestion: propTypes.func,
+  deleteQuestion: propTypes.func,
 }
 
 export default Multiple

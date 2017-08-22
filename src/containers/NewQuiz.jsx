@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { FormControl, Col, Button, Row, Clearfix } from 'react-bootstrap'
@@ -141,6 +142,12 @@ class NewQuiz extends Component {
       </Clearfix>
     )
   }
+}
+
+NewQuiz.propTypes = {
+  edit: propTypes.bool,
+  quiz: propTypes.object,
+  isLoggedIn: propTypes.bool,
 }
 
 const mapStateToProps = (store) => {

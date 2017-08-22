@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import { Link } from 'react-router'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { Button } from 'react-bootstrap'
@@ -44,6 +45,10 @@ function QuizzesTable(props) {
       <TableHeaderColumn dataField='id' dataFormat={editBtn}>Options</TableHeaderColumn>
     </BootstrapTable>
   )
+}
+
+QuizzesTable.propTypes = {
+  data: propTypes.arrayOf(propTypes.object)
 }
 
 export default QuizzesTable

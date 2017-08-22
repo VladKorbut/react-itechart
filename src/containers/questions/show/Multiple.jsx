@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { Checkbox, Radio, FormGroup, Panel } from 'react-bootstrap'
 import { CHECKBOX } from '../../../types/questions'
 
@@ -26,6 +27,7 @@ class Multiple extends Component {
     }
   }
   render() {
+    console.log(this.props.answer);
     return (
       <div>
         <Panel
@@ -42,7 +44,7 @@ class Multiple extends Component {
                 return (
                   <span key={index}>
                     {this.props.question.type === CHECKBOX ?
-                      <Checkbox onChange={this.setAnswer(option.id)} checked={this.props.answer.indexOf(option.id)+1}>{option.value}</Checkbox>
+                      <Checkbox onChange={this.setAnswer(option.id)} checked={this.props.answer.indexOf(option.id) + 1}>{option.value}</Checkbox>
                       :
                       <Radio onChange={this.setAnswer(option.id)} checked={this.props.answer === option.id} name="radioGroup">{option.value}</Radio>
                     }
@@ -55,6 +57,17 @@ class Multiple extends Component {
       </div>
     )
   }
+}
+
+Multiple.propTypes = {
+  answer: propTypes.oneOfType([
+    propTypes.number,
+    propTypes.array,
+    propTypes.string,
+  ]),
+  index: propTypes.number,
+  question: propTypes.object,
+  sendAnswers: propTypes.func,
 }
 
 export default Multiple

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { Checkbox, Radio, FormGroup, Panel } from 'react-bootstrap'
 import { CHECKBOX } from '../../../types/questions'
 
@@ -65,6 +66,11 @@ class Multiple extends Component {
       </div>
     )
   }
+}
+
+Multiple.propTypes = {
+  index: propTypes.number,
+  question: propTypes.object,
 }
 
 export default Multiple

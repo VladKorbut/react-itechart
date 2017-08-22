@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Alert } from 'react-bootstrap'
 import QuizzesTable from '../components/QuizzesTable'
@@ -21,6 +22,12 @@ class Quizzes extends Component {
       </div>
     )
   }
+}
+
+Quizzes.propTypes = {
+  quizzes: propTypes.arrayOf(propTypes.object),
+  loading: propTypes.bool,
+  success: propTypes.bool,
 }
 
 const mapStateToProps = (store) => {

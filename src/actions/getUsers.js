@@ -9,13 +9,13 @@ import users from '../db/users'
 export const getUsers = () => dispatch => {
   dispatch({ type: USERS_LOADING });
   users.get()
-    .then((users) => {
+    .then(users => {
       dispatch({
         type: USERS_SUCCESS,
         users: users
       })
     })
-    .catch((error) => {
+    .catch(error => {
       dispatch({
         type: USERS_ERROR
       })
