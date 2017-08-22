@@ -21,6 +21,11 @@ function Stars(props) {
   return (
     <div>
       <h4>{props.question.title}</h4>
+      {
+        props.question.answers.length !== props.passed ?
+          <p>Skipped: {props.question.answers.length - props.passed}</p>
+          : null
+      }
       <ul>
         {
           starsOptions.map((item, i) => (<li key={i}>

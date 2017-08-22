@@ -29,6 +29,7 @@ class Statistic extends Component {
               <StatisticSwitcher
                 key={question.id}
                 question={question}
+                passed={this.state.quiz.answers}
               />
             ))}
           </div>

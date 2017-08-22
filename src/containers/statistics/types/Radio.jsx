@@ -16,9 +16,14 @@ function Radio(props) {
   return (
     <div>
       <h4>{props.question.title}</h4>
+      {
+        props.question.answers.length !== props.passed ?
+          <p>Skipped: {props.question.answers.length - props.passed}</p>
+          : null
+      }
       <ul>
         {
-          props.question.options.map((option) => (<li key={option.id}>
+          props.question.options.map(option => (<li key={option.id}>
             {option.value} - {countAnswers(props.question.answers, option.id)}
           </li>))
         }

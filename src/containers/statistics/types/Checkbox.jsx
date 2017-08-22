@@ -18,6 +18,11 @@ function Checkbox(props) {
   return (
     <div>
       <h4>{props.question.title}</h4>
+      {
+        props.question.answers.length !== props.passed ?
+          <p>Skipped: {props.question.answers.length - props.passed}</p>
+          : null
+      }
       <ul>
         {
           props.question.options.map((option, i) => (<li key={i}>
