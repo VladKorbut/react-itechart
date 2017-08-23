@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Button } from 'react-bootstrap';
 import Fa from 'react-fontawesome';
@@ -20,9 +21,9 @@ const statLink = (id, row) => {
 
 
 const editBtn = (id, row) => (
-  <Link to={`/edit/${id}`}>
+  <LinkContainer to={`/edit/${id}`}>
     <Button disabled={!!row.answers}><Fa name="pencil" /></Button>
-  </Link>
+  </LinkContainer>
 );
 
 function QuizzesTable(props) {

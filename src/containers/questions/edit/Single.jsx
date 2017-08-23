@@ -13,21 +13,21 @@ class Single extends Component {
       isRequired: true,
       type: 0,
       isValid: false,
-    }
+    };
   }
   componentDidMount() {
     this.setState({
       title: this.props.question.title,
       isRequired: this.props.question.isRequired,
       type: this.props.question.type,
-    }, this.validateQuestion)
+    }, this.validateQuestion);
   }
   editQuestion = () => {
     this.props.editQuestion(this.props.index, this.state);
   }
   validateQuestion = () => {
     this.setState({
-      isValid: !!this.state.title.length
+      isValid: !!this.state.title.length,
     }, this.editQuestion);
   }
   titleHandler = (e) => {
@@ -84,4 +84,4 @@ Single.propTypes = {
   deleteQuestion: propTypes.func,
 }
 
-export default Single
+export default Single;

@@ -15,12 +15,12 @@ class Multiple extends Component {
       isValid: false,
     };
   }
-  componentWillReceiveProps(props) {
+  compomentDidMout() {
     this.setState({
-      options: props.question.options,
-      title: props.question.title,
-      isRequired: props.question.isRequired,
-      type: props.question.type,
+      options: this.props.question.options,
+      title: this.props.question.title,
+      isRequired: this.props.question.isRequired,
+      type: this.props.question.type,
     }, this.validateQuestion);
   }
 
@@ -66,7 +66,7 @@ class Multiple extends Component {
             <InputGroup.Addon>{this.props.index + 1}</InputGroup.Addon>
             <FormControl
               placeholder={'Question Title'}
-              value={this.state.title}
+              value={this.props.question.title}
               onChange={this.titleHandler}
             />
             <InputGroup.Button>
@@ -76,7 +76,7 @@ class Multiple extends Component {
         }
         footer={
           <Clearfix>
-            <Checkbox checked={this.state.isRequired} onChange={this.requiredHandler} className="pull-left">
+            <Checkbox checked={this.props.question.isRequired} onChange={this.requiredHandler} className="pull-left">
               Required
                 </Checkbox>
             <Button onClick={this.deleteQuestion} bsStyle="danger" className="pull-right"><Fa name="times" /></Button>
@@ -84,7 +84,7 @@ class Multiple extends Component {
         }
       >
         {
-          this.state.options.map((option, index) => (
+          this.props.question.options.map((option, index) => (
             <InputGroup key={index}>
               <InputGroup.Addon>
                 {this.props.question.type === CHECKBOX ?

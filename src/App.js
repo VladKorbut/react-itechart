@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Navbar, Nav, Grid, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Link } from 'react-router';
 import { logout } from './actions/login';
-import storage from './localStorage/storage';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      login: storage.getUser().login,
-    };
-  }
-  componentWillReceiveProps() {
-    this.setState({ login: storage.getUser().login });
+  shouldComponentUpdate(nextProps) {
+    if (this.props.isLoggedIn === nextProps.isLoggedIn) {
+      return true;
+    }
+    return false;
   }
   logout = () => {
     this.props.logout();

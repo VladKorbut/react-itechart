@@ -13,9 +13,8 @@ class QuizLinkModal extends Component {
   getLink() {
     if (this.props.quizId) {
       return `${window.location.host}/quiz/${this.props.quizId}`;
-    } else {
-      return '';
     }
+    return '';
   }
   render() {
     return (

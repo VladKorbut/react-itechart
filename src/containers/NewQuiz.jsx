@@ -26,14 +26,14 @@ class NewQuiz extends Component {
       browserHistory.push('/login');
     }
   }
-  componentWillReceiveProps(props) {
+  componentDidMount() {
     if (this.props.quiz) {
       this.setState({
-        id: props.quiz.id,
-        title: props.quiz.title,
-        isAnon: props.quiz.isAnon,
-        isRand: props.quiz.isRand,
-        questions: props.quiz.questions,
+        id: this.props.quiz.id,
+        title: this.props.quiz.title,
+        isAnon: this.props.quiz.isAnon,
+        isRand: this.props.quiz.isRand,
+        questions: this.props.quiz.questions,
       });
     }
   }
