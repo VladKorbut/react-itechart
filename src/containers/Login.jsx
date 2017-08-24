@@ -18,11 +18,6 @@ class Login extends Component {
       passwordIsValid: null,
     };
   }
-  componentWillMount() {
-    if (this.props.user.isLoggedIn) {
-      browserHistory.push('/');
-    }
-  }
   getButtonDisableState = () => !(this.state.loginIsValid && this.state.passwordIsValid);
 
   getLoginValidationState = () => {

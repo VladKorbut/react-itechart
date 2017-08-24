@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import UsersTable from '../components/UsersTable';
 import { getUsers } from '../actions/getUsers';
 import Spinner from '../components/Spinner';
 
 class Users extends Component {
-  componentWillMount() {
-    if (!this.props.user.isAdmin) {
-      browserHistory.push('/404');
-    }
-  }
   componentDidMount() {
     this.props.get();
   }

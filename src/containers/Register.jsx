@@ -20,11 +20,6 @@ class Register extends Component {
       passwordIsValid: null,
     };
   }
-  componentWillMount() {
-    if (this.props.isLoggedIn) {
-      browserHistory.push('/');
-    }
-  }
   submitFrom = () => {
     register({
       login: this.state.login,
@@ -33,7 +28,7 @@ class Register extends Component {
       isAdmin: this.state.isAdmin,
     })
       .then((data) => {
-        this.props.login({ id: data.insertId, login: this.state.login });
+        this.props.login({ id: data.insertId, login: this.state.login, isAdmin: this.state.isAdmin });
         this.setState({
           login: '',
           email: '',

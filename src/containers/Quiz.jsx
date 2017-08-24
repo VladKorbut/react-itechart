@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { Button, Col } from 'react-bootstrap';
 import { getQuiz } from '../actions/getQuiz';
@@ -25,11 +24,15 @@ class Quiz extends Component {
   }
 
   componentDidMount() {
-    this.props.get(this.props.params.id)
-      .catch((error) => {
-        console.log(error);
-        browserHistory.push('/404');
-      });
+    this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave);
+    this.props.get(this.props.params.id);
+  }
+
+  routerWillLeave = () => {
+    if (this.state.answers.length) {
+      return 'Your work is not saved! Are you sure you want to leave?';
+    }
+    return null;
   }
 
   startQuiz = () => {

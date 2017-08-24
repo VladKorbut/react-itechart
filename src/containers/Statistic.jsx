@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import StatisticSwitcher from './statistics/StatisticSwitcher';
 import Spinner from '../components/Spinner';
 import result from '../db/result';
@@ -15,6 +16,9 @@ class Statistic extends Component {
     result.getStat(this.props.params.id)
       .then((quiz) => {
         this.setState({ quiz });
+      })
+      .catch(() => {
+        browserHistory.push('/404');
       });
   }
 

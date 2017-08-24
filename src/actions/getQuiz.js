@@ -1,8 +1,10 @@
+import { browserHistory } from 'react-router';
 import {
   QUIZ_LOADING,
   QUIZ_SUCCESS,
   QUIZ_ERROR,
 } from '../types/actions/quiz';
+
 
 import quizdb from '../db/quiz';
 
@@ -22,7 +24,9 @@ export const getQuiz = id => (dispatch) => {
       dispatch(getQuizSuccess(quiz));
       return quiz;
     })
-    .catch(() => {
+    .catch((error) => {
+      console.error(error)
+      browserHistory.push('/404');
       dispatch(getQuizError());
       return false;
     });

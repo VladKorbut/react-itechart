@@ -15,7 +15,7 @@ class Single extends Component {
       isValid: false,
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     this.setState({
       title: this.props.question.title,
       isRequired: this.props.question.isRequired,

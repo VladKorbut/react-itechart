@@ -52,17 +52,7 @@ const quiz = {
       });
   },
   deleteQuestions(questions, quizId) {
-    return db.executeTransaction(`DELETE FROM questions WHERE quiz_id=${quizId}`)
-      .then(() => {
-        questions.forEach((item) => {
-          this.deleteOption(item.options, item.id);
-        });
-      });
-  },
-  deleteOption(options) {
-    options.forEach((option) => {
-      db.executeTransaction(`DELETE FROM question_options WHERE id=${option.id}`);
-    });
+    return db.executeTransaction(`DELETE FROM questions WHERE quiz_id=${quizId}`);
   },
   getAll() {
     return db.executeTransaction(`SELECT

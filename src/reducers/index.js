@@ -4,6 +4,7 @@ import usersReducer from './usersReducer';
 import quizzesReducer from './quizzesReducer';
 import quizReducer from './quizReducer';
 import resultsReducer from './resultsReducer';
+import { routerReducer } from 'react-router-redux';
 
 const reducers = combineReducers({
   loginReducer,
@@ -11,6 +12,7 @@ const reducers = combineReducers({
   quizzesReducer,
   quizReducer,
   resultsReducer,
+  routing: routerReducer,
 });
 
 export default reducers;
