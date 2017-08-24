@@ -26,13 +26,6 @@ function Stars(props) {
           <p>Skipped: {props.question.answers.length - props.passed}</p>
           : null
       }
-      <ul>
-        {
-          starsOptions.map((item, i) => (<li key={i}>
-            {item.value} - {countAnswers(props.question.answers, item.value)}
-          </li>))
-        }
-      </ul>
       <HorizontalBar
         data={getChartData(
           { ...props.question, options: starsOptions },

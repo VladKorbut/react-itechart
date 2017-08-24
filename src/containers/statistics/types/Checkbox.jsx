@@ -20,16 +20,9 @@ function Checkbox(props) {
       <h4>{props.question.title}</h4>
       {
         props.question.answers.length !== props.passed ?
-          <p>Skipped: {props.question.answers.length - props.passed}</p>
+          <p>Skipped: {props.passed - props.question.answers.length}</p>
           : null
       }
-      <ul>
-        {
-          props.question.options.map((option, i) => (<li key={i}>
-            {option.value} - {countAnswers(props.question.answers, option.id)}
-          </li>))
-        }
-      </ul>
       <Bar
         data={getChartData(props.question, countAnswers, 'blue')}
         options={percentage}

@@ -21,13 +21,6 @@ function Radio(props) {
           <p>Skipped: {props.question.answers.length - props.passed}</p>
           : null
       }
-      <ul>
-        {
-          props.question.options.map(option => (<li key={option.id}>
-            {option.value} - {countAnswers(props.question.answers, option.id)}
-          </li>))
-        }
-      </ul>
       <Doughnut data={getChartData(props.question, countAnswers, 'green')} />
     </div>
   );

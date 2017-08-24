@@ -16,7 +16,7 @@ const getNumberOfColours = (question) => {
   if (question.type === STARS) {
     return 5;
   }
-  return getAnswersLength(question.answers, question.type);
+  return question.options.length;
 };
 
 function getChartData(question, countAnswers, hue) {

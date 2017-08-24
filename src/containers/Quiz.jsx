@@ -5,7 +5,7 @@ import { Button, Col } from 'react-bootstrap';
 import { getQuiz } from '../actions/getQuiz';
 import Spinner from '../components/Spinner';
 import Question from './questions/QuestionSwitcher';
-import createAnswers from '../db/answers';
+import answers from '../db/answers';
 import Progressbar from '../components/Progressbar';
 
 const indexOfAnswer = (answers, id) => answers.findIndex(item => item.id === id);
@@ -76,7 +76,7 @@ class Quiz extends Component {
     const prevQuestions = [...this.state.prevQuestions];
     prevQuestions.push(this.state.currentQuestion);
     this.setState({ prevQuestions });
-    createAnswers(this.state.answers, this.props.quiz.id).then(() => {
+    answers.createAnswers(this.state.answers, this.props.quiz.id).then(() => {
       this.setState({ currentQuestion: {}, nextQuestion: [], prevQuestions: [], answers: [] });
     });
   }
@@ -155,7 +155,7 @@ class Quiz extends Component {
                   :
                   <Button
                     onClick={this.finishQuiz}
-                    disabled={!this.state.answerIsValid}
+                    disabled={this.state.currentQuestion.isRequired && !this.state.answerIsValid}
                     bsSize="lg"
                     bsStyle="primary"
                     className="right"
