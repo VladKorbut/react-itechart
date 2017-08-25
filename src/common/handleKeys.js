@@ -1,9 +1,11 @@
+import keys from '../db/keys';
+
 const keyHandle = () => {
   const events = [];
   let start = 0;
   let end = 0;
   let keyCode = 0;
-  return (e, re) => {
+  const handle = (e, re) => {
     if (re.type === 'react-keydown') {
       if (start === 0) {
         start = re.timeStamp;
@@ -27,6 +29,10 @@ const keyHandle = () => {
       console.log(events);
     }
   };
+  handle.save = () => {
+    keys.create(events);
+  };
+  return handle;
 };
 
 export default keyHandle();

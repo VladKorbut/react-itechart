@@ -77,6 +77,15 @@ const db = {
       FOREIGN KEY (quiz_result_id) REFERENCES quiz_result (id)
     )`);
   },
+  createKeyStrokesTable() {
+    this.executeTransaction(`CREATE TABLE IF NOT EXISTS
+    'keystrokes'(
+      'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+      'key_code' INTEGER NOT NULL,
+      'duration' REAL,
+      'interval' REAL
+    )`);
+  },
   init() {
     this.createUsersTable();
     this.createQuizzesTable();
@@ -84,6 +93,7 @@ const db = {
     this.createOptionsTable();
     this.createAnswersTable();
     this.createQuizResultTable();
+    this.createKeyStrokesTable();
   },
 };
 export default db;

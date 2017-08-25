@@ -12,6 +12,11 @@ class Single extends Component {
       answer: '',
     };
   }
+
+  componentWillUnmount() {
+    console.log(keyHandle.save());
+  }
+
   setStars = (rate) => {
     this.setState({ answer: rate });
     this.props.sendAnswers(this.props.question.id, rate);
