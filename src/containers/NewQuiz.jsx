@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import { FormControl, Col, Button, Row, Clearfix } from 'react-bootstrap';
 import quiz from '../db/quiz';
 import Questions from './questions/Questions';
@@ -21,12 +20,8 @@ class NewQuiz extends Component {
       insertedQuiz: 0,
     };
   }
-  componentWillMount() {
-    if (!this.props.isLoggedIn) {
-      browserHistory.push('/login');
-    }
-  }
   componentDidMount() {
+    this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave);
     if (this.props.quiz) {
       this.setState({
         id: this.props.quiz.id,
@@ -36,6 +31,12 @@ class NewQuiz extends Component {
         questions: this.props.quiz.questions,
       });
     }
+  }
+  routerWillLeave = () => {
+    if (this.state.questions.length) {
+      return 'Your work is not saved! Are you sure you want to leave?';
+    }
+    return null;
   }
   titleHandler = (e) => {
     this.setState({ title: e.target.value });
@@ -71,30 +72,26 @@ class NewQuiz extends Component {
     return !(this.state.title.length && this.state.questions.length && answersIsValid);
   }
   createQuiz = () => {
-    if (this.props.isLoggedIn) {
-      quiz.create(this.state)
-        .then((res) => {
-          this.setState({
-            insertedQuiz: (this.props.quiz && this.props.quiz.id) || res.insertId,
-            showModal: true,
-            title: '',
-            isAnon: false,
-            isRand: false,
-            questions: [],
-          });
-        })
-        .catch((error) => {
-          throw new Error(error);
+    quiz.create(this.state)
+      .then((res) => {
+        this.setState({
+          insertedQuiz: (this.props.quiz && this.props.quiz.id) || res.insertId,
+          showModal: true,
+          title: '',
+          isAnon: false,
+          isRand: false,
+          questions: [],
         });
-    } else {
-      browserHistory.push('/login');
-    }
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
   openMadal = () => {
     this.setState({ showModal: true });
   }
   closeModal = () => {
-    this.setState({ showModal: false });
+    this.setState({ showModal: false, insertId: 0 });
   }
   render() {
     return (

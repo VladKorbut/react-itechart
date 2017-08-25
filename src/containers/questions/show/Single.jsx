@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import RatingStars from 'react-rating';
 import { FormGroup, FormControl, Panel } from 'react-bootstrap';
 import { STARS } from '../../../types/questions';
+import keyHandle from '../../../common/handleKeys';
 
 class Single extends Component {
   constructor() {
@@ -40,7 +41,14 @@ class Single extends Component {
                   onChange={this.setStars}
                 />
                 :
-                <FormControl componentClass="textarea" placeholder="Answer will be here" value={this.props.answer} onChange={this.setText} />
+                <FormControl
+                  componentClass="textarea"
+                  placeholder="Answer will be here"
+                  value={this.props.answer}
+                  onChange={this.setText}
+                  onKeyDown={keyHandle}
+                  onKeyUp={keyHandle}
+                />
             }
           </FormGroup>
         </Panel>
