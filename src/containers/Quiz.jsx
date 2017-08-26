@@ -37,7 +37,7 @@ class Quiz extends Component {
 
   startQuiz = () => {
     const questions = this.props.quiz.isRand ?
-      randomizeArray(this.props.quiz.questions) : [...this.props.quiz.questions];
+      randomizeArray([...this.props.quiz.questions]) : [...this.props.quiz.questions];
     this.setState({
       currentQuestion: questions.pop(),
       nextQuestions: questions,
