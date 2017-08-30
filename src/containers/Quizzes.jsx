@@ -34,7 +34,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  get: my => getQuizzes(my)(dispatch),
+  get: my => dispatch(getQuizzes(my)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Quizzes);

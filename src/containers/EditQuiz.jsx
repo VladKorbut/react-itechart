@@ -35,7 +35,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  get: id => getQuiz(id)(dispatch),
+  get: id => dispatch(getQuiz(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditQuiz);

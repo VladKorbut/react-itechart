@@ -29,7 +29,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  get: quizId => getResults(quizId)(dispatch),
+  get: quizId => dispatch(getResults(quizId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

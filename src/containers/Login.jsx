@@ -110,7 +110,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: user => login(user)(dispatch),
+  login: user => dispatch(login(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

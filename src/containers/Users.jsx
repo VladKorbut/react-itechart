@@ -29,7 +29,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  get: () => getUsers()(dispatch),
+  get: () => dispatch(getUsers()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);
