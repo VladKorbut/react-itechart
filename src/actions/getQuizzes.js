@@ -1,23 +1,24 @@
 import {
   QUIZZES_LOADING,
   QUIZZES_SUCCESS,
-  QUIZZES_ERROR
-} from '../types/quizzes'
+  QUIZZES_ERROR,
+} from '../types/actions/quizzes';
 
-import quiz from '../db/quiz'
+import quiz from '../db/quiz';
 
-export const getMyQuizzes = () => dispatch => {
+export const getQuizzes = () => (dispatch) => {
   dispatch({ type: QUIZZES_LOADING });
+
   quiz.getMy()
     .then((quizzes) => {
       dispatch({
         type: QUIZZES_SUCCESS,
-        quizzes: quizzes,
-      })
+        quizzes,
+      });
     })
-    .catch((error) => {
+    .catch(() => {
       dispatch({
         type: QUIZZES_ERROR,
-      })
-    })
-}
+      });
+    });
+};

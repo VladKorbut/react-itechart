@@ -1,31 +1,33 @@
-import React, { Component } from 'react'
-import { Checkbox, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap'
-import Fa from 'react-fontawesome'
-import RatingStars from 'react-rating'
-import { STARS } from '../../../types/questions'
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import { Checkbox, FormControl, InputGroup, Button, Panel, Clearfix } from 'react-bootstrap';
+import Fa from 'react-fontawesome';
+import RatingStars from 'react-rating';
+import { STARS } from '../../../types/questions';
 
-class Rating extends Component {
+class Single extends Component {
   constructor() {
     super();
     this.state = {
       title: '',
       isRequired: true,
       type: 0,
-    }
+      isValid: false,
+    };
   }
   componentWillMount() {
     this.setState({
       title: this.props.question.title,
       isRequired: this.props.question.isRequired,
       type: this.props.question.type,
-    })
+    }, this.validateQuestion);
   }
   editQuestion = () => {
     this.props.editQuestion(this.props.index, this.state);
   }
   validateQuestion = () => {
     this.setState({
-      isValid: !!this.state.title.length
+      isValid: !!this.state.title.length,
     }, this.editQuestion);
   }
   titleHandler = (e) => {
@@ -34,7 +36,7 @@ class Rating extends Component {
   requiredHandler = (e) => {
     this.setState({ isRequired: e.target.checked }, this.validateQuestion);
   }
-  deleteQuestion = (e) => {
+  deleteQuestion = () => {
     this.props.deleteQuestion(this.props.index);
   }
   render() {
@@ -70,8 +72,16 @@ class Rating extends Component {
           <FormControl disabled componentClass="textarea" placeholder="Answer will be here" />
         }
       </Panel>
-    )
+    );
   }
 }
 
-export default Rating
+Single.propTypes = {
+  edit: propTypes.bool,
+  index: propTypes.number,
+  question: propTypes.object,
+  editQuestion: propTypes.func,
+  deleteQuestion: propTypes.func,
+}
+
+export default Single;

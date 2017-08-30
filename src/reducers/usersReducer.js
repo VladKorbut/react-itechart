@@ -1,20 +1,20 @@
 import {
   USERS_LOADING,
   USERS_SUCCESS,
-  USERS_ERROR
-} from '../types/users'
+  USERS_ERROR,
+} from '../types/actions/users';
 
-let usersInitState = {
+const usersInitState = {
   loading: false,
   success: false,
   users: [],
-}
+};
 
 const usersReducer = (usersState = usersInitState, action) => {
   switch (action.type) {
     case USERS_LOADING: return {
       loading: true,
-      success: false
+      success: false,
     };
     case USERS_SUCCESS: return {
       loading: false,
@@ -28,6 +28,6 @@ const usersReducer = (usersState = usersInitState, action) => {
     };
     default: return usersState;
   }
-}
+};
 
 export default usersReducer;

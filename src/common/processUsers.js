@@ -1,15 +1,13 @@
-import cv from './converter'
+import cv from './converter';
 
 const processUsers = (users) => {
-  users = [...users];
-  return users.map(function (item) {
-    return {
-      id: item.id,
-      login: item.login,
-      date: item.date,
-      isAdmin: cv.strToBool(item.isAdmin),
-    };
-  });
-}
+  const usersArray = [...users];
+  return usersArray.map(item => ({
+    id: item.id,
+    login: item.login,
+    date: item.date,
+    isAdmin: cv.strToBool(item.isAdmin),
+  }));
+};
 
-export default processUsers
+export default processUsers;

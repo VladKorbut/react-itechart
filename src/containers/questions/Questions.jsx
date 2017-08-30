@@ -1,22 +1,30 @@
-import React, { Component } from 'react'
-import Question from './Question'
+import React from 'react';
+import propTypes from 'prop-types';
+import { Alert } from 'react-bootstrap';
+import Question from './QuestionSwitcher';
 
-class Questions extends Component {
-  render() {
-    return (
-      <div>
-        {
-          this.props.questions.map((question, index) => {
-            return (<Question
-              key={index}
-              index={index}
-              question={question}
-              {...this.props} />);
-          })
-        }
-      </div>
-    )
-  }
+function Questions(props) {
+  return (
+    <div>
+      {
+        props.questions.length ?
+          props.questions.map((question, index) => (<Question
+            key={index}
+            index={index}
+            question={question}
+            {...props}
+          />))
+          :
+          <Alert>
+            Questions Will Be Displayed Here
+          </Alert>
+      }
+    </div>
+  );
 }
 
-export default Questions
+Question.propTypes = {
+  questions: propTypes.arrayOf(propTypes.object),
+};
+
+export default Questions;

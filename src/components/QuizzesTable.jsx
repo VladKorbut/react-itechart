@@ -1,30 +1,54 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router'
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
-import dc from '../common/dateConverter'
+import React from 'react';
+import propTypes from 'prop-types';
+import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import { Button } from 'react-bootstrap';
+import Fa from 'react-fontawesome';
+import dc from '../common/dateConverter';
 
-const fromatLink = (id) => {
-  return <Link to={'quiz/' + id}>Link to quiz</Link>
+const quizLink = id => <Link to={`/quiz/${id}`}>Link to quiz</Link>;
+
+const resultsLink = (id, row) => {
+  if (!row.answers) { return null; }
+  return <Link to={`/results/${id}`}>Results</Link>;
+};
+
+const statLink = (id, row) => {
+  if (!row.answers) { return null; }
+  return <Link to={`/stat/${id}`}>Statistics</Link>;
+};
+
+
+const editBtn = (id, row) => (
+  <LinkContainer to={`/edit/${id}`}>
+    <Button disabled={!!row.answers}><Fa name="pencil" /></Button>
+  </LinkContainer>
+);
+
+function QuizzesTable(props) {
+  return (
+    <BootstrapTable
+      striped
+      hover
+      data={props.data}
+      pagination
+      responsive
+    >
+      <TableHeaderColumn isKey dataField="id" dataSort width="40">#</TableHeaderColumn>
+      <TableHeaderColumn dataField="title" dataSort>Title</TableHeaderColumn>
+      <TableHeaderColumn dataField="answers" dataSort>Answers</TableHeaderColumn>
+      <TableHeaderColumn dataField="date" dataSort dataFormat={dc.getDDMMYYYY}>Date</TableHeaderColumn>
+      <TableHeaderColumn dataField="id" dataFormat={statLink}>Statistic</TableHeaderColumn>
+      <TableHeaderColumn dataField="id" dataFormat={resultsLink}>Results</TableHeaderColumn>
+      <TableHeaderColumn dataField="id" dataFormat={quizLink}>Link</TableHeaderColumn>
+      <TableHeaderColumn dataField="id" dataFormat={editBtn}>Options</TableHeaderColumn>
+    </BootstrapTable>
+  );
 }
 
-const formatIndex = (х, у, й, index) => {
-  return index + 1;
-}
+QuizzesTable.propTypes = {
+  data: propTypes.arrayOf(propTypes.object),
+};
 
-class QuizzesTable extends Component {
-  render() {
-    return (
-      <BootstrapTable striped hover
-        data={this.props.data}
-        pagination
-        responsive>
-        <TableHeaderColumn isKey dataField='id' dataFormat={formatIndex} width='60'>#</TableHeaderColumn>
-        <TableHeaderColumn dataField='title' dataSort={true}>Title</TableHeaderColumn>
-        <TableHeaderColumn dataField='date' dataSort={true} dataFormat={dc.getDDMMYYYY}>Date</TableHeaderColumn>
-        <TableHeaderColumn dataField='id' dataFormat={fromatLink}>Link</TableHeaderColumn>
-      </BootstrapTable>
-    )
-  }
-}
-
-export default QuizzesTable
+export default QuizzesTable;

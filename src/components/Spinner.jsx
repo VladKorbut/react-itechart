@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
-import { BarLoader } from 'react-spinners'
+import React from 'react';
+import { BarLoader } from 'react-spinners';
 
-class Spinner extends Component {
-  render() {
-    return (
-      <div className={'spinner'}>
-        <BarLoader color={'#555'} loading={true}/>
-      </div>
-    )
-  }
+function Spinner() {
+  return (
+    <div className={'spinner'}>
+      <BarLoader color={'#555'} loading />
+    </div>
+  );
 }
 
-export default Spinner
+export default Spinner;

@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import { Checkbox, Radio, FormGroup, Panel } from 'react-bootstrap'
-import { CHECKBOX } from '../../../types/questions'
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import { Checkbox, Radio, FormGroup, Panel } from 'react-bootstrap';
+import { CHECKBOX } from '../../../types/questions';
 
 class Multiple extends Component {
   constructor() {
@@ -9,21 +10,21 @@ class Multiple extends Component {
       answer: null,
     };
   }
-  setAnswer = (id) => (e) => {
+  setAnswer = id => (e) => {
+    let answer;
     if (e.target.type === 'checkbox') {
-      let answer = Array.isArray(this.state.answer) ? this.state.answer : [];
+      answer = Array.isArray(this.state.answer) ? this.state.answer : [];
       if (e.target.checked) {
         answer.push(id);
-        this.setState({ answer: answer });
       } else {
         answer.splice(answer.indexOf(id), 1);
-        this.setState({ answer: answer });
       }
-      this.props.sendAnswers(this.props.question.id, answer);
     } else {
-      this.setState({ answer: id });
-      this.props.sendAnswers(this.props.question.id, id);
+      answer = id;
     }
+    this.setState({ answer }, () => {
+      this.props.sendAnswers(this.props.question.id, this.state.answer);
+    });
   }
   render() {
     return (
@@ -38,23 +39,43 @@ class Multiple extends Component {
         >
           <FormGroup>
             {
-              this.props.question.options.map((option, index) => {
-                return (
-                  <span key={index}>
-                    {this.props.question.type === CHECKBOX ?
-                      <Checkbox onChange={this.setAnswer(option.id)} checked={this.props.answer.indexOf(option.id)+1}>{option.value}</Checkbox>
-                      :
-                      <Radio onChange={this.setAnswer(option.id)} checked={this.props.answer === option.id} name="radioGroup">{option.value}</Radio>
-                    }
-                  </span>
-                )
-              })
+              this.props.question.options.map(option => (
+                <span key={option.id}>
+                  {this.props.question.type === CHECKBOX ?
+                    <Checkbox
+                      onChange={this.setAnswer(option.id)}
+                      checked={this.props.answer.indexOf(option.id) + 1}
+                    >
+                      {option.value}
+                    </Checkbox>
+                    :
+                    <Radio
+                      onChange={this.setAnswer(option.id)}
+                      checked={this.props.answer === option.id}
+                      name="radioGroup"
+                    >
+                      {option.value}
+                    </Radio>
+                  }
+                </span>
+              ))
             }
           </FormGroup>
         </Panel>
       </div>
-    )
+    );
   }
 }
 
-export default Multiple
+Multiple.propTypes = {
+  answer: propTypes.oneOfType([
+    propTypes.number,
+    propTypes.array,
+    propTypes.string,
+  ]),
+  index: propTypes.number,
+  question: propTypes.object,
+  sendAnswers: propTypes.func,
+};
+
+export default Multiple;

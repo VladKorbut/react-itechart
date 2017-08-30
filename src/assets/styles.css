@@ -56,8 +56,20 @@ button:focus {
   text-align: left;
 }
 
-.progress{
+.progress {
   height: 20px;
   text-align: center;
   border-radius: 3px;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 9;
+}
+
+.alert-info {
+  background-color: #e9edf5;
+  color: #171f30;
 }
