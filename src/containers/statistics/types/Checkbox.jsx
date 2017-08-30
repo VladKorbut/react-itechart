@@ -5,11 +5,7 @@ import getChartData, { percentage } from '../../../common/graphs';
 const countAnswers = (answers, optionId) => {
   let count = 0;
   answers.forEach((item) => {
-    item.value.forEach((value) => {
-      if (value === optionId) {
-        ++count;
-      }
-    });
+    count += item.value.reduce((sum, value) => (value === optionId ? sum + 1 : sum), 0);
   });
   return count;
 };

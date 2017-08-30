@@ -36,7 +36,7 @@ class Single extends Component {
   requiredHandler = (e) => {
     this.setState({ isRequired: e.target.checked }, this.validateQuestion);
   }
-  deleteQuestion = (e) => {
+  deleteQuestion = () => {
     this.props.deleteQuestion(this.props.index);
   }
   render() {
@@ -72,7 +72,7 @@ class Single extends Component {
           <FormControl disabled componentClass="textarea" placeholder="Answer will be here" />
         }
       </Panel>
-    )
+    );
   }
 }
 

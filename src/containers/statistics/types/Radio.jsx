@@ -2,15 +2,10 @@ import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import getChartData from '../../../common/graphs';
 
-const countAnswers = (answers, optionId) => {
-  let count = 0;
-  answers.forEach((item) => {
-    if (item.value === optionId) {
-      ++count;
-    }
-  });
-  return count;
-};
+const countAnswers = (answers, optionId) => answers.reduce(
+  (sum, item) => (item.value === optionId ? sum + 1 : sum),
+  0,
+);
 
 function Radio(props) {
   return (

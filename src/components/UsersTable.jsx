@@ -8,13 +8,20 @@ import dc from '../common/dateConverter';
 import users from '../db/users';
 
 function UserTable(props) {
+  const deleteUser = id => () => {
+    users.deleteUser(id).then(() => {
+      props.reload();
+    });
+  };
+
   const editButtons = id => (
     props.user.id !== id ?
       <Button bsStyle="danger" onClick={deleteUser(id)}><Fa name="times" /></Button>
       : null
   );
-  const deleteUser = id => () => {
-    users.deleteUser(id).then(() => {
+
+  const roleHandler = id => (e) => {
+    users.changeRole(id, e.target.checked).then(() => {
       props.reload();
     });
   };
@@ -27,11 +34,6 @@ function UserTable(props) {
     />
   );
 
-  const roleHandler = id => (e) => {
-    users.changeRole(id, e.target.checked).then(() => {
-      props.reload();
-    });
-  };
   return (
     <BootstrapTable
       data={props.data}

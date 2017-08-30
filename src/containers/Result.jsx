@@ -22,8 +22,11 @@ class Result extends Component {
   render() {
     return (
       <div>
-        {this.state.questions && this.state.questions.length
-          ? <QuestionsResults questions={this.state.questions} /> : <Spinner />}
+        {
+          this.state.questions && this.state.questions.length
+            ? <QuestionsResults questions={this.state.questions} />
+            : <Spinner />
+        }
       </div>
     );
   }

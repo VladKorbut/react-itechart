@@ -20,7 +20,7 @@ class QuizLinkModal extends Component {
     return (
       <Modal show={this.props.show} onHide={this.props.close}>
         <Modal.Header closeButton>
-          <Modal.Title>You're quiz link</Modal.Title>
+          <Modal.Title>You’re quiz link</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <FormGroup>

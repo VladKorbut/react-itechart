@@ -28,12 +28,12 @@ class Statistic extends Component {
         {Object.keys(this.state.quiz).length ? (
           <div>
             <h1>{this.state.quiz.title}</h1>
-            <p>Passed: {this.state.quiz.answers}</p>
+            <p>Passed: {this.state.quiz.answersCount}</p>
             {this.state.quiz.questions.map(question => (
               <StatisticSwitcher
                 key={question.id}
                 question={question}
-                passed={this.state.quiz.answers}
+                passed={this.state.quiz.answersCount}
               />
             ))}
           </div>

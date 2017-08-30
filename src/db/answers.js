@@ -7,7 +7,7 @@ const answers = {
 VALUES(${Date.now()}, ${store.getState().loginReducer.id}, ${quizId})`)
       .then((res) => {
         const insert = answers.map(item => (
-          `('${item.answer}', ${item.id}, ${res.insertId})`
+          `('${item.value}', ${item.id}, ${res.insertId})`
         ));
         if (insert.length) {
           return db.executeTransaction(`INSERT INTO answers(value, question_id, quiz_result_id)

@@ -13,7 +13,7 @@ class AddQuestions extends Component {
     this.state = {
       isVertical: checkWidthLarge(window.innerWidth),
     };
-    this.throttler = throttle(this.changeVerticalState, 50);
+    this.throttledCheckWidth = throttle(this.changeVerticalState, 50);
   }
 
   changeVerticalState = () => {
@@ -21,11 +21,11 @@ class AddQuestions extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.throttler);
+    window.addEventListener('resize', this.throttledCheckWidth);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.throttler);
+    window.removeEventListener('resize', this.throttledCheckWidth);
   }
 
   render() {
@@ -37,10 +37,12 @@ class AddQuestions extends Component {
             <Fa name="check-square-o" />
             <span className={'hidden-xs'}>Multiple choise</span>
           </Button>
-          <Button onClick={this.props.addQuestion(RADIO)}><Fa name="dot-circle-o" />
+          <Button onClick={this.props.addQuestion(RADIO)}>
+            <Fa name="dot-circle-o" />
             <span className={'hidden-xs'}>Single choise</span>
           </Button>
-          <Button onClick={this.props.addQuestion(STARS)}><Fa name="star-half-o" />
+          <Button onClick={this.props.addQuestion(STARS)}>
+            <Fa name="star-half-o" />
             <span className={'hidden-xs'}>Stars rating</span>
           </Button>
           <Button onClick={this.props.addQuestion(TEXT)}>

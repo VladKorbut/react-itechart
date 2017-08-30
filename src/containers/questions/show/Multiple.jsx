@@ -11,20 +11,20 @@ class Multiple extends Component {
     };
   }
   setAnswer = id => (e) => {
+    let answer;
     if (e.target.type === 'checkbox') {
-      const answer = Array.isArray(this.state.answer) ? this.state.answer : [];
+      answer = Array.isArray(this.state.answer) ? this.state.answer : [];
       if (e.target.checked) {
         answer.push(id);
-        this.setState({ answer });
       } else {
         answer.splice(answer.indexOf(id), 1);
-        this.setState({ answer });
       }
-      this.props.sendAnswers(this.props.question.id, answer);
     } else {
-      this.setState({ answer: id });
-      this.props.sendAnswers(this.props.question.id, id);
+      answer = id;
     }
+    this.setState({ answer }, () => {
+      this.props.sendAnswers(this.props.question.id, this.state.answer);
+    });
   }
   render() {
     return (
@@ -39,8 +39,8 @@ class Multiple extends Component {
         >
           <FormGroup>
             {
-              this.props.question.options.map((option, index) => (
-                <span key={index}>
+              this.props.question.options.map(option => (
+                <span key={option.id}>
                   {this.props.question.type === CHECKBOX ?
                     <Checkbox
                       onChange={this.setAnswer(option.id)}

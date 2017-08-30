@@ -51,5 +51,4 @@ QuizzesTable.propTypes = {
   data: propTypes.arrayOf(propTypes.object),
 };
 
-export default QuizzesTable
-  ;
+export default QuizzesTable;

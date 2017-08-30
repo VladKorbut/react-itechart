@@ -62,36 +62,24 @@ class NewQuiz extends Component {
     this.setState({ questions });
   }
   getButtonState = () => {
-    let answersIsValid = true;
-    this.state.questions.forEach((item) => {
-      if (!item.isValid) {
-        answersIsValid = false;
-      }
-    });
+    const answersIsValid = !this.state.questions.find(item => !item.isValid);
     return !(this.state.title.length && this.state.questions.length && answersIsValid);
   }
   createQuiz = () => {
-    if (this.props.isLoggedIn) {
-      quiz.create(this.state)
-        .then((res) => {
-          this.setState({
-            insertedQuiz: (this.props.quiz && this.props.quiz.id) || res.insertId,
-            showModal: true,
-            title: '',
-            isAnon: false,
-            isRand: false,
-            questions: [],
-          });
-        })
-        .catch((error) => {
-          throw new Error(error);
+    quiz.create(this.state)
+      .then((res) => {
+        this.setState({
+          insertedQuiz: (this.props.quiz && this.props.quiz.id) || res.insertId,
+          title: '',
+          isAnon: false,
+          isRand: false,
+          questions: [],
+          showModal: true,
         });
-    } else {
-      browserHistory.push('/login');
-    }
-  }
-  openMadal = () => {
-    this.setState({ showModal: true });
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
   closeModal = () => {
     this.setState({ showModal: false });

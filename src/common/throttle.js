@@ -2,13 +2,13 @@ export default (func, ms) => {
   let isThrottled = false;
   let savedArgs;
   let savedThis;
-  const wrapper = () => {
+  const wrapper = (...args) => {
     if (isThrottled) {
-      savedArgs = arguments;
+      savedArgs = args;
       savedThis = this;
       return;
     }
-    func.apply(this, arguments);
+    func.apply(this, args);
     isThrottled = true;
     setTimeout(() => {
       isThrottled = false;

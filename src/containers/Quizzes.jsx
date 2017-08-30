@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Alert } from 'react-bootstrap';
 import QuizzesTable from '../components/QuizzesTable';
 import { getQuizzes } from '../actions/getQuizzes';
 import Spinner from '../components/Spinner';
@@ -15,9 +14,7 @@ class Quizzes extends Component {
       <div>
         {this.props.loading && !this.props.success ?
           <Spinner /> :
-          (this.props.quizzes.length ?
-            <QuizzesTable data={this.props.quizzes} /> :
-            <Alert bsStyle="info">You're haven't created any quizzes</Alert>)
+          <QuizzesTable data={this.props.quizzes} />
         }
       </div>
     );

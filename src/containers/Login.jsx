@@ -40,7 +40,7 @@ class Login extends Component {
         }
       });
     } else {
-      this.setState({ loginIsValid: false });
+      this.setState({ loginIsValid: null });
     }
   }
 
@@ -57,20 +57,21 @@ class Login extends Component {
   }
 
   submitFrom = () => {
-    getUser(this.state.login, this.state.password).then((data) => {
-      if (!data.rows.length) {
-        alert('Password is incorrect');
-        this.setState({ password: '', passwordIsValid: null });
-      } else {
-        const user = {
-          id: data.rows[0].id,
-          login: data.rows[0].login,
-          isAdmin: cv.strToBool(data.rows[0].isAdmin),
-        };
-        this.props.login(user);
-        browserHistory.push('/');
-      }
-    });
+    getUser(this.state.login, this.state.password)
+      .then((data) => {
+        if (!data.rows.length) {
+          alert('Password is incorrect');
+          this.setState({ password: '', passwordIsValid: null });
+        } else {
+          const user = {
+            id: data.rows[0].id,
+            login: data.rows[0].login,
+            isAdmin: cv.strToBool(data.rows[0].isAdmin),
+          };
+          this.props.login(user);
+          browserHistory.push('/');
+        }
+      });
   }
 
   render() {

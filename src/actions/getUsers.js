@@ -12,7 +12,7 @@ export const getUsers = () => (dispatch) => {
     .then((users) => {
       dispatch({
         type: USERS_SUCCESS,
-        users
+        users,
       });
     })
     .catch(() => {

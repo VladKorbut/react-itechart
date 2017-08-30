@@ -4,7 +4,7 @@ import {
   RESULTS_ERROR,
 } from '../types/actions/results';
 
-let resultsInitState = {
+const resultsInitState = {
   loading: false,
   success: false,
   results: [],

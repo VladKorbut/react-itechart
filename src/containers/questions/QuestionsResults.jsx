@@ -7,7 +7,7 @@ function QuestionResults(props) {
     <div>
       {
         props.questions.map((question, index) => (<QuestionResult
-          key={index}
+          key={question.id}
           index={index}
           question={question}
         />))

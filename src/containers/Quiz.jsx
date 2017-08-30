@@ -45,12 +45,12 @@ class Quiz extends Component {
   }
 
   nextQuestion = () => {
-    this.setState({ answerIsValid: false });
     const prevQuestions = [...this.state.prevQuestions];
     prevQuestions.push(this.state.currentQuestion);
     const nextQuestions = [...this.state.nextQuestions];
     const currentQuestion = nextQuestions.pop();
     this.setState({
+      answerIsValid: false,
       prevQuestions,
       currentQuestion,
       nextQuestions,
@@ -62,14 +62,13 @@ class Quiz extends Component {
     nextQuestions.push(this.state.currentQuestion);
     const prevQuestions = [...this.state.prevQuestions];
     const currentQuestion = prevQuestions.pop();
+
+    const answers = [...this.state.answers];
+    answers.length = indexOfAnswer(this.state.answers, currentQuestion.id) + 1;
     this.setState({
       prevQuestions,
       currentQuestion,
       nextQuestions,
-    });
-    const answers = [...this.state.answers];
-    answers.length = indexOfAnswer(this.state.answers, currentQuestion.id) + 1;
-    this.setState({
       answerIsValid: !!(indexOfAnswer(this.state.answers, currentQuestion.id) + 1),
       answers,
     });
@@ -78,96 +77,95 @@ class Quiz extends Component {
   finishQuiz = () => {
     const prevQuestions = [...this.state.prevQuestions];
     prevQuestions.push(this.state.currentQuestion);
-    this.setState({ prevQuestions });
     answers.createAnswers(this.state.answers, this.props.quiz.id).then(() => {
       this.setState({ currentQuestion: {}, nextQuestion: [], prevQuestions: [], answers: [] });
     });
   }
 
-  getAnswers = (id, answer) => {
+  getAnswers = (id, value) => {
     const answers = [...this.state.answers];
     if (indexOfAnswer(answers, id) + 1) {
-      answers[indexOfAnswer(answers, id)] = { id, answer };
+      answers[indexOfAnswer(answers, id)] = { id, value };
     } else {
-      answers.push({ id, answer });
+      answers.push({ id, value });
     }
-    this.setState({ answers });
-    if (typeof answer === 'number') {
-      this.setState({ answerIsValid: !!answer });
+
+    let answerIsValid;
+    if (typeof value === 'number') {
+      answerIsValid = !!value;
     } else {
-      this.setState({ answerIsValid: !!answer.length });
+      answerIsValid = !!value.length;
     }
+    this.setState({ answers, answerIsValid });
   }
 
   getAnswer = () => {
-    let answer = [];
-    const currentQuestionId = this.state.currentQuestion.id;
-    this.state.answers.forEach((item) => {
-      if (item.id === currentQuestionId) {
-        answer = item.answer;
-      }
-    });
-    return answer;
+    const answer = this.state.answers.find(item => item.id === this.state.currentQuestion.id);
+    return answer ? answer.value : [];
   }
 
   render() {
     return (
-      <div>{(this.props.success === null || this.props.loading) ? <Spinner /> :
-      <div className="centered">
-        {!Object.keys(this.state.currentQuestion).length ?
-            <div>
-              <h2>Quiz name: {this.props.quiz.title}</h2>
-              <p>Last modified: {this.props.quiz.date}</p>
-              <Button
-                onClick={this.startQuiz}
-                bsSize="lg"
-                bsStyle="primary"
-                disabled={!(this.props.isLoggedIn || this.props.quiz.isAnon)}
-              >
-                Start
-                </Button>
-            </div>
-            :
-            <Col md={8} lg={6} mdOffset={2} lgOffset={4}>
-              <Question
-                sendAnswers={this.getAnswers}
-                answer={this.getAnswer()}
-                question={this.state.currentQuestion || null}
-                index={this.state.prevQuestions.length}
-              />
-              <Progressbar
-                current={this.state.prevQuestions.length}
-                length={this.props.quiz.questions.length}
-              />
-              <div className={'quiz-nav'}>
+      <div>{
+        (this.props.success === null || this.props.loading)
+          ? <Spinner /> :
+          <div className="centered">
+            {!Object.keys(this.state.currentQuestion).length ?
+              <div>
+                <h2>Quiz name: {this.props.quiz.title}</h2>
+                <p>Last modified: {this.props.quiz.date}</p>
                 <Button
-                  onClick={this.prevQuestion}
-                  disabled={!this.state.prevQuestions.length}
+                  onClick={this.startQuiz}
                   bsSize="lg"
                   bsStyle="primary"
-                  className="left"
-                >Prev</Button>
-                {this.state.nextQuestions.length ?
-                  <Button
-                    onClick={this.nextQuestion}
-                    disabled={this.state.currentQuestion.isRequired && !this.state.answerIsValid}
-                    bsSize="lg"
-                    bsStyle="primary"
-                    className="right"
-                  >Next</Button>
-                  :
-                  <Button
-                    onClick={this.finishQuiz}
-                    disabled={this.state.currentQuestion.isRequired && !this.state.answerIsValid}
-                    bsSize="lg"
-                    bsStyle="primary"
-                    className="right"
-                  >Finish</Button>
-                }
+                  disabled={!(this.props.isLoggedIn || this.props.quiz.isAnon)}
+                >
+                  Start
+                </Button>
               </div>
-            </Col>
-          }
-      </div>
+              :
+              <Col md={8} lg={6} mdOffset={2} lgOffset={4}>
+                <Question
+                  sendAnswers={this.getAnswers}
+                  answer={this.getAnswer()}
+                  question={this.state.currentQuestion || null}
+                  index={this.state.prevQuestions.length}
+                />
+                <Progressbar
+                  current={this.state.prevQuestions.length}
+                  length={this.props.quiz.questions.length}
+                />
+                <div className={'quiz-nav'}>
+                  <Button
+                    onClick={this.prevQuestion}
+                    disabled={!this.state.prevQuestions.length}
+                    bsSize="lg"
+                    bsStyle="primary"
+                    className="left"
+                  >Prev</Button>
+                  {this.state.nextQuestions.length ?
+                    <Button
+                      onClick={this.nextQuestion}
+                      disabled={this.state.currentQuestion.isRequired && !this.state.answerIsValid}
+                      bsSize="lg"
+                      bsStyle="primary"
+                      className="right"
+                    >Next</Button>
+                    :
+                    <Button
+                      onClick={this.finishQuiz}
+                      disabled={this.state.currentQuestion.isRequired && !this.state.answerIsValid}
+                      bsSize="lg"
+                      bsStyle="primary"
+                      className="right"
+                    >
+                      Finish
+                  </Button>
+                  }
+                </div>
+              </Col>
+            }
+          </div>
       }
       </div>
     );

@@ -3,11 +3,7 @@ import { CHECKBOX, STARS } from '../types/questions';
 
 const getAnswersLength = (answers, type) => {
   if (type === CHECKBOX) {
-    let length = 0;
-    answers.forEach((answer) => {
-      length += answer.value.length;
-    });
-    return length;
+    return answers.reduce((res, answer) => res + answer.value.length, 0);
   }
   return answers.length;
 };
@@ -19,7 +15,7 @@ const getNumberOfColours = (question) => {
   return question.options.length;
 };
 
-function getChartData(question, countAnswers, hue) {
+function getChartData(question, countAnswers = 0, hue = '') {
   return {
     labels: question.options.map(option => `${option.value} (${countAnswers(question.answers, option.id)})`),
     datasets: [{
@@ -29,7 +25,7 @@ function getChartData(question, countAnswers, hue) {
           / getAnswersLength(question.answers, question.type);
         return percents.toPrecision(3);
       }),
-      backgroundColor: randColor({ count: getNumberOfColours(question), hue: hue || '', luminosity: 'bright' }),
+      backgroundColor: randColor({ count: getNumberOfColours(question), hue, luminosity: 'bright' }),
       borderWidth: 1,
     }],
   };

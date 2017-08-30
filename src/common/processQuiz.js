@@ -2,6 +2,10 @@ import cv from './converter';
 import dc from './dateConverter';
 import { STARS } from '../types/questions';
 
+const itemExist = (arr, id) => !!arr.find(item => item.id === id);
+
+const indexOfById = (arr, id) => arr.findIndex(item => item.id === id);
+
 const processQuiz = (quiz) => {
   quiz = [...quiz.rows];
 
@@ -38,10 +42,6 @@ const processQuiz = (quiz) => {
 
   return res;
 };
-
-const itemExist = (arr, id) => arr.find(item => item.id === id);
-
-const indexOfById = (arr, id) => arr.findIndex(item => item.id === id);
 
 export default processQuiz;
 export {

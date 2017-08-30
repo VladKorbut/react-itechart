@@ -13,7 +13,7 @@ function processAnswers(answers, questionType) {
 
 const processStat = (quiz, answers, answersCount) => {
   answers = [...answers.rows];
-  quiz.answers = answersCount.rows[0].answers;
+  quiz.answersCount = answersCount.rows[0].answers;
   const questions = quiz.questions;
 
   questions.forEach((question) => {
