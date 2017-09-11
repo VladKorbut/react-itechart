@@ -6,6 +6,8 @@ const itemExist = (arr, id) => !!arr.find(item => item.id === id);
 
 const indexOfById = (arr, id) => arr.findIndex(item => item.id === id);
 
+const randomizeArray = arr => arr.sort(() => (Math.random() - 0.5));
+
 const processQuiz = (quiz) => {
   quiz = [...quiz.rows];
 
@@ -26,6 +28,7 @@ const processQuiz = (quiz) => {
       question.isRequired = cv.strToBool(item.isRequired);
       question.id = item.question_id;
       question.options = item.type < STARS ? [] : null;
+      question.position = item.position;
       questions.push(question);
     }
   });
@@ -38,7 +41,8 @@ const processQuiz = (quiz) => {
     }
   });
 
-  res.questions = questions;
+  res.questions = res.isRand ? randomizeArray(questions) :
+    questions.sort((a, b) => a.position - b.position);
 
   return res;
 };

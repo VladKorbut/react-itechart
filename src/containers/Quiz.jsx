@@ -9,8 +9,6 @@ import Progressbar from '../components/Progressbar';
 
 const indexOfAnswer = (answers, id) => answers.findIndex(item => item.id === id);
 
-const randomizeArray = arr => arr.sort(() => (Math.random() - 0.5));
-
 class Quiz extends Component {
   constructor() {
     super();
@@ -36,8 +34,7 @@ class Quiz extends Component {
   }
 
   startQuiz = () => {
-    const questions = this.props.quiz.isRand ?
-      randomizeArray([...this.props.quiz.questions]) : [...this.props.quiz.questions];
+    const questions = [...this.props.quiz.questions.reverse()];
     this.setState({
       currentQuestion: questions.pop(),
       nextQuestions: questions,

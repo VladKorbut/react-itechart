@@ -21,8 +21,8 @@ const quiz = {
   createQuestion(questions, quizId) {
     questions.forEach((item) => {
       db.executeTransaction(`INSERT INTO
-      questions(title, isRequired, type, quiz_id)
-      VALUES ('${item.title}', '${cv.boolToStr(item.isRequired)}', ${item.type}, ${+quizId})`)
+      questions(title, isRequired, type, quiz_id, position)
+      VALUES ('${item.title}', '${cv.boolToStr(item.isRequired)}', ${item.type}, ${+quizId}, ${item.position})`)
         .then((data) => {
           if (item.options && item.options.length) {
             this.createOption(item.options, data.insertId);
@@ -82,7 +82,7 @@ const quiz = {
   getSingle(id) {
     return db.executeTransaction(`SELECT
     quiz.id, quiz.title, quiz.isRand, quiz.isAnon, quiz.date,
-    quest.title as question_title, quest.type, quest.isRequired, quest.id as question_id,
+    quest.title as question_title, quest.type, quest.isRequired, quest.id as question_id, quest.position,
     opt.text, opt.id as option_id
     from quizzes quiz
       LEFT join questions quest

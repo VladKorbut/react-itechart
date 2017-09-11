@@ -48,7 +48,7 @@ class NewQuiz extends Component {
   }
   addQuestion = type => () => {
     const questions = [...this.state.questions];
-    questions.push({ title: '', type, isRequired: true, options: [] });
+    questions.push({ title: '', type, isRequired: true, options: [], position: questions.length });
     this.setState({ questions });
   }
   editQuestion = (index, question) => {

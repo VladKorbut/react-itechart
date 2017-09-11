@@ -25,7 +25,7 @@ export const getQuiz = id => (dispatch) => {
       return quiz;
     })
     .catch((error) => {
-      console.error(error)
+      console.error(error);
       browserHistory.push('/404');
       dispatch(getQuizError());
       return false;

@@ -41,6 +41,7 @@ const db = {
       'id' INTEGER PRIMARY KEY AUTOINCREMENT,
       'title' VARCHAR(50) NOT NULL,
       'type' INTEGER NOT NULL,
+      'position' INTEGER NOT NULL,
       'isRequired' BOOLEAN DEFAULT FALSE,
       'quiz_id' INTEGER NOT NULL,
       FOREIGN KEY (quiz_id) REFERENCES quizzes (id)
